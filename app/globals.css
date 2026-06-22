@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ace-black: 11 15 26;
+  --ace-midnight: 15 27 61;
+  --ace-electric: 59 130 246;
+  --ace-electric-button: 37 99 235;
+  --ace-electric-dark: 29 78 216;
+  --ace-electric-darker: 30 64 175;
+  --ace-silver: 192 199 209;
+  --ace-white: 255 255 255;
+  --ace-glass: rgba(255,255,255,0.06);
+  --ace-glass-border: rgba(192,199,209,0.15);
+  --ace-glass-hover: rgba(255,255,255,0.10);
+  --font-heading: "Space Grotesk", Poppins, sans-serif;
+  --font-body: Inter, Roboto, sans-serif;
+}
+
+[data-theme="light"] {
+  --ace-black: 255 255 255;
+  --ace-midnight: 246 247 249;
+  --ace-electric: 59 130 246;
+  --ace-electric-button: 37 99 235;
+  --ace-electric-dark: 29 78 216;
+  --ace-electric-darker: 30 64 175;
+  --ace-silver: 100 110 125;
+  --ace-white: 17 20 27;
+  --ace-glass: rgba(11,15,26,0.04);
+  --ace-glass-border: rgba(17,20,27,0.10);
+  --ace-glass-hover: rgba(11,15,26,0.07);
+}
+
+html, body {
+  background: rgb(var(--ace-black));
+  color: rgb(var(--ace-white));
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+h1,h2,h3,.font-heading { font-family: var(--font-heading); }
+.ace-glass {
+  background: var(--ace-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ace-glass-border);
+  border-radius: 24px;
+}
+*:focus-visible { outline: 2px solid rgb(var(--ace-electric)); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
