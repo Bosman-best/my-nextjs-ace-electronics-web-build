@@ -5,16 +5,9 @@ import gsap from 'gsap'
 import { X } from '@/components/ui/IconSet'
 import LogoACE from './LogoACE'
 import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
+import { SITE_NAV_LINKS } from '@/lib/nav'
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/laptops', label: 'Laptops' },
-  { href: '/smartphones', label: 'Smartphones' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
-]
-
-export default function MobileMenu({ open, onClose }: { open: boolean, onClose: () => void }) {
+export default function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
@@ -46,7 +39,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean, onClose: 
           <button ref={closeBtnRef} onClick={onClose} aria-label="Close menu" className="p-2 text-ace-silver hover:text-ace-white"><X size={24} /></button>
         </div>
         <nav className="mt-12 flex flex-col">
-          {navLinks.map(l => (
+          {SITE_NAV_LINKS.map(l => (
             <Link key={l.href} href={l.href} onClick={onClose} className="font-heading text-[32px] font-medium text-ace-white py-4 border-b border-ace-glass-border hover:text-ace-electric transition-colors">{l.label}</Link>
           ))}
         </nav>

@@ -14,6 +14,13 @@
   --ace-glass: rgba(255,255,255,0.06);
   --ace-glass-border: rgba(192,199,209,0.15);
   --ace-glass-hover: rgba(255,255,255,0.10);
+  /* Surface / text / border tokens (dark theme defaults) */
+  --ace-surface-primary: 11 15 26;
+  --ace-surface-secondary: 16 25 46;
+  --ace-text-primary: 255 255 255;
+  --ace-text-secondary: 192 199 209;
+  --ace-text-muted: 148 158 172;
+  --ace-border-light: rgba(255,255,255,0.10);
   --font-heading: "Space Grotesk", Poppins, sans-serif;
   --font-body: Inter, Roboto, sans-serif;
 }
@@ -30,6 +37,13 @@
   --ace-glass: rgba(11,15,26,0.04);
   --ace-glass-border: rgba(17,20,27,0.10);
   --ace-glass-hover: rgba(11,15,26,0.07);
+  /* Surface / text / border tokens (light theme) */
+  --ace-surface-primary: 255 255 255;
+  --ace-surface-secondary: 244 246 249;
+  --ace-text-primary: 17 20 27;
+  --ace-text-secondary: 100 110 125;
+  --ace-text-muted: 138 147 160;
+  --ace-border-light: rgba(17,20,27,0.12);
 }
 
 html, body {
@@ -47,6 +61,15 @@ h1,h2,h3,.font-heading { font-family: var(--font-heading); }
   border-radius: 24px;
 }
 *:focus-visible { outline: 2px solid rgb(var(--ace-electric)); outline-offset: 2px; }
+
+/* Product gallery image crossfade (triggered on main-image change) */
+@keyframes ace-gallery-fade {
+  from { opacity: 0; transform: scale(0.985); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.ace-gallery-fade {
+  animation: ace-gallery-fade 280ms ease-out;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

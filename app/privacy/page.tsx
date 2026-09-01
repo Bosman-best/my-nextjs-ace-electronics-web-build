@@ -20,7 +20,7 @@ export default function PrivacyPage() {
             <p className="text-ace-silver text-sm mb-8">Last updated: June 2026</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">What data we collect</h2>
-            <p className="text-ace-silver leading-relaxed">When you contact ACE Electronics via WhatsApp or our contact form, we collect: your name, your phone/WhatsApp number, and the content of your messages. That&apos;s it. This website does not require accounts, does not store payment information, and does not use tracking cookies beyond standard web analytics (if enabled).</p>
+            <p className="text-ace-silver leading-relaxed">When you contact ACE Electronics via WhatsApp, we collect: your name, your phone/WhatsApp number, and the content of your messages. That&apos;s it. This website does not require accounts, does not store payment information, and does not use advertising or analytics tracking cookies.</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">How we use your data</h2>
             <ul className="text-ace-silver space-y-2 list-disc pl-5">
@@ -37,15 +37,13 @@ export default function PrivacyPage() {
             </ul>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">Data retention</h2>
-            <p className="text-ace-silver leading-relaxed">WhatsApp conversation history is retained per WhatsApp&apos;s own policies and for order record-keeping. Contact form submissions (if enabled) are deleted after order fulfillment unless you opt into updates.</p>
+            <p className="text-ace-silver leading-relaxed">WhatsApp conversation history is retained per WhatsApp&apos;s own policies and for our order record-keeping.</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">Your rights</h2>
             <p className="text-ace-silver leading-relaxed">You can request deletion of your contact information at any time by messaging ACE on WhatsApp at +233 547 981 348.</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">Contact</h2>
             <p className="text-ace-silver">Privacy questions? WhatsApp ACE Electronics: +233 547 981 348</p>
-
-            <p className="text-ace-silver text-sm italic mt-10">This is a standard privacy policy for a WhatsApp-first electronics retailer in Ghana. If you process payments online, use Meta Pixel / GA4, or store customer data in a CRM, update this policy accordingly before launch.</p>
           </div>
         </PageContainer>
       </main>

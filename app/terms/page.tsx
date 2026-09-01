@@ -39,8 +39,6 @@ export default function TermsPage() {
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">7. Contact</h2>
             <p className="text-ace-silver">Questions about these terms? WhatsApp ACE Electronics: +233 547 981 348</p>
-
-            <p className="text-ace-silver text-sm italic mt-10">This is a standard e-commerce terms template for a WhatsApp-first retailer in Ghana. Have a local attorney review before launch if processing high-value orders.</p>
           </div>
         </PageContainer>
       </main>

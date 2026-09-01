@@ -5,13 +5,12 @@ import HeroHome from '@/components/sections/HeroHome'
 import TrustFeatureCard from '@/components/cards/TrustFeatureCard'
 import CategoryCard from '@/components/cards/CategoryCard'
 import ProductCard from '@/components/cards/ProductCard'
-import TestimonialCard from '@/components/cards/TestimonialCard'
 import WhyChooseACE from '@/components/sections/WhyChooseACE'
 import ContactQRBlock from '@/components/sections/ContactQRBlock'
 import ProductGrid from '@/components/ui/ProductGrid'
 import SectionHeader from '@/components/ui/SectionHeader'
 import dynamic from 'next/dynamic'
-import { ShieldCheck, BadgeCheck, MessageCircle, Tag } from '@/components/ui/IconSet'
+import { ShieldCheck, BadgeCheck, MessageCircle, Tag, Search } from '@/components/ui/IconSet'
 import Link from 'next/link'
 import { FEATURED_PRODUCTS } from '@/lib/products'
 import type { Metadata } from 'next'
@@ -38,10 +37,10 @@ const categories = [
   { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming', emoji: '🎮' },
 ]
 
-const testimonials = [
-  { quote: 'Fast delivery, authentic iPhone. ACE is my plug now.', name: 'Kwame A.', device: 'iPhone 15 Pro' },
-  { quote: 'Helped me pick the right laptop for Uni. Great WhatsApp support.', name: 'Ama O.', device: 'HP Pavilion 14' },
-  { quote: 'Transparent pricing. No stress.', name: 'Daniel K.', device: 'Samsung Galaxy S24' },
+const howToBuy = [
+  { icon: Search, title: 'Browse the catalog', description: 'Laptops and smartphones with clear specs and transparent GHS pricing.' },
+  { icon: MessageCircle, title: 'Chat with ACE on WhatsApp', description: 'Tap "Quick Inquiry" or message us — we confirm stock, price and delivery in minutes.' },
+  { icon: BadgeCheck, title: 'Get your verified device', description: 'Authentic, tested devices with honest advice and nationwide delivery.' },
 ]
 
 export default function Home() {
@@ -70,7 +69,10 @@ export default function Home() {
             <Reveal>
               <div className="flex items-end justify-between mb-12">
                 <SectionHeader title="Featured Devices" align="left" className="!mb-0" />
-                <Link href="/laptops" className="text-ace-electric font-medium hover:underline hidden md:block">View All →</Link>
+                <span className="hidden md:flex gap-5 text-sm font-medium">
+                  <Link href="/laptops" className="text-ace-electric hover:underline">Laptops →</Link>
+                  <Link href="/smartphones" className="text-ace-electric hover:underline">Smartphones →</Link>
+                </span>
               </div>
             </Reveal>
             <RevealStagger>
@@ -83,13 +85,10 @@ export default function Home() {
         <Reveal><WhyChooseACE /></Reveal>
         <section className="py-16 md:py-28">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Plugged In Customers" subtext="Real buyers, real devices." /></Reveal>
+            <Reveal><SectionHeader title="How to Buy From ACE" subtext="Simple and direct — no account, no online checkout." /></Reveal>
             <RevealStagger className="grid md:grid-cols-3 gap-6 md:gap-8" stagger={0.08}>
-              {testimonials.map(t => <TestimonialCard key={t.name} {...t} />)}
+              {howToBuy.map(s => <TrustFeatureCard key={s.title} {...s} />)}
             </RevealStagger>
-            <Reveal><p className="text-center text-ace-silver text-sm mt-8">
-              Join 1000+ happy customers — <a href="https://wa.me/233547981348" className="text-ace-electric hover:underline">Chat now</a>
-            </p></Reveal>
           </div>
         </section>
         <Reveal><ContactQRBlock /></Reveal>

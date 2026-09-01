@@ -8,14 +8,7 @@ import MobileMenu from './MobileMenu'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import { Menu } from '@/components/ui/IconSet'
 import { cn, WHATSAPP_LINK } from '@/lib/utils'
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/laptops', label: 'Laptops' },
-  { href: '/smartphones', label: 'Smartphones' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
-]
+import { SITE_NAV_LINKS } from '@/lib/nav'
 
 export default function NavBar() {
   const pathname = usePathname()
@@ -26,8 +19,8 @@ export default function NavBar() {
       <header className="sticky top-0 z-[100] h-[72px] lg:h-20 border-b border-ace-glass-border bg-ace-black/80 backdrop-blur-xl">
         <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12 h-full flex items-center justify-between">
           <LogoACE />
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map(l => {
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {SITE_NAV_LINKS.map(l => {
               const active = pathname === l.href
               return (
                 <Link key={l.href} href={l.href}

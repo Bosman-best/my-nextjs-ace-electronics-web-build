@@ -20,7 +20,13 @@ module.exports = {
           glass: 'var(--ace-glass)',
           'glass-border': 'var(--ace-glass-border)',
           'glass-hover': 'var(--ace-glass-hover)',
-        }
+          'surface-primary': 'rgb(var(--ace-surface-primary) / <alpha-value>)',
+          'surface-secondary': 'rgb(var(--ace-surface-secondary) / <alpha-value>)',
+          'text-primary': 'rgb(var(--ace-text-primary) / <alpha-value>)',
+          'text-secondary': 'rgb(var(--ace-text-secondary) / <alpha-value>)',
+          'text-muted': 'rgb(var(--ace-text-muted) / <alpha-value>)',
+          'border-light': 'var(--ace-border-light)',
+        },
       },
       fontFamily: {
         heading: ['"Space Grotesk"', 'Poppins', 'sans-serif'],
