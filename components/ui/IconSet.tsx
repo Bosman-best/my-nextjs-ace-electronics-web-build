@@ -9,4 +9,5 @@ export {
   Menu,
   Check,
   Search,
+  Package,
 } from 'lucide-react'

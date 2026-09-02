@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 import LogoACE from './LogoACE'
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import MobileMenu from './MobileMenu'
-import ThemeToggle from '@/components/ui/ThemeToggle'
 import { Menu } from '@/components/ui/IconSet'
 import { cn, WHATSAPP_LINK } from '@/lib/utils'
 import { SITE_NAV_LINKS } from '@/lib/nav'
@@ -29,13 +28,12 @@ export default function NavBar() {
                     'text-[16px] font-medium transition-colors',
                     active ? 'text-ace-white' : 'text-ace-silver hover:text-ace-white'
                   )}
-                  style={active ? { textDecoration: 'underline', textDecorationColor: '#3B82F6', textUnderlineOffset: '6px', textDecorationThickness: '2px' } : {}}
+                  style={active ? { textDecoration: 'underline', textDecorationColor: '#0066CC', textUnderlineOffset: '6px', textDecorationThickness: '2px' } : {}}
                 >{l.label}</Link>
               )
             })}
           </nav>
           <div className="flex items-center gap-3">
-            <ThemeToggle />
             <div className="hidden lg:block">
               <ButtonPrimary href={WHATSAPP_LINK("Hi ACE, I'm interested in a device.")} size="sm">Talk to ACE</ButtonPrimary>
             </div>

@@ -47,7 +47,7 @@ export default function SmartphonesClient() {
         "@type": "Product",
         "name": p.name,
         "description": p.specs,
-        "brand": { "@type": "Brand", "name": p.name.split(' ')[0] },
+        "brand": { "@type": "Brand", "name": p.brand },
         "offers": {
           "@type": "Offer",
           "priceCurrency": "GHS",
@@ -67,7 +67,7 @@ export default function SmartphonesClient() {
       <main className="py-16 md:py-24">
         <PageContainer>
           <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-ace-white mb-3">Smartphones for Sale in Ghana</h1>
-          <p className="text-ace-silver text-lg mb-10">Flagship, Mid-range & Budget — all verified authentic.</p>
+          <p className="text-ace-silver text-lg mb-10">Flagship, Mid-range & Budget — sourced from verified suppliers, tested before delivery.</p>
           <FilterBar
             filters={[...PHONE_FILTERS]}
             activeFilter={filter}

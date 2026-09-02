@@ -21,7 +21,7 @@ export default function Page() {
       <main className="py-16 md:py-24">
         <PageContainer>
           <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-ace-white mb-3">Gaming Devices</h1>
-          <p className="text-ace-silver text-lg mb-10">Gaming-ready laptops in stock, plus consoles and gear on request — all verified authentic.</p>
+          <p className="text-ace-silver text-lg mb-10">Gaming-ready laptops in stock, plus consoles and gear on request — sourced from verified suppliers.</p>
 
           {gamingLaptops.length > 0 && (
             <section className="mb-16">

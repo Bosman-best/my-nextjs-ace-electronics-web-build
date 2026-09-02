@@ -14,7 +14,6 @@ type Props = {
   /** Hint the main image is above the fold (LCP). */
   priority?: boolean
   sizes?: string
-  badge?: React.ReactNode
 }
 
 export default function ProductGallery({
@@ -23,7 +22,6 @@ export default function ProductGallery({
   controls = 'hover',
   priority = false,
   sizes = '(max-width: 768px) 50vw, 25vw',
-  badge,
 }: Props) {
   const [failedSrcs, setFailedSrcs] = useState<Set<string>>(new Set())
   const [activeIndex, setActiveIndex] = useState(0)
@@ -94,6 +92,7 @@ export default function ProductGallery({
   // --- Lightbox focus management (transfer, trap, restore), keyboard nav + scroll lock ---
   useEffect(() => {
     if (!lightboxOpen) return
+    const trigger = triggerRef.current
     const getFocusable = () =>
       lightboxRef.current
         ? Array.from(lightboxRef.current.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
@@ -126,7 +125,7 @@ export default function ProductGallery({
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = prevOverflow
       // Return focus to the image that opened the lightbox
-      triggerRef.current?.focus()
+      trigger?.focus()
     }
   }, [lightboxOpen, visibleGallery.length])
 
@@ -137,9 +136,7 @@ export default function ProductGallery({
 
   return (
     <>
-      <div className={`group relative aspect-square bg-ace-black flex items-center justify-center ${className}`}>
-        {badge && <div className="absolute top-3 right-3 z-20">{badge}</div>}
-
+      <div className={`group relative aspect-square bg-white flex items-center justify-center ${className}`}>
         {hasImage ? (
           <>
             <button
@@ -172,7 +169,7 @@ export default function ProductGallery({
                   type="button"
                   onClick={prev}
                   aria-label="Previous photo"
-                  className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-ace-black/70 border border-ace-glass-border flex items-center justify-center text-ace-white ${arrowCls}`}
+                  className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white ${arrowCls}`}
                 >
                   <ChevronLeft size={16} />
                 </button>
@@ -180,13 +177,13 @@ export default function ProductGallery({
                   type="button"
                   onClick={next}
                   aria-label="Next photo"
-                  className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-ace-black/70 border border-ace-glass-border flex items-center justify-center text-ace-white ${arrowCls}`}
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white ${arrowCls}`}
                 >
                   <ChevronRight size={16} />
                 </button>
 
                 {/* Thumbnail selector */}
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 max-w-[92%] overflow-x-auto px-1.5 py-1.5 rounded-full bg-ace-black/60 backdrop-blur-sm border border-ace-glass-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 max-w-[92%] overflow-x-auto px-1.5 py-1.5 rounded-full bg-black/50 border border-white/20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {visibleGallery.map((src, i) => (
                     <button
                       key={`${src}-${i}`}
@@ -204,7 +201,7 @@ export default function ProductGallery({
             )}
           </>
         ) : (
-          <div className="w-32 h-24 rounded-xl bg-gradient-to-br from-ace-midnight to-ace-black border border-ace-glass-border flex flex-col items-center justify-center text-ace-silver text-xs text-center px-2 gap-1">
+          <div className="w-32 h-24 rounded-xl bg-ace-black border border-ace-glass-border flex flex-col items-center justify-center text-ace-silver text-xs text-center px-2 gap-1">
             <span>Photo coming soon</span>
             <span className="text-ace-electric text-[10px]">Chat on WhatsApp for real photos</span>
           </div>
@@ -217,14 +214,14 @@ export default function ProductGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`Image viewer for ${pName}`}
-          className="fixed inset-0 z-[1000] bg-ace-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+          className="fixed inset-0 z-[1000] bg-black/90 flex items-center justify-center p-4 md:p-6"
           onClick={() => setLightboxOpen(false)}
         >
           <button
             type="button"
             onClick={() => setLightboxOpen(false)}
             aria-label="Close"
-            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 rounded-full bg-ace-glass border border-ace-glass-border flex items-center justify-center text-ace-white hover:bg-ace-glass-hover z-10"
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 z-10"
           >
             <X size={20} />
           </button>
@@ -251,7 +248,7 @@ export default function ProductGallery({
                     type="button"
                     onClick={prev}
                     aria-label="Previous photo"
-                    className="absolute left-2 md:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-ace-glass border border-ace-glass-border flex items-center justify-center text-ace-white hover:bg-ace-glass-hover"
+                    className="absolute left-2 md:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20"
                   >
                     <ChevronLeft size={20} />
                   </button>
@@ -259,7 +256,7 @@ export default function ProductGallery({
                     type="button"
                     onClick={next}
                     aria-label="Next photo"
-                    className="absolute right-2 md:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-ace-glass border border-ace-glass-border flex items-center justify-center text-ace-white hover:bg-ace-glass-hover"
+                    className="absolute right-2 md:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20"
                   >
                     <ChevronRight size={20} />
                   </button>
@@ -276,7 +273,7 @@ export default function ProductGallery({
                     onClick={() => goTo(i)}
                     aria-label={`View image ${i + 1} of ${visibleGallery.length}`}
                     aria-current={i === safeIndex}
-                    className={`relative w-14 h-14 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all duration-200 ${i === safeIndex ? 'border-ace-electric' : 'border-ace-glass-border opacity-60 hover:opacity-100'}`}
+                    className={`relative w-14 h-14 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all duration-200 ${i === safeIndex ? 'border-ace-electric' : 'border-white/20 opacity-60 hover:opacity-100'}`}
                   >
                     <Image src={src} alt="" fill sizes="64px" className="object-cover" onError={() => markFailed(src)} />
                   </button>

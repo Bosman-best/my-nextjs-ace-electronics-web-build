@@ -54,7 +54,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean, onClose: 
   if (!open) return null
   return (
     <div className="fixed inset-0 z-[200] lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
-      <div ref={overlayRef} className="absolute inset-0 bg-ace-black/95 backdrop-blur-[20px]" onClick={onClose} />
+      <div ref={overlayRef} className="absolute inset-0 bg-ace-black" onClick={onClose} />
       <div ref={panelRef} className="relative h-full px-6 py-8 flex flex-col bg-transparent ml-auto max-w-sm w-full">
         <div className="flex items-center justify-between">
           <LogoACE />

@@ -13,7 +13,7 @@ const sizes = { sm: 'px-5 py-2.5 text-sm', md: 'px-7 py-3.5 text-base', lg: 'px-
 export default function ButtonPrimary({ href, size = 'md', className, children, target, ...props }: Props) {
   const classes = cn(
     'inline-flex items-center justify-center font-body font-semibold text-white',
-    'bg-ace-electric-button rounded-xl shadow-ace-glow',
+    'bg-ace-electric-button rounded-full shadow-ace-glow',
     'transition-all duration-200',
     'hover:bg-ace-electric-dark hover:-translate-y-0.5 hover:shadow-ace-glow-strong',
     'active:translate-y-0 active:scale-[0.98]',

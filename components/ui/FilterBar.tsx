@@ -46,7 +46,7 @@ export default function FilterBar({
               onClick={() => onFilterChange?.(f)}
               aria-pressed={active}
               className={cn('px-[18px] py-3 rounded-full text-sm font-medium transition-all border min-h-[44px]',
-                active ? 'bg-ace-electric/15 border-ace-electric text-ace-white' : 'bg-ace-glass border-ace-glass-border text-ace-silver hover:border-white/30'
+                active ? 'bg-ace-electric/10 border-ace-electric text-ace-white' : 'bg-ace-glass border-ace-glass-border text-ace-silver hover:border-black/20'
               )}
             >
               {f}

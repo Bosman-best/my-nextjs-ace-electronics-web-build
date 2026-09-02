@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -29,21 +28,22 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['"Space Grotesk"', 'Poppins', 'sans-serif'],
-        body: ['Inter', 'Roboto', 'sans-serif'],
+        heading: ['var(--font-heading-display, "Space Grotesk")', 'Poppins', 'sans-serif'],
+        body: ['var(--font-body-display, Inter)', 'Roboto', 'sans-serif'],
       },
       borderRadius: {
         'xl': '16px',
         '2xl': '24px',
       },
       boxShadow: {
-        'ace-glow': '0 0 40px rgba(59,130,246,0.15)',
-        'ace-glow-strong': '0 8px 32px rgba(59,130,246,0.30)',
-        'ace-card': '0 0 24px rgba(59,130,246,0.08)',
+        // Subtle, neutral elevation only — no colored glow.
+        'ace-glow': '0 2px 8px rgba(0,0,0,0.06)',
+        'ace-glow-strong': '0 8px 24px rgba(0,0,0,0.10)',
+        'ace-card': '0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05)',
       },
       maxWidth: { 'ace': '1280px' },
       screens: { 'xs': '480px' },
-      backgroundImage: { 'ace-gradient': 'linear-gradient(180deg, rgb(var(--ace-midnight)) 0%, rgb(var(--ace-black)) 100%)' }
+      backgroundImage: { 'ace-gradient': 'linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%)' }
     },
   },
   plugins: [],

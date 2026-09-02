@@ -17,15 +17,16 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'ACE Electronics – Laptops & Smartphones for Sale in Ghana | Trusted Tech Plug',
-  description: 'Buy authentic laptops and smartphones in Accra, Ghana. HP EliteBook, Dell, Samsung Galaxy, Google Pixel – competitive prices, verified devices, fast WhatsApp support from ACE Electronics.',
+  description: 'Buy laptops and smartphones in Accra, Ghana. HP EliteBook, Dell, Samsung Galaxy, Google Pixel – competitive prices, tested devices, fast WhatsApp support from ACE Electronics.',
+  alternates: { canonical: '/' },
 }
 
 const Reveal = dynamic(() => import('@/components/motion/Reveal'), { ssr: false })
 const RevealStagger = dynamic(() => import('@/components/motion/RevealStagger'), { ssr: false })
 
 const trustItems = [
-  { icon: ShieldCheck, title: 'Verified Products', description: 'Every device sourced from verified suppliers. Authenticity guaranteed.' },
-  { icon: BadgeCheck, title: 'Quality Assurance', description: 'Tested, certified, and backed by warranty. No surprises.' },
+  { icon: ShieldCheck, title: 'Verified Suppliers', description: 'Every device sourced from verified suppliers and tested before delivery.' },
+  { icon: BadgeCheck, title: 'Quality Assurance', description: 'Tested before delivery and backed by warranty. No surprises.' },
   { icon: MessageCircle, title: 'Fast Response WhatsApp', description: 'Expert help in minutes, Mon-Sat 9AM–8PM GMT.' },
   { icon: Tag, title: 'Competitive Pricing', description: 'Premium tech at fair, transparent prices. No hidden fees.' },
 ]
@@ -40,7 +41,7 @@ const categories = [
 const howToBuy = [
   { icon: Search, title: 'Browse the catalog', description: 'Laptops and smartphones with clear specs and transparent GHS pricing.' },
   { icon: MessageCircle, title: 'Chat with ACE on WhatsApp', description: 'Tap "Quick Inquiry" or message us — we confirm stock, price and delivery in minutes.' },
-  { icon: BadgeCheck, title: 'Get your verified device', description: 'Authentic, tested devices with honest advice and nationwide delivery.' },
+  { icon: BadgeCheck, title: 'Get your device', description: 'Tested devices with honest advice and nationwide delivery.' },
 ]
 
 export default function Home() {
@@ -58,7 +59,7 @@ export default function Home() {
         </section>
         <section className="py-16 md:py-28">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Shop By Category" subtext="Premium devices across every category, all verified authentic." align="left" /></Reveal>
+            <Reveal><SectionHeader title="Shop By Category" subtext="Premium devices across every category, sourced from verified suppliers." align="left" /></Reveal>
             <RevealStagger className="grid md:grid-cols-2 gap-6 md:gap-8" stagger={0.08}>
               {categories.map(c => <CategoryCard key={c.title} {...c} />)}
             </RevealStagger>

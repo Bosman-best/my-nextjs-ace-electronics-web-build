@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import TrustBadge from '@/components/ui/TrustBadge'
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import ButtonSecondary from '@/components/ui/ButtonSecondary'
 import Toast from '@/components/ui/Toast'
@@ -13,12 +12,11 @@ type Props = {
   product?: Product
   name?: string
   specs?: string
-  badge?: string
   /** Mark the main image as the LCP/above-the-fold image (use sparingly). */
   priority?: boolean
 }
 
-export default function ProductCard({ product, name, specs, badge = 'Verified Authentic', priority = false }: Props) {
+export default function ProductCard({ product, name, specs, priority = false }: Props) {
   const [toast, setToast] = useState(false)
 
   const pName = product?.name ?? name ?? ''
@@ -30,13 +28,11 @@ export default function ProductCard({ product, name, specs, badge = 'Verified Au
 
   return (
     <>
-      <div className="ace-glass overflow-hidden group transition-all duration-[250ms] ease-out hover:-translate-y-2 hover:shadow-[0_16px_48px_rgba(59,130,246,0.20)] hover:border-ace-electric/30 shadow-ace-card relative">
+      <div className="ace-glass overflow-hidden group transition-all duration-[250ms] ease-out hover:-translate-y-1 hover:shadow-ace-glow-strong hover:border-ace-electric/30 shadow-ace-card relative">
         {product ? (
-          <ProductGallery product={product} priority={priority} badge={<TrustBadge>{badge}</TrustBadge>} />
+          <ProductGallery product={product} priority={priority} />
         ) : (
-          <div className="aspect-square bg-ace-black flex items-center justify-center">
-            <TrustBadge>{badge}</TrustBadge>
-          </div>
+          <div className="aspect-square bg-white flex items-center justify-center" />
         )}
 
         <div className="p-6">
@@ -49,7 +45,7 @@ export default function ProductCard({ product, name, specs, badge = 'Verified Au
           )}
           <p className="text-ace-silver text-sm mt-1">{pSpecs}</p>
           {product?.notes && (
-            <p className="mt-2 inline-flex items-center w-full rounded-lg bg-ace-glass border border-ace-glass-border px-3 py-1.5 text-ace-silver text-xs">
+            <p className="mt-2 inline-flex items-center w-full rounded-lg bg-ace-black/60 border border-ace-glass-border px-3 py-1.5 text-ace-silver text-xs">
               {product.notes}
             </p>
           )}

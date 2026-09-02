@@ -6,7 +6,7 @@ export default function BrandStoryBlock() {
         Tech should be simple, reliable, and accessible.
       </p>
       <p className="text-ace-silver text-lg leading-relaxed mb-5">
-        ACE Electronics was built to be the plug you can trust. We're not a manufacturer — we're your expert curator. We source premium laptops, smartphones, and gadgets exclusively from verified suppliers, so you get authentic quality, competitive pricing, and zero guesswork.
+        ACE Electronics was built to be the plug you can trust. We&apos;re not a manufacturer — we&apos;re your expert curator. We source premium laptops, smartphones, and gadgets exclusively from verified suppliers, so you get authentic quality, competitive pricing, and zero guesswork.
       </p>
       <p className="text-ace-silver text-lg leading-relaxed mb-8">
         We back every device with honest advice, fast WhatsApp support, and transparent pricing. No hype. No fakes. Just ACE.

@@ -6,10 +6,11 @@ import Footer from '@/components/layout/Footer'
 import PageContainer from '@/components/layout/PageContainer'
 import ProductGrid from '@/components/ui/ProductGrid'
 import ProductCard from '@/components/cards/ProductCard'
-import TrustBadge from '@/components/ui/TrustBadge'
 import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
 import ProductGallery from '@/components/products/ProductGallery'
+import { BadgeCheck, Package } from '@/components/ui/IconSet'
+import { SITE_URL } from '@/lib/site'
 import {
   ALL_PRODUCTS,
   getProductById,
@@ -29,13 +30,21 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   if (!product) return { title: 'Product not found | ACE Electronics' }
   return {
     title: `${product.name} – ${product.specs} | ACE Electronics Ghana`,
-    description: `${product.name} (${product.specs}) for sale in Ghana. Verified authentic, backed by ACE Electronics. Contact us on WhatsApp for stock and pricing.`,
+    description: `${product.name} (${product.specs}) for sale in Ghana from ACE Electronics. Contact us on WhatsApp for stock, condition and pricing.`,
+    alternates: { canonical: `/products/${product.id}` },
     openGraph: {
       title: `${product.name} | ACE Electronics`,
-      description: `${product.specs} — verified authentic, available via ACE Electronics Ghana.`,
-      images: [{ url: '/og-ace.jpg', width: 1200, height: 630 }],
+      description: `${product.specs} — available via ACE Electronics Ghana.`,
+      images: [{ url: product.image, width: 1200, height: 630 }],
     },
   }
+}
+
+const CONDITION_TO_SCHEMA: Record<string, string> = {
+  'Brand New Sealed': 'https://schema.org/NewCondition',
+  '99.99% Clean': 'https://schema.org/UsedCondition',
+  'Fairly Used': 'https://schema.org/UsedCondition',
+  'UK Used': 'https://schema.org/UsedCondition',
 }
 
 function Crumb({ href, label, current }: { href?: string; label: string; current?: boolean }) {
@@ -62,7 +71,8 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     sku: product.id,
     category: product.category,
     image: product.image,
-    brand: { '@type': 'Brand', name: product.name.split(' ')[0] },
+    brand: { '@type': 'Brand', name: product.brand },
+    ...(product.condition ? { itemCondition: CONDITION_TO_SCHEMA[product.condition] } : {}),
     ...(dp.show && dp.price ? {
       offers: {
         '@type': 'Offer',
@@ -78,8 +88,8 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: '/' },
-      { '@type': 'ListItem', position: 2, name: categoryLabel, item: categoryHref },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: categoryLabel, item: `${SITE_URL}${categoryHref}` },
       { '@type': 'ListItem', position: 3, name: product.name },
     ],
   }
@@ -106,17 +116,26 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
             </div>
 
             <div>
-              <div className="mb-4"><TrustBadge>Verified Authentic</TrustBadge></div>
               <h1 className="font-heading text-[30px] md:text-[40px] font-semibold text-ace-white leading-tight">{product.name}</h1>
               <p className="text-ace-silver text-lg mt-3">{product.specs}</p>
 
               <div className="flex flex-wrap items-center gap-3 mt-4 text-sm">
                 <span className="inline-flex items-center rounded-full bg-ace-electric/10 border border-ace-electric/25 text-ace-electric px-3 py-1.5 font-medium">{product.category}</span>
                 <span className="inline-flex items-center rounded-full bg-ace-glass border border-ace-glass-border text-ace-silver px-3 py-1.5">{categoryLabel.replace(/s$/, '')}</span>
+                {product.condition && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-ace-glass border border-ace-glass-border text-ace-silver px-3 py-1.5">
+                    <Package size={12} /> {product.condition}
+                  </span>
+                )}
+                {product.warranty && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-ace-glass border border-ace-glass-border text-ace-silver px-3 py-1.5">
+                    <BadgeCheck size={12} className="text-ace-electric" /> {product.warranty}
+                  </span>
+                )}
               </div>
 
               {product.notes && (
-                <p className="mt-5 inline-flex items-center rounded-lg bg-ace-glass border border-ace-glass-border px-3 py-2 text-ace-silver text-sm">
+                <p className="mt-5 inline-flex items-center rounded-lg bg-ace-black/60 border border-ace-glass-border px-3 py-2 text-ace-silver text-sm">
                   {product.notes}
                 </p>
               )}
@@ -136,13 +155,14 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <ButtonWhatsApp size="lg" text={whatsappText(product)}>Enquire on WhatsApp</ButtonWhatsApp>
-                <Link href={categoryHref} className="inline-flex items-center justify-center px-9 py-[18px] rounded-xl font-body font-medium text-ace-white border border-ace-glass-border backdrop-blur-[8px] transition-all duration-200 hover:bg-ace-glass-hover hover:border-white/30">
+                <Link href={categoryHref} className="inline-flex items-center justify-center px-9 py-[18px] rounded-full font-body font-medium text-ace-white border border-ace-glass-border transition-all duration-200 hover:bg-ace-glass-hover hover:border-black/20">
                   Back to {categoryLabel}
                 </Link>
               </div>
 
               <p className="text-ace-silver text-sm mt-6 leading-relaxed max-w-md">
                 Representative image shown. Message ACE on WhatsApp for current photos of the exact unit, stock, and delivery across Ghana.
+                {!product.condition && ' Condition is confirmed on WhatsApp before purchase.'}
               </p>
             </div>
           </div>

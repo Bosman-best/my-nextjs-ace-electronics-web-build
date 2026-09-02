@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next'
 import { ALL_PRODUCTS } from '@/lib/products'
+import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://ace-electronics.com'
+  const base = SITE_URL
   const routes = [
     '',
     '/laptops',

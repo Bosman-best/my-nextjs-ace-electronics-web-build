@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ace-electronics.com/sitemap.xml
+# Canonical production domain (Vercel project
+# my-nextjs-ace-electronics-web-build-dlsn). Update here and in lib/site.ts
+# when a custom domain is attached.
+Sitemap: https://my-nextjs-ace-electronics-web-build-dlsn.vercel.app/sitemap.xml
