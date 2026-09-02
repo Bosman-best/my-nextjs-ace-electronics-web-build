@@ -2,51 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ACE Electronics — light, Apple/Xiaomi-inspired design system (single theme).
+   Page background ~#F5F5F7, white product surfaces, primary text ~#1D1D1F,
+   secondary text ~#6E6E73, blue accent #0066CC, electric blue WhatsApp CTAs,
+   subtle borders and shadows. No dark mode, no glassmorphism, no glow. */
 :root {
-  --ace-black: 11 15 26;
-  --ace-midnight: 15 27 61;
-  --ace-electric: 59 130 246;
-  --ace-electric-button: 37 99 235;
-  --ace-electric-dark: 29 78 216;
-  --ace-electric-darker: 30 64 175;
-  --ace-silver: 192 199 209;
-  --ace-white: 255 255 255;
-  --ace-glass: rgba(255,255,255,0.06);
-  --ace-glass-border: rgba(192,199,209,0.15);
-  --ace-glass-hover: rgba(255,255,255,0.10);
-  --font-heading: "Space Grotesk", Poppins, sans-serif;
-  --font-body: Inter, Roboto, sans-serif;
-}
-
-[data-theme="light"] {
-  --ace-black: 255 255 255;
-  --ace-midnight: 246 247 249;
-  --ace-electric: 59 130 246;
-  --ace-electric-button: 37 99 235;
-  --ace-electric-dark: 29 78 216;
-  --ace-electric-darker: 30 64 175;
-  --ace-silver: 100 110 125;
-  --ace-white: 17 20 27;
-  --ace-glass: rgba(11,15,26,0.04);
-  --ace-glass-border: rgba(17,20,27,0.10);
-  --ace-glass-hover: rgba(11,15,26,0.07);
+  /* Semantic pairs kept from the original token names (bg-ace-black = page bg). */
+  --ace-black: 245 245 247;   /* #F5F5F7 page background */
+  --ace-midnight: 251 251 253; /* #FBFBFD alternate surface */
+  --ace-electric: 0 102 204;   /* #0066CC links & accents */
+  --ace-electric-button: 10 132 255; /* #0A84FF electric blue (WhatsApp CTAs) */
+  --ace-electric-dark: 0 102 204;
+  --ace-electric-darker: 0 82 163;
+  --ace-silver: 110 110 115;   /* #6E6E73 secondary text */
+  --ace-white: 29 29 31;       /* #1D1D1F primary text */
+  --ace-glass: #FFFFFF;        /* white card surface (solid, not glass) */
+  --ace-glass-border: rgba(0, 0, 0, 0.08);
+  --ace-glass-hover: #FAFAFC;
+  --ace-surface-primary: 245 245 247;
+  --ace-surface-secondary: 255 255 255;
+  --ace-text-primary: 29 29 31;
+  --ace-text-secondary: 110 110 115;
+  --ace-text-muted: 134 134 139; /* #86868B */
+  --ace-border-light: rgba(0, 0, 0, 0.08);
+  --font-heading: var(--font-heading-display, "Space Grotesk"), Poppins, sans-serif;
+  --font-body: var(--font-body-display, Inter), Roboto, sans-serif;
 }
 
 html, body {
   background: rgb(var(--ace-black));
   color: rgb(var(--ace-white));
   font-family: var(--font-body);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 h1,h2,h3,.font-heading { font-family: var(--font-heading); }
+
+/* Card surface: solid white, subtle border + shadow, rounded corners. */
 .ace-glass {
-  background: var(--ace-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #FFFFFF;
   border: 1px solid var(--ace-glass-border);
   border-radius: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
+
 *:focus-visible { outline: 2px solid rgb(var(--ace-electric)); outline-offset: 2px; }
+
+/* Product gallery image crossfade (triggered on main-image change) */
+@keyframes ace-gallery-fade {
+  from { opacity: 0; transform: scale(0.985); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.ace-gallery-fade {
+  animation: ace-gallery-fade 280ms ease-out;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

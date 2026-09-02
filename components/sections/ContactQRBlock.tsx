@@ -14,7 +14,7 @@ export default function ContactQRBlock() {
           <span>WhatsApp: {WHATSAPP_DISPLAY}</span>
           <span>Hours: Mon-Sat 9AM–8PM GMT</span>
         </div>
-        <p className="text-ace-silver text-sm mt-3"><a href="/contact" className="hover:text-ace-electric underline underline-offset-4">Prefer email? Send a message</a></p>
+        <p className="text-ace-silver text-sm mt-3"><a href="/contact" className="hover:text-ace-electric underline underline-offset-4">More ways to reach us — Contact page</a></p>
       </div>
     </section>
   )

@@ -27,13 +27,17 @@ export default function HeroHome() {
   const visualRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const els = [h1Ref.current, subRef.current, ctaRef.current, trustRef.current, visualRef.current]
+
+    // Reduced motion: reveal everything immediately (markup starts at opacity-0).
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(el => { if (el) el.style.opacity = '1' })
       return
     }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        [h1Ref.current, subRef.current, ctaRef.current, trustRef.current, visualRef.current],
+        els,
         { opacity: 0, y: 16 },
         { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.08 }
       )
@@ -79,7 +83,7 @@ export default function HeroHome() {
             >
               <span className="flex items-center gap-2">
                 <Check size={16} className="text-ace-electric" />
-                Verified Products
+                Verified suppliers
               </span>
 
               <span className="flex items-center gap-2">

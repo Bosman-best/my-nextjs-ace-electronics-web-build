@@ -39,15 +39,15 @@ export default function WhatsAppModal({ open, onClose }: { open: boolean, onClos
   if (!open) return null
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title">
-      <div ref={overlayRef} className="absolute inset-0 bg-ace-black/70 backdrop-blur-[8px]" onClick={onClose} />
-      <div ref={cardRef} className="relative w-full max-w-[420px] rounded-2xl border border-ace-glass-border p-10 text-center bg-ace-midnight/90 backdrop-blur-[24px]">
+      <div ref={overlayRef} className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div ref={cardRef} className="relative w-full max-w-[420px] rounded-2xl border border-ace-glass-border p-10 text-center bg-white shadow-ace-glow-strong">
         <button ref={closeBtnRef} onClick={onClose} className="absolute top-5 right-5 text-ace-silver hover:text-ace-white" aria-label="Close">
           <X size={24} />
         </button>
         <h3 id="wa-modal-title" className="font-heading text-2xl font-semibold text-ace-white">Talk to ACE</h3>
         <p className="text-ace-silver text-sm mt-2">Fast response, Mon-Sat 9AM–8PM</p>
         <div className="mx-auto my-6">
-          <img src="/ace-whatsapp-qr.png" alt="WhatsApp QR code for ACE Electronics – scan to chat at wa.me/233547981348" width={180} height={180} className="mx-auto rounded-xl bg-white p-3 shadow-ace-glow w-[180px] h-[180px]" />
+          <img src="/ace-whatsapp-qr.png" alt="WhatsApp QR code for ACE Electronics – scan to chat at wa.me/233547981348" width={180} height={180} className="mx-auto rounded-xl bg-white p-3 border border-ace-glass-border w-[180px] h-[180px]" />
         </div>
         <p className="text-ace-silver text-sm mb-4">Scan to chat instantly</p>
         <ButtonWhatsApp size="lg" className="w-full justify-center">Open WhatsApp</ButtonWhatsApp>

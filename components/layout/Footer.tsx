@@ -6,7 +6,7 @@ import { WHATSAPP_LINK, WHATSAPP_GROUP_LINK, WHATSAPP_DISPLAY } from '@/lib/util
 export default function Footer() {
   return (
     <footer className="bg-ace-surface-secondary border-t border-ace-border-light mt-32">
-      <div className="max-w-ace mx-auto px-6 xs:px-8 md:px-10 lg:px-16 py-24">
+      <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.5fr_1.5fr_1.5fr_2fr] gap-x-16 gap-y-12">
           <div>
             <LogoACE size="footer" />

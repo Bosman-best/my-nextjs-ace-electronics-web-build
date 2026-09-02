@@ -26,7 +26,7 @@ export default function WarrantyPage() {
               <li><span className="text-ace-white font-medium">99.99% Clean</span> — Near-mint condition. No visible scratches, fully functional. May be open-box.</li>
               <li><span className="text-ace-white font-medium">Fairly Used</span> — Pre-owned, tested and fully functional. May show light cosmetic wear. Priced accordingly.</li>
             </ul>
-            <p className="text-ace-silver text-sm mt-3">Condition is always stated clearly on each product listing and confirmed via WhatsApp before purchase.</p>
+            <p className="text-ace-silver text-sm mt-3">Where known, condition and the warranty period are stated on each product listing; otherwise they are confirmed via WhatsApp before purchase.</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-10 mb-3">What&apos;s Covered</h2>
             <p className="text-ace-silver">Hardware defects that were present at time of sale and not caused by user damage. Dead-on-arrival replacement within the claim window.</p>
