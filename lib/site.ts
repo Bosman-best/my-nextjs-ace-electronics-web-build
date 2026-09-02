@@ -7,10 +7,12 @@
 //  3. Verified production alias     — the stable Vercel production alias for this
 //                                     project, confirmed via the repository's GitHub
 //                                     deployment records (vercel[bot], Vercel project
-//                                     "my-nextjs-ace-electronics-web-build-dlsn",
-//                                     team "sir-bosman"). Replace via env var when a
-//                                     custom domain is attached.
-const VERIFIED_PRODUCTION_ALIAS = 'https://my-nextjs-ace-electronics-web-build-dlsn.vercel.app'
+//                                     "my-nextjs-ace-electronics-web-build", team
+//                                     "sir-bosman"). The public production URL serving
+//                                     merged main; the sibling "-dlsn" project's alias
+//                                     is gated behind deployment protection. Replace via
+//                                     env var when a custom domain is attached.
+const VERIFIED_PRODUCTION_ALIAS = 'https://my-nextjs-ace-electronics-web-build.vercel.app'
 
 function resolveSiteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL
