@@ -7,7 +7,7 @@ import LogoACE from './LogoACE'
 import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import { SITE_NAV_LINKS } from '@/lib/nav'
 
-export default function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function MobileMenu({ open, onClose }: { open: boolean, onClose: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
@@ -21,12 +21,34 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
         gsap.fromTo(panelRef.current, { x: '100%' }, { x: '0%', duration: 0.35, ease: 'power2.out' })
       }
     })
+    const opener = document.activeElement as HTMLElement | null
     closeBtnRef.current?.focus()
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const getFocusable = () =>
+      panelRef.current
+        ? Array.from(panelRef.current.querySelectorAll<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+            .filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null)
+        : []
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { onClose(); return }
+      if (e.key === 'Tab') {
+        const f = getFocusable()
+        if (f.length === 0) { e.preventDefault(); return }
+        const first = f[0]
+        const last = f[f.length - 1]
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+      }
+    }
     document.addEventListener('keydown', onKey)
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    return () => { ctx.revert(); document.removeEventListener('keydown', onKey); document.body.style.overflow = prev }
+    return () => {
+      ctx.revert()
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+      // Return focus to the button that opened the menu
+      opener?.focus?.()
+    }
   }, [open, onClose])
 
   if (!open) return null

@@ -2,10 +2,20 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
+function useReducedMotion() {
+  const reduced = useRef<boolean>(false)
+  if (typeof window !== 'undefined') {
+    reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }
+  return reduced
+}
+
 function Laptop() {
   const ref = useRef<THREE.Group>(null)
+  const reducedMotion = useReducedMotion()
   useFrame(({ clock }) => {
     if (!ref.current) return
+    if (reducedMotion.current) return // hold a static pose; do not animate
     const t = clock.getElapsedTime()
     ref.current.position.y = Math.sin(t * (Math.PI/2)) * 0.15
     ref.current.rotation.y = Math.sin(t * Math.PI / 8) * THREE.MathUtils.degToRad(8)
@@ -30,8 +40,10 @@ function Laptop() {
 }
 function Phone() {
   const ref = useRef<THREE.Group>(null)
+  const reducedMotion = useReducedMotion()
   useFrame(({ clock }) => {
     if (!ref.current) return
+    if (reducedMotion.current) return // hold a static pose; do not animate
     const t = clock.getElapsedTime() + 1.2
     ref.current.position.y = Math.sin(t * (Math.PI/2)) * 0.12 - 0.35
     ref.current.rotation.y = Math.sin(t * Math.PI / 8) * THREE.MathUtils.degToRad(6) + 0.25

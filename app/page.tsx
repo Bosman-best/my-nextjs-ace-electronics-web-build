@@ -12,7 +12,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import dynamic from 'next/dynamic'
 import { ShieldCheck, BadgeCheck, MessageCircle, Tag, Search } from '@/components/ui/IconSet'
 import Link from 'next/link'
-import { FEATURED_PRODUCTS } from '@/lib/products'
+import { FEATURED_PRODUCTS, LAPTOPS, SMARTPHONES } from '@/lib/products'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -31,8 +31,8 @@ const trustItems = [
 ]
 
 const categories = [
-  { title: 'Smartphones', count: '16 devices in stock', href: '/smartphones', emoji: '📱' },
-  { title: 'Laptops', count: '26 devices in stock', href: '/laptops', emoji: '💻' },
+  { title: 'Smartphones', count: `${SMARTPHONES.length} devices in stock`, href: '/smartphones', emoji: '📱' },
+  { title: 'Laptops', count: `${LAPTOPS.length} devices in stock`, href: '/laptops', emoji: '💻' },
   { title: 'Accessories', count: 'Ask on WhatsApp', href: '/accessories', emoji: '🎧' },
   { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming', emoji: '🎮' },
 ]
@@ -77,7 +77,7 @@ export default function Home() {
             </Reveal>
             <RevealStagger>
               <ProductGrid>
-                {FEATURED_PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}
+                {FEATURED_PRODUCTS.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 2} />)}
               </ProductGrid>
             </RevealStagger>
           </div>

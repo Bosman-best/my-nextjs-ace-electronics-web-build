@@ -148,3 +148,15 @@ export const FEATURED_PRODUCTS = [
   ...LAPTOPS.filter(p => p.featured),
   ...SMARTPHONES.filter(p => p.featured),
 ]
+
+export const ALL_PRODUCTS: Product[] = [...LAPTOPS, ...SMARTPHONES]
+
+export function getProductById(id: string): Product | undefined {
+  return ALL_PRODUCTS.find(p => p.id === id)
+}
+
+export function getRelatedProducts(product: Product, limit = 4): Product[] {
+  return ALL_PRODUCTS
+    .filter(p => p.id !== product.id && p.type === product.type)
+    .slice(0, limit)
+}

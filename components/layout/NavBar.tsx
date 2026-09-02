@@ -24,6 +24,7 @@ export default function NavBar() {
               const active = pathname === l.href
               return (
                 <Link key={l.href} href={l.href}
+                  aria-current={active ? 'page' : undefined}
                   className={cn(
                     'text-[16px] font-medium transition-colors',
                     active ? 'text-ace-white' : 'text-ace-silver hover:text-ace-white'
