@@ -12,7 +12,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import dynamic from 'next/dynamic'
 import { ShieldCheck, BadgeCheck, MessageCircle, Tag, Search } from '@/components/ui/IconSet'
 import Link from 'next/link'
-import { FEATURED_PRODUCTS, LAPTOPS, SMARTPHONES } from '@/lib/products'
+import { CATEGORY_LIST, countByCategory, getFeaturedProducts } from '@/lib/catalog'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -31,12 +31,21 @@ const trustItems = [
   { icon: Tag, title: 'Competitive Pricing', description: 'Premium tech at fair, transparent prices. No hidden fees.' },
 ]
 
-const categories = [
-  { title: 'Smartphones', count: `${SMARTPHONES.length} devices in stock`, href: '/smartphones', emoji: '📱' },
-  { title: 'Laptops', count: `${LAPTOPS.length} devices in stock`, href: '/laptops', emoji: '💻' },
-  { title: 'Accessories', count: 'Ask on WhatsApp', href: '/accessories', emoji: '🎧' },
-  { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming', emoji: '🎮' },
-]
+// Category cards are generated from the controlled taxonomy and counted from
+// the canonical catalog — no hardcoded product totals.
+function buildCategoryCards() {
+  const order = ['smartphones', 'laptops', 'accessories', 'gaming'] as const
+  return order.map(value => {
+    const c = CATEGORY_LIST.find(d => d.value === value)!
+    const count = countByCategory(c.value)
+    return {
+      title: c.label,
+      count: count > 0 ? `${count} devices in stock` : 'Ask on WhatsApp',
+      href: c.href,
+      emoji: c.emoji,
+    }
+  })
+}
 
 const howToBuy = [
   { icon: Search, title: 'Browse the catalog', description: 'Laptops and smartphones with clear specs and transparent GHS pricing.' },
@@ -45,6 +54,9 @@ const howToBuy = [
 ]
 
 export default function Home() {
+  // Featured section reads the same records as every other surface.
+  const featured = getFeaturedProducts()
+  const categories = buildCategoryCards()
   return (
     <>
       <NavBar />
@@ -78,7 +90,7 @@ export default function Home() {
             </Reveal>
             <RevealStagger>
               <ProductGrid>
-                {FEATURED_PRODUCTS.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 2} />)}
+                {featured.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 2} />)}
               </ProductGrid>
             </RevealStagger>
           </div>

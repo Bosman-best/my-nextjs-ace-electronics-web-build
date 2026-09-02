@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { ALL_PRODUCTS } from '@/lib/products'
+import { getAllProducts, getProductPath } from '@/lib/catalog'
 import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -24,9 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: r === '' ? 1 : r.startsWith('/laptops') || r.startsWith('/smartphones') ? 0.8 : 0.5,
   })) as MetadataRoute.Sitemap
 
-  const productEntries: MetadataRoute.Sitemap = ALL_PRODUCTS.map(p => ({
-    url: `${base}/products/${p.id}`,
-    lastModified: new Date(),
+  // Only live (non-archived) products are indexed, at their current slug.
+  const productEntries: MetadataRoute.Sitemap = getAllProducts().map(p => ({
+    url: `${base}${getProductPath(p)}`,
+    lastModified: new Date(p.updatedAt),
     changeFrequency: 'weekly',
     priority: 0.7,
   }))

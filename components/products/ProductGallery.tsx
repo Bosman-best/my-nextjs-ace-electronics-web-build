@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
-import { Product } from '@/lib/products'
+import { getGalleryImages, getSpecSummary, type Product, type ProductImage } from '@/lib/catalog'
 
 const SWIPE_THRESHOLD = 45 // px horizontal travel to count as a swipe
 
@@ -31,14 +31,16 @@ export default function ProductGallery({
   const triggerRef = useRef<HTMLButtonElement>(null)
 
   const pName = product.name
-  const pSpecs = product.specs
-  const gallery = product.images && product.images.length > 0 ? product.images : (product.image ? [product.image] : [])
+  const pSpecs = getSpecSummary(product)
+  // Canonical image records (sorted, primary first) straight from the product.
+  const gallery: ProductImage[] = getGalleryImages(product)
   // Drop any images that genuinely failed to load; only show the fallback tile when ALL images fail.
-  const visibleGallery = gallery.filter(src => !failedSrcs.has(src))
+  const visibleGallery = gallery.filter(img => !failedSrcs.has(img.url))
   const hasImage = visibleGallery.length > 0
   const isMulti = visibleGallery.length > 1
   const safeIndex = hasImage ? Math.min(activeIndex, visibleGallery.length - 1) : 0
-  const activeSrc = visibleGallery[safeIndex]
+  const activeImage = visibleGallery[safeIndex]
+  const activeSrc = activeImage?.url
 
   const markFailed = useCallback((src: string) => {
     setFailedSrcs(prev => {
@@ -152,7 +154,7 @@ export default function ProductGallery({
                 <div key={activeSrc} className="absolute inset-0 ace-gallery-fade">
                   <Image
                     src={activeSrc}
-                    alt={`${pName} - ${pSpecs}`}
+                    alt={activeImage?.alt || `${pName}${pSpecs ? ` - ${pSpecs}` : ''}`}
                     fill
                     sizes={sizes}
                     priority={priority}
@@ -184,16 +186,16 @@ export default function ProductGallery({
 
                 {/* Thumbnail selector */}
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 max-w-[92%] overflow-x-auto px-1.5 py-1.5 rounded-full bg-black/50 border border-white/20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                  {visibleGallery.map((src, i) => (
+                  {visibleGallery.map((img, i) => (
                     <button
-                      key={`${src}-${i}`}
+                      key={img.id}
                       type="button"
                       onClick={(e) => { e.stopPropagation(); goTo(i) }}
                       aria-label={`View image ${i + 1} of ${visibleGallery.length}`}
                       aria-current={i === safeIndex}
                       className={`relative w-9 h-9 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-200 ${i === safeIndex ? 'border-ace-electric' : 'border-transparent opacity-60 hover:opacity-100'}`}
                     >
-                      <Image src={src} alt="" fill sizes="48px" className="object-cover" onError={() => markFailed(src)} />
+                      <Image src={img.url} alt="" fill sizes="48px" className="object-cover" onError={() => markFailed(img.url)} />
                     </button>
                   ))}
                 </div>
@@ -234,7 +236,7 @@ export default function ProductGallery({
               <div key={activeSrc} className="absolute inset-0 ace-gallery-fade">
                 <Image
                   src={activeSrc}
-                  alt={`${pName} - ${pSpecs}`}
+                  alt={activeImage?.alt || `${pName}${pSpecs ? ` - ${pSpecs}` : ''}`}
                   fill
                   sizes="100vw"
                   className="object-contain"
@@ -266,16 +268,16 @@ export default function ProductGallery({
 
             {isMulti && (
               <div className="mt-4 flex justify-center gap-2 max-w-full overflow-x-auto px-2 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {visibleGallery.map((src, i) => (
+                {visibleGallery.map((img, i) => (
                   <button
-                    key={`lb-${src}-${i}`}
+                    key={`lb-${img.id}`}
                     type="button"
                     onClick={() => goTo(i)}
                     aria-label={`View image ${i + 1} of ${visibleGallery.length}`}
                     aria-current={i === safeIndex}
                     className={`relative w-14 h-14 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all duration-200 ${i === safeIndex ? 'border-ace-electric' : 'border-white/20 opacity-60 hover:opacity-100'}`}
                   >
-                    <Image src={src} alt="" fill sizes="64px" className="object-cover" onError={() => markFailed(src)} />
+                    <Image src={img.url} alt="" fill sizes="64px" className="object-cover" onError={() => markFailed(img.url)} />
                   </button>
                 ))}
               </div>

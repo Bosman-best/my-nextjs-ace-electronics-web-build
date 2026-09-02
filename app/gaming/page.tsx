@@ -5,7 +5,7 @@ import ProductGrid from '@/components/ui/ProductGrid'
 import ProductCard from '@/components/cards/ProductCard'
 import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
-import { LAPTOPS } from '@/lib/products'
+import { queryProducts } from '@/lib/catalog'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  const gamingLaptops = LAPTOPS.filter(p => p.category === 'Gaming')
+  // Gaming-ready laptops come from the canonical catalog via controlled values.
+  const gamingLaptops = queryProducts({ category: 'laptops', subcategory: 'gaming' })
   return (
     <>
       <NavBar />

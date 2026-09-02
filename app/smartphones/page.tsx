@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import SmartphonesClient from './SmartphonesClient'
+import CategoryPage from '@/components/products/CategoryPage'
 
 export const metadata: Metadata = {
   title: 'Smartphones for Sale Ghana – Samsung, Google Pixel | ACE Electronics',
@@ -12,4 +12,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() { return <SmartphonesClient /> }
+export default function Page() {
+  return (
+    <CategoryPage
+      category="smartphones"
+      heading="Smartphones for Sale in Ghana"
+      intro="Flagship, Mid-range & Budget — sourced from verified suppliers, tested before delivery."
+      searchPlaceholder="Search phones…"
+      emptyStateMessage="Hi ACE, I'm looking for a phone you don't currently list."
+    />
+  )
+}
