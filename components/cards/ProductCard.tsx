@@ -34,30 +34,36 @@ export default function ProductCard({ product, priority = false }: Props) {
 
   return (
     <>
-      <div className="ace-glass overflow-hidden group transition-all duration-[250ms] ease-out hover:-translate-y-1 hover:shadow-ace-glow-strong hover:border-ace-electric/30 shadow-ace-card relative">
+      {/* h-full + flex column keeps every card in a grid row the same height,
+          with the CTA row pinned to the bottom regardless of title length. */}
+      <div className="ace-glass overflow-hidden group transition-all duration-[250ms] ease-out hover:-translate-y-1 hover:shadow-ace-glow-strong hover:border-ace-electric/30 shadow-ace-card relative flex flex-col h-full">
         <ProductGallery product={product} priority={priority} />
 
-        <div className="p-6">
-          <Link href={detailHref} className="font-heading text-xl font-medium text-ace-white hover:text-ace-electric transition-colors block">
+        <div className="p-5 md:p-6 flex flex-col flex-1 min-w-0">
+          <Link
+            href={detailHref}
+            className="font-heading text-lg md:text-xl font-medium text-ace-white hover:text-ace-electric transition-colors block line-clamp-2 break-words"
+          >
             {product.name}
           </Link>
-          <p className="text-ace-silver text-sm mt-1">{specSummary}</p>
+          <p className="text-ace-silver text-sm mt-1 line-clamp-2 break-words">{specSummary}</p>
 
           <ProductBadges badges={product.badges} className="mt-3" size="xs" />
 
           {!purchasable && (
-            <p className="mt-2 inline-flex items-center rounded-lg bg-ace-black/60 border border-ace-glass-border px-3 py-1.5 text-ace-silver text-xs">
+            <p className="mt-2 inline-flex self-start items-center rounded-lg bg-amber-500/10 border border-amber-500/25 px-3 py-1.5 text-amber-700 text-xs font-medium">
               {getAvailabilityLabel(product)}
             </p>
           )}
 
           {product.notes && (
-            <p className="mt-2 inline-flex items-center w-full rounded-lg bg-ace-black/60 border border-ace-glass-border px-3 py-1.5 text-ace-silver text-xs">
+            <p className="mt-2 inline-flex items-center w-full rounded-lg bg-black/[0.03] border border-ace-glass-border px-3 py-1.5 text-ace-silver text-xs break-words">
               {product.notes}
             </p>
           )}
 
-          <p className="text-ace-white font-semibold mt-3">
+          {/* mt-auto pushes price + CTAs to the bottom of the card. */}
+          <p className="text-ace-white font-semibold mt-auto pt-3">
             {dp.show && dp.formatted ? (
               <>
                 {dp.formattedWas && (
@@ -70,9 +76,17 @@ export default function ProductCard({ product, priority = false }: Props) {
             )}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 mt-4">
+          <div className="flex flex-wrap items-center gap-2.5 mt-4">
             <ButtonPrimary size="sm" href={detailHref}>View Details</ButtonPrimary>
-            <ButtonSecondary size="sm" href={waLink} target="_blank" onClick={() => setToast(true)}>Quick Inquiry</ButtonSecondary>
+            <ButtonSecondary
+              size="sm"
+              href={waLink}
+              target="_blank"
+              onClick={() => setToast(true)}
+              aria-label={`Ask ACE about the ${product.name} on WhatsApp`}
+            >
+              Quick Inquiry
+            </ButtonSecondary>
           </div>
         </div>
       </div>

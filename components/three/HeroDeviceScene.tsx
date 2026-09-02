@@ -63,7 +63,7 @@ function Phone() {
 }
 export default function HeroDeviceScene() {
   return (
-    <div className="w-full h-[320px] md:h-[480px]">
+    <div className="w-full h-[260px] xs:h-[320px] lg:h-[480px]">
       <Canvas camera={{ position: [0, 0.3, 4.2], fov: 42 }} dpr={[1, 1.8]} gl={{ antialias: true, alpha: true }}>
         {/* ACE Electronics – Hero 3D Scene
             Current: primitive geometry (Laptop + Phone) with Stage 3 motion spec

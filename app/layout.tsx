@@ -55,6 +55,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="font-body bg-ace-black text-ace-white antialiased">
+        {/* Keyboard users can jump straight past the header nav. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[300] focus:rounded-full focus:bg-ace-electric-button focus:px-5 focus:py-3 focus:text-white focus:font-semibold focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         {children}
         <script
           type="application/ld+json"

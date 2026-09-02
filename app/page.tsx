@@ -9,7 +9,12 @@ import WhyChooseACE from '@/components/sections/WhyChooseACE'
 import ContactQRBlock from '@/components/sections/ContactQRBlock'
 import ProductGrid from '@/components/ui/ProductGrid'
 import SectionHeader from '@/components/ui/SectionHeader'
-import dynamic from 'next/dynamic'
+// Reveal/RevealStagger are client components that only add a GSAP entrance
+// animation on mount. They are imported statically (NOT via dynamic ssr:false)
+// so the homepage content — trust cards, categories, featured products — is
+// present in the server-rendered HTML for customers and crawlers.
+import Reveal from '@/components/motion/Reveal'
+import RevealStagger from '@/components/motion/RevealStagger'
 import { ShieldCheck, BadgeCheck, MessageCircle, Tag, Search } from '@/components/ui/IconSet'
 import Link from 'next/link'
 import { CATEGORY_LIST, countByCategory, getFeaturedProducts } from '@/lib/catalog'
@@ -20,9 +25,6 @@ export const metadata: Metadata = {
   description: 'Buy laptops and smartphones in Accra, Ghana. HP EliteBook, Dell, Samsung Galaxy, Google Pixel – competitive prices, tested devices, fast WhatsApp support from ACE Electronics.',
   alternates: { canonical: '/' },
 }
-
-const Reveal = dynamic(() => import('@/components/motion/Reveal'), { ssr: false })
-const RevealStagger = dynamic(() => import('@/components/motion/RevealStagger'), { ssr: false })
 
 const trustItems = [
   { icon: ShieldCheck, title: 'Verified Suppliers', description: 'Every device sourced from verified suppliers and tested before delivery.' },
@@ -60,7 +62,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <main>
+      <main id="main">
         <HeroHome />
         <section className="py-16 md:py-28 bg-ace-gradient">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">

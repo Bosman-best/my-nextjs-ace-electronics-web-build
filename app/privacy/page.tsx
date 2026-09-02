@@ -5,18 +5,19 @@ import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | ACE Electronics Ghana',
+  title: 'Privacy Policy',
   description: 'How ACE Electronics handles your personal data. Name, WhatsApp number, and inquiry messages only – no data sales, no tracking beyond standard analytics.',
+  alternates: { canonical: '/privacy' },
 }
 
 export default function PrivacyPage() {
   return (
     <>
       <NavBar />
-      <main className="py-16 md:py-24">
+      <main id="main" className="py-16 md:py-24">
         <PageContainer>
           <div className="max-w-[800px]">
-            <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-ace-white mb-2">Privacy Policy</h1>
+            <h1 className="font-heading text-[32px] xs:text-[36px] md:text-[48px] font-semibold text-ace-white tracking-tight mb-2">Privacy Policy</h1>
             <p className="text-ace-silver text-sm mb-8">Last updated: June 2026</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-8 mb-3">What data we collect</h2>

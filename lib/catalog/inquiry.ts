@@ -44,7 +44,7 @@ export function buildInquiryMessage(p: Product): string {
     getInquiryTitle(p),
     specs ? `Specs: ${specs}` : '',
     condition ? `Condition: ${condition}` : '',
-    `Price: ${dp.show && dp.formatted ? dp.formatted : 'to be confirmed'}`,
+    `Price: ${dp.show && dp.formatted ? dp.formatted : 'please confirm (not listed online)'}`,
     `Availability: ${getAvailabilityLabel(p)}`,
     `${getProductReference(p)}`,
     `${SITE_URL}${getProductPath(p)}`,

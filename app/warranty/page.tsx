@@ -6,18 +6,19 @@ import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Warranty Policy | ACE Electronics Ghana',
+  title: 'Warranty Policy – Ghana',
   description: 'ACE Electronics warranty terms for laptops and smartphones in Ghana. Authentic devices, verified condition grading, and clear claim process via WhatsApp.',
+  alternates: { canonical: '/warranty' },
 }
 
 export default function WarrantyPage() {
   return (
     <>
       <NavBar />
-      <main className="py-16 md:py-24">
+      <main id="main" className="py-16 md:py-24">
         <PageContainer>
           <div className="max-w-[800px]">
-            <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-ace-white mb-6">Warranty Policy</h1>
+            <h1 className="font-heading text-[32px] xs:text-[36px] md:text-[48px] font-semibold text-ace-white tracking-tight mb-6">Warranty Policy</h1>
             <p className="text-ace-silver text-lg mb-8">Every device from ACE Electronics is sourced from verified suppliers and tested before delivery.</p>
 
             <h2 className="font-heading text-2xl font-semibold text-ace-white mt-10 mb-3">Condition Grading</h2>

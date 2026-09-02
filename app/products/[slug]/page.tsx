@@ -1,4 +1,4 @@
-import { notFound, permanentRedirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import NavBar from '@/components/layout/NavBar'
@@ -37,17 +37,31 @@ export function generateStaticParams() {
   return getAllProducts().map(p => ({ slug: p.slug }))
 }
 
+/**
+ * Slugs outside generateStaticParams are still rendered on demand so that
+ * permanent-ID links (and freshly added products) resolve — resolveProduct
+ * below decides between a redirect and a real 404.
+ */
+export const dynamicParams = true
+
+// NOTE: this segment deliberately has NO loading.tsx. A loading boundary makes
+// Next stream the response, which commits HTTP 200 before notFound() /
+// permanentRedirect() run — unresolvable slugs would then return "200 soft
+// 404" and ID links would render instead of redirecting. Product pages are
+// statically prerendered, so there is nothing to wait on anyway.
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = resolveProduct(params.slug)
-  if (!product) return { title: 'Product not found | ACE Electronics' }
+  if (!product) return { title: 'Product not found' }
   const specs = getSpecSummary(product)
   const image = getPrimaryImageUrl(product)
   return {
-    title: `${product.name}${specs ? ` – ${specs}` : ''} | ACE Electronics Ghana`,
+    // The root layout appends '| ACE Electronics', so don't repeat the brand.
+    title: `${product.name}${specs ? ` – ${specs}` : ''}`,
     description: product.description,
     alternates: { canonical: getProductPath(product) },
     openGraph: {
-      title: `${product.name} | ACE Electronics`,
+      title: `${product.name} | ACE Electronics`, // OG titles are standalone
       description: product.description,
       ...(image ? { images: [{ url: image, width: 1200, height: 630 }] } : {}),
     },
@@ -56,16 +70,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 function Crumb({ href, label, current }: { href?: string; label: string; current?: boolean }) {
   const cls = current ? 'text-ace-white' : 'text-ace-silver hover:text-ace-electric transition-colors'
-  if (current) return <span className={cls} aria-current="page">{label}</span>
+  if (current) return <span className={`${cls} max-w-full truncate`} aria-current="page">{label}</span>
   return <Link href={href ?? '/'} className={cls}>{label}</Link>
 }
 
 export default function ProductDetailPage({ params }: { params: { slug: string } }) {
   // Accepts the current slug OR the permanent internal ID, so links shared
   // before a re-slug (and every past WhatsApp inquiry) keep resolving.
+  // Permanent-ID URLs are redirected to the canonical slug by middleware.ts
+  // before they reach this component, so anything that doesn't resolve to a
+  // live product here is a genuine 404.
   const product: Product | undefined = resolveProduct(params.slug)
-  if (!product) notFound()
-  if (product.slug !== params.slug) permanentRedirect(getProductPath(product))
+  if (!product || product.slug !== params.slug) notFound()
 
   const dp = getDisplayPrice(product)
   const category = getCategoryDefinition(product)
@@ -80,9 +96,9 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(product)) }} />
 
       <NavBar />
-      <main className="py-12 md:py-20">
+      <main id="main" className="py-12 md:py-20">
         <PageContainer>
-          <nav aria-label="Breadcrumb" className="text-sm mb-8 flex flex-wrap items-center gap-2 text-ace-silver">
+          <nav aria-label="Breadcrumb" className="text-sm mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-ace-silver min-w-0">
             <Crumb href="/" label="Home" />
             <span aria-hidden="true">/</span>
             <Crumb href={category.href} label={category.label} />
@@ -96,7 +112,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </div>
 
             <div>
-              <h1 className="font-heading text-[30px] md:text-[40px] font-semibold text-ace-white leading-tight">{product.name}</h1>
+              <h1 className="font-heading text-[26px] xs:text-[30px] md:text-[40px] font-semibold text-ace-white leading-tight tracking-tight break-words">{product.name}</h1>
               <p className="text-ace-silver text-lg mt-3">{getSpecSummary(product)}</p>
 
               <div className="flex flex-wrap items-center gap-3 mt-4 text-sm">
@@ -147,11 +163,11 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               {specs.length > 0 && (
                 <section className="mt-8">
                   <h2 className="font-heading text-lg font-semibold text-ace-white mb-3">Specifications</h2>
-                  <dl className="ace-glass divide-y divide-ace-glass-border">
+                  <dl className="ace-glass divide-y divide-ace-glass-border overflow-hidden">
                     {specs.map(s => (
-                      <div key={s.id} className="flex gap-4 px-4 py-3 text-sm">
-                        <dt className="text-ace-silver w-40 flex-shrink-0">{s.label}</dt>
-                        <dd className="text-ace-white">{s.value}</dd>
+                      <div key={s.id} className="grid grid-cols-1 sm:grid-cols-[minmax(0,10rem)_1fr] gap-x-4 gap-y-0.5 px-4 py-3 text-sm">
+                        <dt className="text-ace-silver">{s.label}</dt>
+                        <dd className="text-ace-white break-words min-w-0">{s.value}</dd>
                       </div>
                     ))}
                   </dl>

@@ -1,9 +1,9 @@
 'use client'
 import { useMemo, useState } from 'react'
-import PageContainer from '@/components/layout/PageContainer'
 import FilterBar, { type SortValue } from '@/components/ui/FilterBar'
 import ProductGrid from '@/components/ui/ProductGrid'
 import ProductCard from '@/components/cards/ProductCard'
+import ButtonSecondary from '@/components/ui/ButtonSecondary'
 import {
   buildGeneralInquiryLink,
   countByCategory,
@@ -62,9 +62,15 @@ export default function CategoryListing({
   )
 
   const totalInCategory = useMemo(() => countByCategory(category), [category])
+  const isFiltered = filter !== ALL || search.trim() !== ''
+
+  const resetFilters = () => {
+    setFilter(ALL)
+    setSearch('')
+  }
 
   return (
-    <PageContainer>
+    <>
       <FilterBar
         filters={filterOptions}
         activeFilter={filter}
@@ -74,24 +80,43 @@ export default function CategoryListing({
         sortValue={sort}
         onSortChange={setSort}
         searchPlaceholder={searchPlaceholder}
+        resultsLabel={`${items.length} of ${totalInCategory} devices shown`}
       />
-      <ProductGrid>
-        {items.map(p => <ProductCard key={p.id} product={p} />)}
-      </ProductGrid>
-      {items.length === 0 && (
-        <p className="text-ace-silver">
-          No devices match your search —{' '}
-          <a
-            href={buildGeneralInquiryLink(emptyStateMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ace-electric hover:underline"
-          >
-            ask ACE on WhatsApp
-          </a>.
-        </p>
+
+      {items.length > 0 ? (
+        <>
+          <ProductGrid>
+            {items.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 4} />)}
+          </ProductGrid>
+          <p className="text-ace-silver text-sm mt-8">
+            Showing {items.length} of {totalInCategory} devices
+            {isFiltered && (
+              <>
+                {' — '}
+                <button type="button" onClick={resetFilters} className="text-ace-electric hover:underline font-medium">
+                  clear filters
+                </button>
+              </>
+            )}
+          </p>
+        </>
+      ) : (
+        /* Empty state: explains what happened and always offers a way forward. */
+        <div className="ace-glass p-8 md:p-12 text-center">
+          <h2 className="font-heading text-xl md:text-2xl font-semibold text-ace-white">No devices match your search</h2>
+          <p className="text-ace-silver mt-3 max-w-[520px] mx-auto leading-relaxed">
+            {search.trim()
+              ? <>We couldn&apos;t find anything for &ldquo;{search.trim()}&rdquo;{filter !== ALL ? ` in ${filter}` : ''}. Try a different term, or ask ACE directly — stock changes often.</>
+              : <>There&apos;s nothing in {filter} right now. Try another filter, or ask ACE what&apos;s coming in.</>}
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <ButtonSecondary onClick={resetFilters}>Clear filters</ButtonSecondary>
+            <ButtonSecondary href={buildGeneralInquiryLink(emptyStateMessage)} target="_blank">
+              Ask ACE on WhatsApp
+            </ButtonSecondary>
+          </div>
+        </div>
       )}
-      <p className="text-ace-silver text-sm mt-8">{items.length} of {totalInCategory} devices shown</p>
-    </PageContainer>
+    </>
   )
 }

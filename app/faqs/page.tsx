@@ -6,8 +6,9 @@ import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'FAQs – Laptops & Smartphones Ghana | ACE Electronics',
+  title: 'FAQs – Laptops & Smartphones Ghana',
   description: 'Frequently asked questions about buying laptops and smartphones from ACE Electronics in Ghana. Ordering, delivery, warranty, payment – all answered.',
+  alternates: { canonical: '/faqs' },
 }
 
 const faqs = [
@@ -46,18 +47,30 @@ const faqs = [
 ]
 
 export default function FAQsPage() {
+  // FAQPage structured data generated from the same array the page renders,
+  // so the rich result can never drift from the visible answers.
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <NavBar />
-      <main className="py-16 md:py-24">
+      <main id="main" className="py-16 md:py-24">
         <PageContainer>
           <div className="max-w-[800px]">
-            <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-ace-white mb-3">Frequently Asked Questions</h1>
-            <p className="text-ace-silver text-lg mb-10">Quick answers. Need more help? Talk to ACE on WhatsApp.</p>
+            <h1 className="font-heading text-[32px] xs:text-[32px] xs:text-[36px] md:text-[48px] font-semibold text-ace-white tracking-tight mb-3 tracking-tight">Frequently Asked Questions</h1>
+            <p className="text-ace-silver text-base md:text-lg mb-10">Quick answers. Need more help? Talk to ACE on WhatsApp.</p>
             <div className="space-y-8">
               {faqs.map(f => (
                 <div key={f.q} className="border-b border-ace-glass-border pb-6">
-                  <h3 className="font-heading text-xl font-medium text-ace-white mb-2">{f.q}</h3>
+                  <h2 className="font-heading text-lg md:text-xl font-medium text-ace-white mb-2">{f.q}</h2>
                   <p className="text-ace-silver leading-relaxed">{f.a}</p>
                 </div>
               ))}

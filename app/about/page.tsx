@@ -7,19 +7,20 @@ import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About ACE Electronics – Trusted Tech Plug Ghana',
+  title: 'About ACE — Trusted Tech Plug in Ghana',
   description: 'ACE Electronics – making quality tech accessible in Ghana and beyond. Authentic laptops and smartphones from verified suppliers, fast WhatsApp support.',
+  alternates: { canonical: '/about' },
 }
 
 export default function AboutPage() {
   return (
     <>
       <NavBar />
-      <main className="py-16 md:py-24">
+      <main id="main" className="py-16 md:py-24">
         <PageContainer>
-          <BrandStoryBlock />
+          <BrandStoryBlock as="h1" />
           <div className="mt-10">
-            <h3 className="font-heading text-2xl font-semibold text-ace-white mb-4">Why ACE?</h3>
+            <h2 className="font-heading text-2xl font-semibold text-ace-white mb-4">Why ACE?</h2>
             <ul className="text-ace-silver space-y-2 text-lg">
               <li>• Authentic Devices Only — Verified suppliers</li>
               <li>• Expert Advice — We help you choose right</li>

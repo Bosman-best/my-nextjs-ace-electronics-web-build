@@ -1,7 +1,11 @@
-export default function BrandStoryBlock() {
+/**
+ * Brand story. `as` controls the top heading level so the block can supply the
+ * page <h1> on /about while remaining reusable as a section elsewhere.
+ */
+export default function BrandStoryBlock({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' }) {
   return (
     <div className="max-w-[800px]">
-      <h2 className="font-heading text-[32px] md:text-[40px] font-semibold text-ace-white mb-6">Our Story</h2>
+      <Heading className="font-heading text-[32px] xs:text-[36px] md:text-[44px] font-semibold text-ace-white mb-6 tracking-tight">Our Story</Heading>
       <p className="text-ace-silver text-lg leading-relaxed mb-5">
         Tech should be simple, reliable, and accessible.
       </p>

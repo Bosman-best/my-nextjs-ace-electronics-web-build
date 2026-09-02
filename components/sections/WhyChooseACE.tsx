@@ -11,7 +11,7 @@ export default function WhyChooseACE() {
   return (
     <section className="py-16 md:py-28 bg-ace-gradient">
       <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
           <div className="ace-glass min-h-[320px] md:min-h-[400px] flex flex-col items-center justify-center text-center p-10 gap-5">
             <div className="w-20 h-20 rounded-full bg-ace-electric/10 border border-ace-electric/25 flex items-center justify-center">
               <ShieldCheck size={40} className="text-ace-electric" strokeWidth={1.8} />

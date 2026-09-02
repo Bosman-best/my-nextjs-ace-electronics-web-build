@@ -20,7 +20,8 @@ export default function NavBar() {
           <LogoACE />
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {SITE_NAV_LINKS.map(l => {
-              const active = pathname === l.href
+              // Section-aware: a product page keeps its category link highlighted.
+              const active = l.href === '/' ? pathname === '/' : pathname.startsWith(l.href)
               return (
                 <Link key={l.href} href={l.href}
                   aria-current={active ? 'page' : undefined}

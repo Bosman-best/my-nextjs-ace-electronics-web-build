@@ -10,7 +10,7 @@ import { Check } from '@/components/ui/IconSet'
 const HeroDeviceScene = dynamic(() => import('@/components/three/HeroDeviceScene'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[320px] md:h-[480px] flex items-center justify-center">
+    <div className="w-full h-[260px] xs:h-[320px] lg:h-[480px] flex items-center justify-center">
       <div className="bg-ace-surface-secondary border border-ace-border-light rounded-2xl p-10 text-center">
         <div className="text-4xl mb-2">💻📱</div>
         <p className="text-ace-text-muted text-xs">Loading devices…</p>
@@ -49,7 +49,7 @@ export default function HeroHome() {
   return (
     <section className="pt-24 md:pt-36 pb-20 md:pb-28 bg-ace-surface-primary">
       <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-[52%_48%] gap-16 items-center">
+        <div className="grid lg:grid-cols-[52%_48%] gap-10 md:gap-12 lg:gap-16 items-center">
 
           {/* TEXT */}
           <div>
@@ -101,7 +101,7 @@ export default function HeroHome() {
           {/* VISUAL */}
           <div
             ref={visualRef}
-            className="min-h-[320px] md:min-h-[480px] flex items-center justify-center opacity-0"
+            className="min-h-[260px] xs:min-h-[320px] lg:min-h-[480px] flex items-center justify-center opacity-0"
           >
             <div className="w-full">
               <HeroDeviceScene />

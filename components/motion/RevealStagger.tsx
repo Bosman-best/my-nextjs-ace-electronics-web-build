@@ -17,6 +17,8 @@ export default function RevealStagger({ children, stagger = 0.08, className = ''
     }, el)
     return () => ctx.revert()
   }, [stagger])
-  const wrapped = Children.map(children, (child) => <div data-reveal-item>{child}</div>)
+  // The wrapper becomes the grid item, so it must stretch to the row height —
+  // otherwise cards inside it cannot use h-full to equalise their heights.
+  const wrapped = Children.map(children, (child) => <div data-reveal-item className="h-full">{child}</div>)
   return <div ref={ref} className={className}>{wrapped}</div>
 }

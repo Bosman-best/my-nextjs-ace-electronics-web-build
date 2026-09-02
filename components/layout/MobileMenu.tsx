@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
 import { X } from '@/components/ui/IconSet'
 import LogoACE from './LogoACE'
@@ -8,6 +9,7 @@ import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import { SITE_NAV_LINKS } from '@/lib/nav'
 
 export default function MobileMenu({ open, onClose }: { open: boolean, onClose: () => void }) {
+  const pathname = usePathname()
   const overlayRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
@@ -54,18 +56,31 @@ export default function MobileMenu({ open, onClose }: { open: boolean, onClose: 
   if (!open) return null
   return (
     <div className="fixed inset-0 z-[200] lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
-      <div ref={overlayRef} className="absolute inset-0 bg-ace-black" onClick={onClose} />
-      <div ref={panelRef} className="relative h-full px-6 py-8 flex flex-col bg-transparent ml-auto max-w-sm w-full">
+      <div ref={overlayRef} className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div ref={panelRef} className="relative h-full px-6 py-8 flex flex-col bg-ace-black border-l border-ace-glass-border shadow-2xl ml-auto max-w-sm w-full overflow-y-auto">
         <div className="flex items-center justify-between">
           <LogoACE />
           <button ref={closeBtnRef} onClick={onClose} aria-label="Close menu" className="p-2 text-ace-silver hover:text-ace-white"><X size={24} /></button>
         </div>
-        <nav className="mt-12 flex flex-col">
-          {SITE_NAV_LINKS.map(l => (
-            <Link key={l.href} href={l.href} onClick={onClose} className="font-heading text-[32px] font-medium text-ace-white py-4 border-b border-ace-glass-border hover:text-ace-electric transition-colors">{l.label}</Link>
-          ))}
+        <nav className="mt-8 xs:mt-10 flex flex-col">
+          {SITE_NAV_LINKS.map(l => {
+            const active = l.href === '/' ? pathname === '/' : pathname.startsWith(l.href)
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={onClose}
+                aria-current={active ? 'page' : undefined}
+                className={`font-heading text-[26px] xs:text-[30px] font-medium py-3.5 border-b border-ace-glass-border transition-colors ${
+                  active ? 'text-ace-electric' : 'text-ace-white hover:text-ace-electric'
+                }`}
+              >
+                {l.label}
+              </Link>
+            )
+          })}
         </nav>
-        <div className="mt-auto pb-8">
+        <div className="mt-auto pt-8 pb-2">
           <ButtonWhatsApp size="lg" className="w-full justify-center" text="Hi ACE, I need help choosing a device.">Talk to ACE on WhatsApp</ButtonWhatsApp>
         </div>
       </div>

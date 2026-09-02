@@ -11,7 +11,7 @@ export default function Error({ reset }: { error: Error & { digest?: string }; r
   return (
     <>
       <NavBar />
-      <main className="min-h-[60vh] flex items-center py-16 md:py-24">
+      <main id="main" className="min-h-[60vh] flex items-center py-16 md:py-24">
         <PageContainer className="text-center">
           <p className="font-heading text-[64px] md:text-[88px] font-bold text-ace-electric leading-none">Oops</p>
           <h1 className="font-heading text-[28px] md:text-[36px] font-semibold text-ace-white mt-4">Something went wrong</h1>

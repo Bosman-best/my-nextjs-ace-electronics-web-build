@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { WHATSAPP_GROUP_LINK, WHATSAPP_DISPLAY } from '@/lib/utils'
 export default function ContactQRBlock() {
   return (
@@ -5,8 +6,8 @@ export default function ContactQRBlock() {
       <div className="max-w-[720px] mx-auto px-5 xs:px-6 text-center">
         <h2 className="font-heading text-[32px] md:text-[40px] font-semibold text-ace-white">Need Help Choosing? We Got You.</h2>
         <p className="text-ace-silver text-lg mt-4">Chat with ACE directly. Get a quote in 2 minutes.</p>
-        <div className="ace-glass mt-10 p-10 text-center shadow-ace-glow border-ace-electric/30">
-          <img src="/ace-whatsapp-qr.png" alt="WhatsApp QR – ACE Electronics" width={220} height={220} className="mx-auto rounded-xl bg-white p-3 w-[220px] h-[220px]" />
+        <div className="ace-glass mt-10 p-6 xs:p-8 md:p-10 text-center shadow-ace-glow border-ace-electric/30">
+          <Image src="/ace-whatsapp-qr.png" alt="WhatsApp QR code – scan to chat with ACE Electronics" width={220} height={220} className="mx-auto rounded-xl bg-white p-3 w-full max-w-[220px] h-auto aspect-square" />
           <p className="text-ace-silver text-[15px] font-medium mt-4">Scan to chat</p>
           <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="text-ace-electric text-[15px] font-medium mt-3 inline-block hover:underline">Join our WhatsApp Group →</a>
         </div>

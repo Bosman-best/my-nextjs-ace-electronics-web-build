@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "verify:catalog": "node scripts/verify-catalog.mjs"
+    "verify:catalog": "node scripts/verify-catalog.mjs",
+    "verify:storefront": "node scripts/verify-storefront.mjs",
+    "verify": "npm run verify:catalog && npm run verify:storefront"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

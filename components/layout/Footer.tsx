@@ -5,8 +5,8 @@ import { WHATSAPP_LINK, WHATSAPP_GROUP_LINK, WHATSAPP_DISPLAY } from '@/lib/util
 
 export default function Footer() {
   return (
-    <footer className="bg-ace-surface-secondary border-t border-ace-border-light mt-32">
-      <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12 py-24">
+    <footer className="bg-ace-surface-secondary border-t border-ace-border-light mt-20 md:mt-32">
+      <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.5fr_1.5fr_1.5fr_2fr] gap-x-16 gap-y-12">
           <div>
             <LogoACE size="footer" />
@@ -51,8 +51,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t border-ace-border-light mt-20 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-ace-text-muted text-xs gap-4">
-          <span>&copy; 2026 ACE Electronics. All rights reserved.</span>
+        <div className="border-t border-ace-border-light mt-12 md:mt-20 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-ace-text-muted text-xs gap-4">
+          <span>&copy; {new Date().getFullYear()} ACE Electronics. All rights reserved.</span>
           <div className="flex gap-8">
             <Link href="/privacy" className="text-ace-text-secondary hover:text-ace-electric transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-ace-text-secondary hover:text-ace-electric transition-colors">Terms</Link>
