@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Metadata } from 'next'
 import SmartphonesClient from './SmartphonesClient'
 
@@ -11,4 +12,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() { return <SmartphonesClient /> }
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <SmartphonesClient />
+    </Suspense>
+  )
+}

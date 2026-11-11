@@ -12,13 +12,11 @@ const sizes = { sm: 'px-5 py-2.5 text-sm', md: 'px-7 py-3.5 text-base', lg: 'px-
 
 export default function ButtonPrimary({ href, size = 'md', className, children, target, ...props }: Props) {
   const classes = cn(
-    'inline-flex items-center justify-center font-body font-semibold text-ace-white',
-    'bg-ace-electric-button rounded-xl shadow-ace-glow',
-    'transition-all duration-200',
-    'hover:bg-ace-electric-dark hover:-translate-y-0.5 hover:shadow-ace-glow-strong',
-    'active:translate-y-0 active:scale-[0.98]',
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-ace-white focus-visible:outline-offset-2',
-    'disabled:bg-ace-electric/40 disabled:cursor-not-allowed disabled:shadow-none disabled:transform-none',
+    'inline-flex items-center justify-center font-body font-semibold rounded-full text-white',
+    'bg-[#0066CC] transition-all duration-200',
+    'hover:bg-[#0077ED] active:scale-[0.98]',
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0066CC] focus-visible:outline-offset-2',
+    'disabled:bg-[#0066CC]/40 disabled:cursor-not-allowed',
     sizes[size], className
   )
   if (href) {

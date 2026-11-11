@@ -7,21 +7,23 @@ const points = [
 ]
 export default function WhyChooseACE() {
   return (
-    <section className="py-16 md:py-28 bg-ace-gradient">
+    <section className="py-16 md:py-28 bg-white">
       <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="ace-glass min-h-[360px] md:min-h-[440px] flex items-center justify-center">
+          <div className="min-h-[360px] md:min-h-[440px] flex items-center justify-center">
             <div className="text-6xl opacity-70">🔌✨</div>
           </div>
           <div>
-            <h2 className="font-heading text-[32px] md:text-[40px] font-semibold text-ace-white">Why Ghana Trusts ACE</h2>
+            <h2 className="font-heading text-[36px] md:text-[56px] font-semibold text-[rgb(var(--ace-text-primary)/1)]">Why Ghana Trusts ACE</h2>
             <div className="mt-8 space-y-6">
               {points.map(p => (
                 <div key={p.n} className="flex gap-4">
-                  <div className="w-9 h-9 rounded-full bg-ace-electric/10 text-ace-electric font-bold flex items-center justify-center shrink-0 mt-0.5">{p.n}</div>
+                  <div className="w-[92px] flex items-center justify-center shrink-0">
+                      <div className="text-[80px] leading-none font-bold text-[rgb(var(--ace-color-link)/1)]">{p.n}</div>
+                    </div>
                   <div>
-                    <div className="text-ace-white font-semibold text-lg">{p.t}</div>
-                    <div className="text-ace-silver text-[15px] mt-1">{p.d}</div>
+                                      <div className="text-[19px] font-semibold text-[rgb(var(--ace-text-primary)/1)]">{p.t}</div>
+                                      <div className="text-[14px] text-[rgb(var(--ace-text-secondary)/1)] mt-1">{p.d}</div>
                   </div>
                 </div>
               ))}

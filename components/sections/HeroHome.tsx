@@ -25,6 +25,7 @@ export default function HeroHome() {
   const ctaRef = useRef<HTMLDivElement>(null)
   const trustRef = useRef<HTMLDivElement>(null)
   const visualRef = useRef<HTMLDivElement>(null)
+  const parallaxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -43,7 +44,7 @@ export default function HeroHome() {
   }, [])
 
   return (
-    <section className="pt-24 md:pt-36 pb-20 md:pb-28 bg-ace-surface-primary">
+    <section className="h-screen flex items-center justify-center bg-[linear-gradient(180deg,#E8F4FD_0%,#F5F5F7_100%)]">
       <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
         <div className="grid lg:grid-cols-[52%_48%] gap-16 items-center">
 
@@ -51,19 +52,19 @@ export default function HeroHome() {
           <div>
             <h1
               ref={h1Ref}
-              className="font-heading text-[36px] md:text-[52px] lg:text-[64px] font-semibold tracking-tight leading-[1.05] text-ace-text-primary opacity-0"
+              className="font-heading text-[48px] md:text-[80px] font-semibold tracking-tight leading-[1.02] text-[rgb(var(--ace-text-primary)/1)]"
             >
               Premium Laptops & Smartphones in Ghana
             </h1>
 
             <p
               ref={subRef}
-              className="text-ace-text-secondary text-base md:text-lg leading-relaxed mt-6 max-w-[520px] opacity-0"
+              className="text-[21px] text-[rgb(var(--ace-text-secondary)/1)] leading-relaxed mt-6 max-w-[600px] mx-auto opacity-0"
             >
               Authentic devices from verified suppliers. Transparent pricing, reliable delivery, and dedicated WhatsApp support.
             </p>
 
-            <div ref={ctaRef} className="flex flex-wrap gap-4 mt-10 opacity-0">
+            <div ref={ctaRef} className="flex flex-wrap gap-4 mt-8 opacity-0 items-center justify-center">
               <ButtonPrimary href="/laptops">
                 Shop Devices
               </ButtonPrimary>
@@ -75,31 +76,28 @@ export default function HeroHome() {
 
             <div
               ref={trustRef}
-              className="flex flex-wrap gap-x-6 gap-y-3 text-ace-text-secondary text-sm mt-8 opacity-0"
+              className="flex flex-wrap gap-x-6 gap-y-3 text-[12px] text-[rgb(var(--ace-text-secondary)/1)] mt-6 opacity-0"
             >
               <span className="flex items-center gap-2">
-                <Check size={16} className="text-ace-electric" />
+                              <Check size={16} className="text-[rgb(var(--ace-color-link)/1)]" />
                 Verified Products
               </span>
 
               <span className="flex items-center gap-2">
-                <Check size={16} className="text-ace-electric" />
+                              <Check size={16} className="text-[rgb(var(--ace-color-link)/1)]" />
                 WhatsApp Support
               </span>
 
               <span className="flex items-center gap-2">
-                <Check size={16} className="text-ace-electric" />
+                              <Check size={16} className="text-[rgb(var(--ace-color-link)/1)]" />
                 Fast Delivery
               </span>
             </div>
           </div>
 
           {/* VISUAL */}
-          <div
-            ref={visualRef}
-            className="min-h-[320px] md:min-h-[480px] flex items-center justify-center opacity-0"
-          >
-            <div className="w-full">
+          <div ref={parallaxRef} className="w-full flex items-center justify-center will-change-transform">
+            <div ref={visualRef} className="min-h-[320px] md:min-h-[480px] opacity-0 w-full">
               <HeroDeviceScene />
             </div>
           </div>

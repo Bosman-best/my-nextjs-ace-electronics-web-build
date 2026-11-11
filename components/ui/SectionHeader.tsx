@@ -16,8 +16,8 @@ export default function SectionHeader({
       'px-0',
       className
     )}>
-      <h2 className="font-heading text-[32px] md:text-[40px] lg:text-[48px] font-semibold text-ace-white tracking-tight leading-tight">{title}</h2>
-      {subtext && <p className="text-ace-silver text-lg leading-relaxed mt-4">{subtext}</p>}
+      <h2 className="font-heading text-[36px] md:text-[56px] font-semibold text-[rgb(var(--ace-text-primary)/1)] tracking-tight leading-tight">{title}</h2>
+      {subtext && <p className="text-[19px] text-[rgb(var(--ace-text-secondary)/1)] leading-relaxed mt-4 mx-auto max-w-[600px]">{subtext}</p>}
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Metadata } from 'next'
 import LaptopsClient from './LaptopsClient'
 
@@ -11,4 +12,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() { return <LaptopsClient /> }
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <LaptopsClient />
+    </Suspense>
+  )
+}

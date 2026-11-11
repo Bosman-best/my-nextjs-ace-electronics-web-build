@@ -16,7 +16,7 @@ export default function WhatsAppModal({ open, onClose }: { open: boolean, onClos
     const ctx = gsap.context(() => {
       if (!reduce) {
         gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25 })
-        gsap.fromTo(cardRef.current, { y: 16, opacity: 0, scale: 0.98 }, { y: 0, opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' })
+        gsap.fromTo(cardRef.current, { y: 12, opacity: 0, scale: 0.985 }, { y: 0, opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' })
       }
     })
     closeBtnRef.current?.focus()
@@ -39,20 +39,20 @@ export default function WhatsAppModal({ open, onClose }: { open: boolean, onClos
   if (!open) return null
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title">
-      <div ref={overlayRef} className="absolute inset-0 bg-ace-black/70 backdrop-blur-[8px]" onClick={onClose} />
-      <div ref={cardRef} className="relative w-full max-w-[420px] rounded-2xl border border-ace-glass-border p-10 text-center bg-ace-midnight/90 backdrop-blur-[24px]">
-        <button ref={closeBtnRef} onClick={onClose} className="absolute top-5 right-5 text-ace-silver hover:text-ace-white" aria-label="Close">
+      <div ref={overlayRef} className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div ref={cardRef} className="relative w-full max-w-[520px] rounded-[18px] p-8 text-left bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+        <button ref={closeBtnRef} onClick={onClose} className="absolute top-4 right-4 text-[rgb(var(--ace-text-secondary)/1)] hover:text-[rgb(var(--ace-text-primary)/1)]" aria-label="Close">
           <X size={24} />
         </button>
-        <h3 id="wa-modal-title" className="font-heading text-2xl font-semibold text-ace-white">Talk to ACE</h3>
-        <p className="text-ace-silver text-sm mt-2">Fast response, Mon-Sat 9AM–8PM</p>
-        <div className="mx-auto my-6">
-          <img src="/ace-whatsapp-qr.png" alt="WhatsApp QR code for ACE Electronics – scan to chat at wa.me/233547981348" width={180} height={180} className="mx-auto rounded-xl bg-white p-3 shadow-ace-glow w-[180px] h-[180px]" />
+        <h3 id="wa-modal-title" className="font-heading text-2xl font-semibold text-[rgb(var(--ace-text-primary)/1)]">Talk to ACE</h3>
+        <p className="text-[rgb(var(--ace-text-secondary)/1)] text-sm mt-2">Fast response, Mon-Sat 9AM–8PM</p>
+        <div className="mx-auto my-6 text-center">
+          <img src="/ace-whatsapp-qr.png" alt="WhatsApp QR code for ACE Electronics – scan to chat at wa.me/233547981348" width={200} height={200} className="mx-auto rounded-xl bg-white p-3 w-[200px] h-[200px]" />
         </div>
-        <p className="text-ace-silver text-sm mb-4">Scan to chat instantly</p>
+        <p className="text-[rgb(var(--ace-text-secondary)/1)] text-sm mb-4">Scan to chat instantly</p>
         <ButtonWhatsApp size="lg" className="w-full justify-center">Open WhatsApp</ButtonWhatsApp>
-        <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="block text-ace-electric text-[15px] font-medium mt-4 hover:underline">Join our WhatsApp Group</a>
-        <div className="text-ace-silver text-[13px] leading-relaxed mt-6">
+        <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="block text-[rgb(var(--ace-color-link)/1)] text-[15px] font-medium mt-4 hover:underline">Join our WhatsApp Group</a>
+        <div className="text-[rgb(var(--ace-text-secondary)/1)] text-[13px] leading-relaxed mt-6">
           Phone: {WHATSAPP_DISPLAY}<br/>Hours: Mon–Sat 9AM – 8PM GMT<br/>Response time: ~2 minutes
         </div>
       </div>

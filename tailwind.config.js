@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -20,6 +19,13 @@ module.exports = {
           glass: 'var(--ace-glass)',
           'glass-border': 'var(--ace-glass-border)',
           'glass-hover': 'var(--ace-glass-hover)',
+          'surface-primary': 'rgb(var(--ace-surface-primary) / <alpha-value>)',
+          'surface-secondary': 'rgb(var(--ace-surface-secondary) / <alpha-value>)',
+          'border-light': 'rgb(var(--ace-border-light) / <alpha-value>)',
+          'text-primary': 'rgb(var(--ace-text-primary) / <alpha-value>)',
+          'text-secondary': 'rgb(var(--ace-text-secondary) / <alpha-value>)',
+          'text-muted': 'rgb(var(--ace-text-muted) / <alpha-value>)',
+          link: 'rgb(var(--ace-link) / <alpha-value>)',
         }
       },
       fontFamily: {
@@ -27,17 +33,32 @@ module.exports = {
         body: ['Inter', 'Roboto', 'sans-serif'],
       },
       borderRadius: {
-        'xl': '16px',
-        '2xl': '24px',
+        xl: '18px',
+        '2xl': '18px',
+        full: '999px',
       },
       boxShadow: {
-        'ace-glow': '0 0 40px rgba(59,130,246,0.15)',
-        'ace-glow-strong': '0 8px 32px rgba(59,130,246,0.30)',
-        'ace-card': '0 0 24px rgba(59,130,246,0.08)',
+        'ace-glow': '0 2px 12px rgba(0,0,0,0.08)',
+        'ace-glow-strong': '0 4px 16px rgba(0,0,0,0.12)',
+        'ace-card': '0 2px 12px rgba(0,0,0,0.08)',
       },
-      maxWidth: { 'ace': '1280px' },
-      screens: { 'xs': '480px' },
-      backgroundImage: { 'ace-gradient': 'linear-gradient(180deg, rgb(var(--ace-midnight)) 0%, rgb(var(--ace-black)) 100%)' }
+      fontSize: {
+        hero: ['80px', { lineHeight: '1.05', letterSpacing: '-0.003em' }],
+        'hero-sm': ['48px', { lineHeight: '1.1', letterSpacing: '-0.003em' }],
+        'section-heading': ['56px', { lineHeight: '1.05' }],
+        'section-heading-sm': ['36px', { lineHeight: '1.1' }],
+        'heading-3': ['28px', { lineHeight: '1.1' }],
+        body: ['17px', { lineHeight: '1.6' }],
+        caption: ['12px', { lineHeight: '1.6', letterSpacing: '0.08em' }],
+      },
+      spacing: {
+        section: '140px',
+        'section-sm': '80px',
+        hero: '80px',
+      },
+      maxWidth: { ace: '1280px' },
+      screens: { xs: '480px' },
+      backgroundImage: { 'ace-gradient': 'linear-gradient(180deg, rgb(var(--ace-surface-secondary)) 0%, rgb(var(--ace-background)) 100%)' }
     },
   },
   plugins: [],

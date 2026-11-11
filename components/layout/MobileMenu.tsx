@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { X } from '@/components/ui/IconSet'
@@ -8,8 +8,25 @@ import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/laptops', label: 'Laptops' },
-  { href: '/smartphones', label: 'Smartphones' },
+  { 
+    label: 'Laptops', 
+    categories: [
+      { label: 'Business', href: '/laptops?category=Business' },
+      { label: 'Gaming', href: '/laptops?category=Gaming' },
+      { label: 'Student', href: '/laptops?category=Student' },
+      { label: 'Ultrabook', href: '/laptops?category=Ultrabook' },
+    ]
+  },
+  { 
+    label: 'Smartphones', 
+    categories: [
+      { label: 'Flagship', href: '/smartphones?category=Flagship' },
+      { label: 'Mid-range', href: '/smartphones?category=Mid-range' },
+      { label: 'Budget', href: '/smartphones?category=Budget' },
+    ]
+  },
+  { href: '/accessories', label: 'Accessories' },
+  { href: '/entertainment', label: 'Entertainment' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -18,6 +35,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean, onClose: 
   const overlayRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
 
   useEffect(() => {
     if (!open) return
@@ -39,19 +57,59 @@ export default function MobileMenu({ open, onClose }: { open: boolean, onClose: 
   if (!open) return null
   return (
     <div className="fixed inset-0 z-[200] lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
-      <div ref={overlayRef} className="absolute inset-0 bg-ace-black/95 backdrop-blur-[20px]" onClick={onClose} />
-      <div ref={panelRef} className="relative h-full px-6 py-8 flex flex-col bg-transparent ml-auto max-w-sm w-full">
+      <div ref={overlayRef} className="absolute inset-0 bg-black/25" onClick={onClose} />
+      <div ref={panelRef} className="relative h-full px-6 py-8 flex flex-col bg-white ml-auto w-full max-w-md overflow-y-auto">
         <div className="flex items-center justify-between">
           <LogoACE />
-          <button ref={closeBtnRef} onClick={onClose} aria-label="Close menu" className="p-2 text-ace-silver hover:text-ace-white"><X size={24} /></button>
+          <button ref={closeBtnRef} onClick={onClose} aria-label="Close menu" className="p-2 text-[rgb(var(--ace-text-secondary)/1)] hover:text-[rgb(var(--ace-text-primary)/1)]"><X size={24} /></button>
         </div>
-        <nav className="mt-12 flex flex-col">
-          {navLinks.map(l => (
-            <Link key={l.href} href={l.href} onClick={onClose} className="font-heading text-[32px] font-medium text-ace-white py-4 border-b border-ace-glass-border hover:text-ace-electric transition-colors">{l.label}</Link>
-          ))}
+        <nav className="mt-12 flex flex-col space-y-2">
+          {navLinks.map((l, idx) => {
+            const isExpandable = 'categories' in l
+            const isExpanded = expandedCategory === l.label
+            
+            if (isExpandable) {
+              const categories = (l as any).categories
+              return (
+                <div key={idx}>
+                  <button
+                    onClick={() => setExpandedCategory(isExpanded ? null : l.label)}
+                    className="font-heading text-[24px] font-medium text-[rgb(var(--ace-text-primary)/1)] py-4 w-full text-left"
+                  >
+                    {l.label}
+                  </button>
+                  {isExpanded && (
+                    <div className="pl-6 space-y-2">
+                      {categories.map((cat: any, catIdx: number) => (
+                        <Link
+                          key={catIdx}
+                          href={cat.href}
+                          onClick={onClose}
+                          className="block text-[16px] text-[#6E6E73] hover:text-[#0066CC] py-2"
+                        >
+                          {cat.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            
+            return (
+              <Link 
+                key={(l as any).href} 
+                href={(l as any).href} 
+                onClick={onClose} 
+                className="font-heading text-[24px] font-medium text-[rgb(var(--ace-text-primary)/1)] py-4"
+              >
+                {l.label}
+              </Link>
+            )
+          })}
         </nav>
         <div className="mt-auto pb-8">
-          <ButtonWhatsApp size="lg" className="w-full justify-center" text="Hi ACE, I need help choosing a device.">Talk to ACE on WhatsApp</ButtonWhatsApp>
+          <ButtonWhatsApp size="lg" className="w-full justify-center bg-[#3B82F6] text-white">Talk to ACE on WhatsApp</ButtonWhatsApp>
         </div>
       </div>
     </div>

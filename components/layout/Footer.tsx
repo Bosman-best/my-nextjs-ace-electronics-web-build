@@ -1,61 +1,65 @@
 import Link from 'next/link'
 import LogoACE from './LogoACE'
-import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import { WHATSAPP_LINK, WHATSAPP_GROUP_LINK, WHATSAPP_DISPLAY } from '@/lib/utils'
 
 export default function Footer() {
   return (
-    <footer className="bg-ace-surface-secondary border-t border-ace-border-light mt-32">
-      <div className="max-w-ace mx-auto px-6 xs:px-8 md:px-10 lg:px-16 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.5fr_1.5fr_1.5fr_2fr] gap-x-16 gap-y-12">
+    <footer className="bg-[#F5F5F7] border-t border-[#D2D2D7] mt-32">
+      <div className="max-w-ace mx-auto px-6 xs:px-8 md:px-10 lg:px-16 py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           <div>
             <LogoACE size="footer" />
-            <p className="text-ace-text-muted mt-4 text-sm leading-relaxed max-w-xs">Your Trusted Tech Plug</p>
-            <div className="mt-8 space-y-2">
-              <p className="text-ace-text-secondary text-sm">WhatsApp: {WHATSAPP_DISPLAY}</p>
-              <p className="text-ace-text-muted text-sm">Hours: Mon-Sat 9AM–8PM GMT</p>
+            <p className="text-[#6E6E73] mt-4 text-[14px] leading-relaxed max-w-xs">Your Trusted Tech Plug</p>
+            <div className="mt-8 space-y-2 text-[12px] text-[#1D1D1F] leading-6">
+              <p>WhatsApp: {WHATSAPP_DISPLAY}</p>
+              <p>Hours: Mon-Sat 9AM–8PM GMT</p>
             </div>
           </div>
           <div>
-            <h4 className="text-ace-text-primary font-heading font-semibold text-sm uppercase tracking-wider mb-6">Shop</h4>
-            <ul className="space-y-4">
-              <li><Link href="/laptops" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">Laptops</Link></li>
-              <li><Link href="/smartphones" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">Smartphones</Link></li>
-              <li><Link href="/accessories" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">Accessories</Link></li>
-              <li><Link href="/gaming" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">Gaming Devices</Link></li>
+            <h4 className="text-[#1D1D1F] font-heading font-semibold text-[12px] uppercase tracking-[0.18em] mb-6">Shop</h4>
+            <ul className="space-y-3">
+              <li><Link href="/laptops" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Laptops</Link></li>
+              <li><Link href="/smartphones" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Smartphones</Link></li>
+              <li><Link href="/accessories" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Accessories</Link></li>
+              <li><Link href="/gaming" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Gaming Devices</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-ace-text-primary font-heading font-semibold text-sm uppercase tracking-wider mb-6">Company</h4>
-            <ul className="space-y-4">
-              <li><Link href="/about" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">About</Link></li>
-              <li><Link href="/contact" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">Contact</Link></li>
-              <li><Link href="/warranty" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">Warranty Policy</Link></li>
-              <li><Link href="/faqs" className="text-ace-text-secondary text-sm hover:text-ace-electric transition-colors">FAQs</Link></li>
+            <h4 className="text-[#1D1D1F] font-heading font-semibold text-[12px] uppercase tracking-[0.18em] mb-6">Company</h4>
+            <ul className="space-y-3">
+              <li><Link href="/about" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">About</Link></li>
+              <li><Link href="/contact" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Contact</Link></li>
+              <li><Link href="/warranty" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Warranty Policy</Link></li>
+              <li><Link href="/faqs" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">FAQs</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-ace-text-primary font-heading font-semibold text-sm uppercase tracking-wider mb-6">Connect</h4>
+            <h4 className="text-[#1D1D1F] font-heading font-semibold text-[12px] uppercase tracking-[0.18em] mb-6">Connect</h4>
             <div className="space-y-4">
-              <ButtonPrimary href={WHATSAPP_LINK("Hi ACE")} size="sm">WhatsApp Us</ButtonPrimary>
-              <div>
-                <a
-                  href={WHATSAPP_GROUP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ace-electric text-sm font-medium hover:underline inline-block"
-                >
-                  Join WhatsApp Group &rarr;
-                </a>
-              </div>
+              <a
+                href={WHATSAPP_LINK("Hi ACE")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-[#3B82F6] px-5 py-2.5 text-[12px] font-semibold text-white transition-colors hover:bg-[#2563EB]"
+              >
+                WhatsApp Us
+              </a>
+              <a
+                href={WHATSAPP_GROUP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors inline-block"
+              >
+                Join WhatsApp Group →
+              </a>
             </div>
           </div>
         </div>
-        <div className="border-t border-ace-border-light mt-20 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-ace-text-muted text-xs gap-4">
+        <div className="mt-12 border-t border-[#D2D2D7] pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[#6E6E73] text-[12px]">
           <span>&copy; 2026 ACE Electronics. All rights reserved.</span>
-          <div className="flex gap-8">
-            <Link href="/privacy" className="text-ace-text-secondary hover:text-ace-electric transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-ace-text-secondary hover:text-ace-electric transition-colors">Terms</Link>
+          <div className="flex flex-wrap items-center gap-6">
+            <Link href="/privacy" className="hover:text-[#0066CC] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#0066CC] transition-colors">Terms</Link>
           </div>
         </div>
       </div>
