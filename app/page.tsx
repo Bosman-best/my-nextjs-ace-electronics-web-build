@@ -17,23 +17,23 @@ import { FEATURED_PRODUCTS } from '@/lib/products'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'ACE Electronics – Laptops & Smartphones for Sale in Ghana | Trusted Tech Plug',
-  description: 'Buy authentic laptops and smartphones in Accra, Ghana. HP EliteBook, Dell, Samsung Galaxy, Google Pixel – competitive prices, verified devices, fast WhatsApp support from ACE Electronics.',
+  title: 'ACE Electronics – Laptops & Smartphones for Sale in Ghana',
+  description: 'Explore laptops and smartphones at ACE Electronics Ghana. Compare device details, ask about current prices and availability, and speak with the team on WhatsApp.',
 }
 
 const Reveal = dynamic(() => import('@/components/motion/Reveal'), { ssr: false })
 const RevealStagger = dynamic(() => import('@/components/motion/RevealStagger'), { ssr: false })
 
 const trustItems = [
-  { icon: ShieldCheck, title: 'Verified Products', description: 'Every device sourced from verified suppliers. Authenticity guaranteed.' },
-  { icon: BadgeCheck, title: 'Quality Assurance', description: 'Tested, certified, and backed by warranty. No surprises.' },
-  { icon: MessageCircle, title: 'Fast Response WhatsApp', description: 'Expert help in minutes, Mon-Sat 9AM–8PM GMT.' },
-  { icon: Tag, title: 'Competitive Pricing', description: 'Premium tech at fair, transparent prices. No hidden fees.' },
+  { icon: ShieldCheck, title: 'Verified Products', description: 'Explore device details and ask our team for help choosing the right option.' },
+  { icon: BadgeCheck, title: 'Quality Assurance', description: 'Get clear answers about condition, specifications and warranty before you buy.' },
+  { icon: MessageCircle, title: 'Direct WhatsApp Support', description: 'Speak with the ACE team about products, prices and availability.' },
+  { icon: Tag, title: 'Competitive Pricing', description: 'Ask about current prices and available options before making your decision.' },
 ]
 
 const categories = [
-  { title: 'Laptops', count: '26 devices in stock', href: '/laptops', image: '/hero/hp-elitebook-830-g7.jpg' },
-  { title: 'Smartphones', count: '16 devices in stock', href: '/smartphones', image: '/hero/google-pixel-9.jpg' },
+  { title: 'Laptops', count: 'Explore available models', href: '/laptops', image: '/hero/hp-elitebook-830-g7.jpg' },
+  { title: 'Smartphones', count: 'Explore available models', href: '/smartphones', image: '/hero/google-pixel-9.jpg' },
   { title: 'Accessories', count: 'Ask on WhatsApp', href: '/accessories' },
   { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming' },
 ]
@@ -59,7 +59,7 @@ export default function Home() {
         </section>
         <section className="py-16 md:py-28">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Shop By Category" subtext="Premium devices across every category, all verified authentic." align="left" /></Reveal>
+            <Reveal><SectionHeader title="Shop By Category" subtext="Explore the categories and find a device that fits your needs." align="left" /></Reveal>
             <RevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 lg:gap-8" stagger={0.08}>
               {categories.map(c => <CategoryCard key={c.title} {...c} />)}
             </RevealStagger>
@@ -83,12 +83,12 @@ export default function Home() {
         <Reveal><WhyChooseACE /></Reveal>
         <section className="py-16 md:py-28">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Plugged In Customers" subtext="Real buyers, real devices." /></Reveal>
+            <Reveal><SectionHeader title="Plugged In Customers" subtext="A few words from customers who have connected with ACE." /></Reveal>
             <RevealStagger className="grid md:grid-cols-3 gap-6 md:gap-8" stagger={0.08}>
               {testimonials.map(t => <TestimonialCard key={t.name} {...t} />)}
             </RevealStagger>
             <Reveal><p className="text-center text-ace-silver text-sm mt-8">
-              Join 1000+ happy customers — <a href="https://wa.me/233547981348" className="text-ace-electric hover:underline">Chat now</a>
+              Connect with ACE Electronics — <a href="https://wa.me/233547981348" className="text-ace-electric hover:underline">Chat now</a>
             </p></Reveal>
           </div>
         </section>
