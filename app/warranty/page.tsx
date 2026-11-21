@@ -6,55 +6,43 @@ import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Warranty Policy | ACE Electronics Ghana',
-  description: 'ACE Electronics warranty terms for laptops and smartphones in Ghana. Authentic devices, verified condition grading, and clear claim process via WhatsApp.',
+  title: 'Warranty Information | ACE Electronics Ghana',
+  description: 'Contact ACE Electronics to confirm the warranty coverage and terms for a specific device before purchase.',
 }
 
 export default function WarrantyPage() {
   return (
     <>
       <NavBar />
-      <main className="py-16 md:py-24">
+      <main className="ace-page min-h-screen py-16 md:py-24">
         <PageContainer>
-          <div className="max-w-[800px]">
-            <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-[#1D1D1F] mb-6">Warranty Policy</h1>
-            <p className="text-[#6E6E73] text-lg mb-8">Every device from ACE Electronics is sourced from verified suppliers and tested before delivery.</p>
+          <div className="mx-auto max-w-[800px]">
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[.18em] text-[#0066CC]">Customer information</p>
+            <h1 className="mb-6 font-heading text-[36px] font-semibold text-[#14233B] md:text-[48px]">Warranty information</h1>
+            <p className="mb-8 text-lg leading-8 text-[#53647B]">
+              Warranty coverage can differ by device. Please confirm the exact coverage, duration and conditions with ACE before completing a purchase.
+            </p>
 
-            <h2 className="font-heading text-2xl font-semibold text-[#1D1D1F] mt-10 mb-3">Condition Grading</h2>
-            <ul className="text-[#6E6E73] space-y-3">
-              <li><span className="text-[#1D1D1F] font-medium">Brand New Sealed</span> — Factory-sealed, never opened. Full manufacturer box and accessories.</li>
-              <li><span className="text-[#1D1D1F] font-medium">99.99% Clean</span> — Near-mint condition. No visible scratches, fully functional. May be open-box.</li>
-              <li><span className="text-[#1D1D1F] font-medium">Fairly Used</span> — Pre-owned, tested and fully functional. May show light cosmetic wear. Priced accordingly.</li>
-            </ul>
-            <p className="text-[#6E6E73] text-sm mt-3">Condition is always stated clearly on each product listing and confirmed via WhatsApp before purchase.</p>
+            <section className="rounded-[22px] border border-[#E2E9F2] bg-white p-6 md:p-8">
+              <h2 className="font-heading text-xl font-semibold text-[#14233B]">Before you buy</h2>
+              <p className="mt-3 text-sm leading-7 text-[#53647B]">
+                Ask us to confirm the warranty terms for the specific device you are considering. Any applicable coverage and its conditions should be clearly communicated before you decide.
+              </p>
+            </section>
 
-            <h2 className="font-heading text-2xl font-semibold text-[#1D1D1F] mt-10 mb-3">What&apos;s Covered</h2>
-            <p className="text-[#6E6E73]">Hardware defects that were present at time of sale and not caused by user damage. Dead-on-arrival replacement within the claim window.</p>
-            <div className="bg-white border-l-[4px] border-[#0066CC] rounded-[18px] p-6 my-6 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
-              <p className="text-[#0066CC] text-sm font-semibold uppercase tracking-wide mb-1">Warranty Period</p>
-              <p className="text-[#1D1D1F]">All devices sold by ACE Electronics come with a <strong>1-month warranty</strong> from the date of purchase, covering hardware defects present at time of sale. Warranty terms are confirmed via WhatsApp before every purchase.</p>
-            </div>
+            <section className="mt-5 rounded-[22px] border border-[#E2E9F2] bg-white p-6 md:p-8">
+              <h2 className="font-heading text-xl font-semibold text-[#14233B]">Need help with a warranty question?</h2>
+              <p className="mt-3 text-sm leading-7 text-[#53647B]">
+                Message ACE with the device name and your purchase details, if applicable. Our team can help clarify the terms that were confirmed for that device.
+              </p>
+              <div className="mt-6">
+                <ButtonWhatsApp text="Hi ACE, I would like to confirm the warranty terms for a device.">Ask ACE about warranty</ButtonWhatsApp>
+              </div>
+            </section>
 
-            <h2 className="font-heading text-2xl font-semibold text-[#1D1D1F] mt-10 mb-3">What&apos;s Not Covered</h2>
-            <ul className="text-[#6E6E73] space-y-2 list-disc pl-5">
-              <li>Physical damage, liquid damage, or drops after delivery</li>
-              <li>Software issues, viruses, or user-installed modifications</li>
-              <li>Battery wear on fairly-used devices (normal degradation)</li>
-              <li>Accessories unless stated otherwise (chargers are tested at sale)</li>
-            </ul>
-
-            <h2 className="font-heading text-2xl font-semibold text-[#1D1D1F] mt-10 mb-3">How to Claim</h2>
-            <ol className="text-[#6E6E73] space-y-2 list-decimal pl-5">
-              <li>Message ACE on WhatsApp with your order details and a description/video of the issue</li>
-              <li>We&apos;ll diagnose remotely within 24 hours</li>
-              <li>If covered, we&apos;ll arrange repair, replacement, or refund per the terms confirmed at purchase</li>
-            </ol>
-
-            <p className="text-[#6E6E73] text-sm mt-8 italic">ACE Electronics is an independent third-party retailer, not affiliated with Apple, Samsung, HP, Google, or other manufacturers. Manufacturer warranties, where applicable, are separate and subject to manufacturer terms.</p>
-
-            <div className="mt-8">
-              <ButtonWhatsApp text="Hi ACE, I have a warranty question.">Chat About Warranty on WhatsApp</ButtonWhatsApp>
-            </div>
+            <p className="mt-7 text-xs leading-6 text-[#77879B]">
+              Do not assume that a manufacturer warranty or a particular warranty period applies unless it has been expressly confirmed for your device.
+            </p>
           </div>
         </PageContainer>
       </main>
