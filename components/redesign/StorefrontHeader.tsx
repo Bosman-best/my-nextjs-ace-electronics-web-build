@@ -26,7 +26,7 @@ export default function StorefrontHeader() {
           {links.map(link => <Link key={link.href} href={link.href} className="text-sm font-medium text-slate-600 transition hover:text-[#0066CC]">{link.label}</Link>)}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <Link href="/laptops" aria-label="Browse catalogue" className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition hover:border-[#0066CC] hover:text-[#0066CC]"><Search size={17}/></Link>
+          <Link href="/laptops" aria-label="Browse catalogue" className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-[#0066CC] hover:text-[#0066CC]"><Search size={17}/></Link>
           <a href="https://wa.me/233547981348?text=Hello%20ACE%20Electronics%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noreferrer" className="inline-flex h-11 items-center gap-2 rounded-full bg-[#0066CC] px-5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(0,102,204,.18)] transition hover:-translate-y-0.5 hover:bg-[#0055ad]"><MessageCircle size={16}/> Chat with ACE</a>
         </div>
         <button type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)} className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 text-slate-800 lg:hidden">{menuOpen ? <X size={20}/> : <Menu size={20}/>}</button>
