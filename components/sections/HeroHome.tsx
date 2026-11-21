@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ButtonPrimary from '@/components/ui/ButtonPrimary'
 import ButtonWhatsApp from '@/components/ui/ButtonWhatsApp'
-import { Check } from '@/components/ui/IconSet'
 import HeroShowcase from '@/components/sections/HeroShowcase'
 
 export default function HeroHome() {
@@ -56,11 +55,12 @@ export default function HeroHome() {
             </h1>
 
             <p className="hero-text hero-anim mt-5 max-w-[500px] text-[17px] leading-relaxed text-[#4F5B72] md:text-[19px]">
-              Discover top-quality laptops, smartphones and accessories — with unbeatable value.
+              Explore laptops and smartphones, compare the details that matter, and get straightforward help from the ACE team.
             </p>
 
-            <div className="hero-text hero-anim mt-8 flex items-center">
-              <ButtonPrimary href="/laptops" size="md" className="bg-[#1455D9] px-7">Shop Now <span aria-hidden="true" className="ml-2">→</span></ButtonPrimary>
+            <div className="hero-text hero-anim mt-8 flex flex-wrap items-center gap-3">
+              <ButtonPrimary href="/laptops" size="md" className="rounded-full bg-[#0066CC] px-7 shadow-[0_10px_24px_rgba(0,102,204,0.2)]">Explore devices <span aria-hidden="true" className="ml-2">→</span></ButtonPrimary>
+              <ButtonWhatsApp size="md" className="rounded-full bg-white px-6 text-[#1769D2] ring-1 ring-[#C9D9EF] hover:bg-[#F5F9FF] hover:text-[#0055AD]">Ask us a question</ButtonWhatsApp>
             </div>
           </div>
 
