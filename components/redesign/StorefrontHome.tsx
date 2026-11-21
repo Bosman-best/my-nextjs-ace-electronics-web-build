@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, BadgeCheck, Headphones, Laptop, MessageCircle, ShieldCheck, Smartphone, Sparkles, Truck, Gamepad2, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, BadgeCheck, MessageCircle, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react'
 
 const categories = [
   { title:'Laptops', note:'Work, study & create', href:'/laptops', image:'/hero/hp-elitebook-830-g7.jpg', alt:'HP EliteBook laptop photography', kind:'photo' },
