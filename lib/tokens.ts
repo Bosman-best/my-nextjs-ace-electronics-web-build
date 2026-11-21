@@ -1,19 +1,24 @@
-// ACE Electronics Design Tokens — Stage 1 / 3 Locked
+// ACE Electronics Design Tokens — Reference-aligned visual foundation
 export const tokens = {
   colors: {
-    black: '#0B0F1A',
-    midnight: '#0F1B3D',
-    electric: '#3B82F6',
-    electricButton: '#2563EB', // WCAG AA compliant button fill
-    electricDark: '#1D4ED8',
-    silver: '#C0C7D1',
+    background: '#F5F8FF',
+    backgroundGradientStart: '#EAF1FF',
+    heading: '#0B1B3A',
+    body: '#5B6B84',
+    blue: '#0A5CE8',
+    blueHover: '#0748BE',
+    navy: '#0B1B3A',
     white: '#FFFFFF',
+    surface: '#FFFFFF',
+    paleBlue: '#EAF1FF',
+    border: '#DAE6F8',
+    stars: '#FFB400',
   },
   fonts: {
-    heading: '"Space Grotesk", "Poppins", sans-serif',
-    body: '"Inter", "Roboto", sans-serif',
+    heading: '"Space Grotesk", sans-serif',
+    body: '"Inter", sans-serif',
   },
-  radius: { button: '16px', card: '24px' },
-  spacing: { sectionYDesktop: '120px', sectionYMobile: '64px', gridGap: '32px' },
-  breakpoints: { mobile: 480, tablet: 768, desktop: 1024, xl: 1280 }
+  radius: { button: '14px', card: '20px', large: '24px' },
+  spacing: { sectionYDesktop: '72px', sectionYMobile: '48px', gridGap: '24px' },
+  breakpoints: { mobile: 390, tablet: 768, desktop: 1440 },
 } as const
