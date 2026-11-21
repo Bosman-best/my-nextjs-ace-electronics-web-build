@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { products } from '@/lib/products'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://ace-electronics.com'
   const routes = [
@@ -14,10 +16,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
   ]
-  return routes.map(r => ({
-    url: `${base}${r || '/'}`,
+
+  return routes.map(route => ({
+    url: `${base}${route || '/'}`,
     lastModified: new Date(),
-    changeFrequency: r === '' ? 'daily' : 'weekly',
-    priority: r === '' ? 1 : r.startsWith('/laptops') || r.startsWith('/smartphones') ? 0.8 : 0.5,
-  }))
+    changeFrequency: (route === '' ? 'daily' : 'weekly') as 'daily' | 'weekly',
+    priority: route === '' ? 1 : route.startsWith('/laptops') || route.startsWith('/smartphones') ? 0.8 : 0.5,
+  })).concat(
+    products.map(product => ({
+      url: `${base}/products/${product.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+  )
 }

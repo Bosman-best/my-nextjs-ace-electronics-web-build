@@ -9,4 +9,11 @@ export {
   Menu,
   Check,
   Search,
+  ShoppingCart,
+  UserRound,
+  Heart,
+  Headphones,
+  Gamepad2,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react'

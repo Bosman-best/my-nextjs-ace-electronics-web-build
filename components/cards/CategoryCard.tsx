@@ -1,24 +1,24 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from '@/components/ui/IconSet'
-export default function CategoryCard({ title, count, href, emoji }: { title: string, count: string, href: string, emoji?: string }) {
-  const isExternal = href.startsWith('http')
-  const Comp: any = isExternal ? 'a' : Link
-  const props = isExternal ? { href, target: '_blank', rel: 'noopener noreferrer' } : { href }
+
+export default function CategoryCard({ title, count, href, image }: { title: string, count: string, href: string, image?: string }) {
   return (
-    <Comp {...props} className="relative overflow-hidden rounded-[18px] min-h-[280px] md:min-h-[320px] group transition-transform duration-200 hover:scale-[1.02] block">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
-      <div className="absolute inset-0 bg-black/25" />
-      <div className="relative flex h-full flex-col justify-between p-8">
-        <div className="text-5xl opacity-90 mb-4">{emoji || '📦'}</div>
-        <div>
-          <h3 className="font-heading text-[28px] md:text-[32px] font-semibold text-white">{title}</h3>
-          <p className="text-sm text-slate-200 mt-2">{count}</p>
-        </div>
-        <div className="mt-6 flex items-center gap-2 text-white font-medium">
-          Shop {title}
-          <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
-        </div>
+    <Link href={href} className="group block min-w-0">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-[linear-gradient(145deg,#F4F8FF_0%,#EEF3F8_100%)] flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
+        {image ? (
+          <Image src={image} alt={title} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-contain p-6 transition-transform duration-500 group-hover:scale-[1.04]" />
+        ) : (
+          <div className="h-[55%] w-[55%] rounded-full bg-[#DCEBFF]" />
+        )}
       </div>
-    </Comp>
+      <div className="mt-4 flex items-end justify-between gap-3 px-1">
+        <div>
+          <h3 className="font-heading text-[18px] font-semibold text-[#142759]">{title}</h3>
+          <p className="mt-1 text-[12px] text-[#6E6E73]">{count}</p>
+        </div>
+        <ArrowRight size={18} className="mb-1 shrink-0 text-[#0066CC] transition-transform group-hover:translate-x-1" />
+      </div>
+    </Link>
   )
 }

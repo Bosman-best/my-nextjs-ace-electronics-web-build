@@ -12,6 +12,7 @@ export interface BrandInfo {
 }
 
 export interface MegaMenuData {
+  basePath: string
   categories: MegaMenuCategory[]
   brands: BrandInfo[]
   accessoryBrands: BrandInfo[]
@@ -20,6 +21,7 @@ export interface MegaMenuData {
 
 export const MEGA_MENU: Record<MegaMenuType, MegaMenuData> = {
   Laptops: {
+    basePath: '/laptops',
     categories: [
       { label: 'Business', href: '/laptops?category=Business' },
       { label: 'Gaming', href: '/laptops?category=Gaming' },
@@ -49,6 +51,7 @@ export const MEGA_MENU: Record<MegaMenuType, MegaMenuData> = {
     ],
   },
   Smartphones: {
+    basePath: '/smartphones',
     categories: [
       { label: 'Flagship', href: '/smartphones?category=Flagship' },
       { label: 'Mid-range', href: '/smartphones?category=Mid-range' },

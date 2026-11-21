@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Space_Grotesk, Inter } from 'next/font/google'
+import { Poppins, Inter } from 'next/font/google'
 
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-heading-display' })
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-heading-display' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-body-display' })
 
 export const metadata: Metadata = {
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className="font-body bg-ace-black text-ace-white antialiased">
+    <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
+      <body className="font-body bg-ace-background text-ace-text-primary antialiased">
         {children}
         <script
           type="application/ld+json"

@@ -4,7 +4,7 @@ import { WHATSAPP_LINK, WHATSAPP_GROUP_LINK, WHATSAPP_DISPLAY } from '@/lib/util
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F5F5F7] border-t border-[#D2D2D7] mt-32">
+    <footer className="bg-[#EEF4FC] mt-32">
       <div className="max-w-ace mx-auto px-6 xs:px-8 md:px-10 lg:px-16 py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           <div>

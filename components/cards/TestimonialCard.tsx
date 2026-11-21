@@ -1,14 +1,15 @@
 import { Star } from '@/components/ui/IconSet'
 export default function TestimonialCard({ quote, name, device }: { quote: string, name: string, device: string }) {
   return (
-    <div className="ace-glass p-8 h-full">
-      <div className="text-ace-electric text-3xl opacity-80 mb-2">“</div>
-      <p className="text-ace-white italic leading-relaxed">{quote}</p>
-      <div className="flex gap-0.5 mt-4 text-ace-electric opacity-90">
-        {[...Array(5)].map((_,i)=><Star key={i} size={16} fill="currentColor" />)}
+    <div className="ace-reference-card h-full min-h-[190px] p-7">
+      <div className="flex gap-1 text-[#FFB400]">
+        {[...Array(5)].map((_,i)=><Star key={i} size={17} fill="currentColor" />)}
       </div>
-      <p className="text-ace-white font-semibold text-[15px] mt-4">{name}</p>
-      <p className="text-ace-silver text-sm">{device}</p>
+      <p className="mt-4 text-[15px] leading-7 text-[#142759]">“{quote}”</p>
+      <div className="mt-5">
+        <p className="text-[14px] font-semibold text-[#142759]">{name}</p>
+        <p className="mt-0.5 text-[12px] text-[#6E6E73]">{device}</p>
+      </div>
     </div>
   )
 }

@@ -52,13 +52,13 @@ export default function FAQsPage() {
       <main className="py-16 md:py-24">
         <PageContainer>
           <div className="max-w-[800px]">
-            <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-ace-white mb-3">Frequently Asked Questions</h1>
-            <p className="text-ace-silver text-lg mb-10">Quick answers. Need more help? Talk to ACE on WhatsApp.</p>
+            <h1 className="font-heading text-[36px] md:text-[48px] font-semibold text-[#1D1D1F] mb-3">Frequently Asked Questions</h1>
+            <p className="text-[#6E6E73] text-lg mb-10">Quick answers. Need more help? Talk to ACE on WhatsApp.</p>
             <div className="space-y-8">
               {faqs.map(f => (
-                <div key={f.q} className="border-b border-ace-glass-border pb-6">
-                  <h3 className="font-heading text-xl font-medium text-ace-white mb-2">{f.q}</h3>
-                  <p className="text-ace-silver leading-relaxed">{f.a}</p>
+                <div key={f.q} className="border-b border-[#D2D2D7] pb-6">
+                  <h3 className="font-heading text-xl font-medium text-[#1D1D1F] mb-2">{f.q}</h3>
+                  <p className="text-[#6E6E73] leading-relaxed">{f.a}</p>
                 </div>
               ))}
             </div>

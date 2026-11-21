@@ -10,6 +10,11 @@ module.exports = {
         ace: {
           black: 'rgb(var(--ace-black) / <alpha-value>)',
           midnight: 'rgb(var(--ace-midnight) / <alpha-value>)',
+          navy: 'rgb(var(--ace-navy) / <alpha-value>)',
+          blue: 'rgb(var(--ace-blue) / <alpha-value>)',
+          'blue-bright': 'rgb(var(--ace-blue-bright) / <alpha-value>)',
+          'pale-blue': 'rgb(var(--ace-pale-blue) / <alpha-value>)',
+          background: 'rgb(var(--ace-background) / <alpha-value>)',
           electric: 'rgb(var(--ace-electric) / <alpha-value>)',
           'electric-button': 'rgb(var(--ace-electric-button) / <alpha-value>)',
           'electric-dark': 'rgb(var(--ace-electric-dark) / <alpha-value>)',
@@ -29,7 +34,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        heading: ['"Space Grotesk"', 'Poppins', 'sans-serif'],
+        heading: ['Poppins', '"Trebuchet MS"', 'sans-serif'],
         body: ['Inter', 'Roboto', 'sans-serif'],
       },
       borderRadius: {

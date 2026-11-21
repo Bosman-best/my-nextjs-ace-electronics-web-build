@@ -1,8 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
 import { Search, X } from '@/components/ui/IconSet'
-import { LAPTOPS, SMARTPHONES } from '@/lib/products'
-import { WHATSAPP_LINK } from '@/lib/utils'
+import { LAPTOPS, SMARTPHONES, formatGHS } from '@/lib/products'
 import Link from 'next/link'
 
 export default function NavBarSearch() {
@@ -14,7 +13,7 @@ export default function NavBarSearch() {
     specs: string[]
     price: number
     salePrice?: number
-    whatsappLink: string
+    type: 'laptop' | 'smartphone'
   }>>([])
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -30,10 +29,10 @@ export default function NavBarSearch() {
 
     const query = searchQuery.toLowerCase()
     const filtered = allProducts.filter(
-  product =>
-    product.name.toLowerCase().includes(query) ||
-    product.specs.some(spec => spec.toLowerCase().includes(query))
-);
+      product =>
+        product.name.toLowerCase().includes(query) ||
+        product.specs.some(spec => spec.toLowerCase().includes(query))
+    );
 
     setResults(
       filtered.map(product => ({
@@ -42,7 +41,7 @@ export default function NavBarSearch() {
         specs: product.specs,
         price: product.price,
         salePrice: product.salePrice,
-        whatsappLink: WHATSAPP_LINK(`Hi ACE, I'm interested in the ${product.name}. Can you provide more details?`),
+        type: product.type,
       }))
     )
   }, [searchQuery])
@@ -81,9 +80,9 @@ export default function NavBarSearch() {
 
   const getPriceDisplay = (price: number, salePrice?: number) => {
     if (salePrice !== undefined && salePrice > 0) {
-      return `₨${salePrice.toLocaleString()}`
+      return formatGHS(salePrice)
     }
-    return `₨${price.toLocaleString()}`
+    return formatGHS(price)
   }
 
   return (
@@ -130,14 +129,13 @@ export default function NavBarSearch() {
 
       {/* Search Results Dropdown */}
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full right-0 mt-2 w-96 bg-white rounded-[18px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-[#D2D2D7] z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full right-0 mt-2 w-96 rounded-[18px] bg-white shadow-[0_12px_36px_rgba(29,29,31,0.10)] z-50 max-h-96 overflow-y-auto p-2">
           {results.map((result) => (
-            <a
+            <Link
               key={result.id}
-              href={result.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-4 px-4 py-3 border-b border-[#F5F5F7] last:border-b-0 hover:bg-[#F5F5F7] transition-colors group"
+              href={`/products/${result.id}`}
+              onClick={() => setIsOpen(false)}
+              className="flex items-start gap-4 rounded-[12px] px-3 py-3 hover:bg-[#F5F5F7] transition-colors group"
             >
               {/* Product Info */}
               <div className="flex-1 min-w-0">
@@ -158,14 +156,14 @@ export default function NavBarSearch() {
                   Quick Inquiry
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       )}
 
       {/* No Results Message */}
       {isOpen && searchQuery.trim() && results.length === 0 && (
-        <div className="absolute top-full right-0 mt-2 w-96 bg-white rounded-[18px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-[#D2D2D7] z-50 px-4 py-6">
+        <div className="absolute top-full right-0 mt-2 w-96 rounded-[18px] bg-white shadow-[0_12px_36px_rgba(29,29,31,0.10)] z-50 px-5 py-6">
           <div className="text-center text-[14px] text-[#6E6E73]">
             No products found for "{searchQuery}"
           </div>

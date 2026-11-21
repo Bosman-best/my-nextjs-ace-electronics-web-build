@@ -22,7 +22,7 @@ const SMARTPHONE_IMAGES = {
     "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=600&auto=format&fit=crop&q=80",
     "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
     "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1565849906461-0ee430d0152e?w=600&auto=format&fit=crop&q=80"
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80"
   ],
   midrange: [
     "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?w=600&auto=format&fit=crop&q=80",
@@ -42,8 +42,8 @@ const LAPTOP_IMAGES = {
   generic: [
     "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80",
     "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1496181130204-73524159379b?w=600&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80"
+    "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80"
   ]
 };
 
@@ -283,7 +283,7 @@ export function getDisplayPrice(product: Product): DisplayPriceResult {
 }
 
 export function formatGHS(num: number): string {
-  return "GHS " + num.toLocaleString("en-US");
+  return "GH₵ " + num.toLocaleString("en-US");
 }
 
 export function whatsappText(product: Product): string {

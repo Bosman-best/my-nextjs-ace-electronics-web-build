@@ -32,10 +32,10 @@ const trustItems = [
 ]
 
 const categories = [
-  { title: 'Smartphones', count: '16 devices in stock', href: '/smartphones', emoji: '📱' },
-  { title: 'Laptops', count: '26 devices in stock', href: '/laptops', emoji: '💻' },
-  { title: 'Accessories', count: 'Ask on WhatsApp', href: '/accessories', emoji: '🎧' },
-  { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming', emoji: '🎮' },
+  { title: 'Laptops', count: '26 devices in stock', href: '/laptops', image: '/hero/hp-elitebook-830-g7.jpg' },
+  { title: 'Smartphones', count: '16 devices in stock', href: '/smartphones', image: '/hero/google-pixel-9.jpg' },
+  { title: 'Accessories', count: 'Ask on WhatsApp', href: '/accessories' },
+  { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming' },
 ]
 
 const testimonials = [
@@ -60,7 +60,7 @@ export default function Home() {
         <section className="py-16 md:py-28">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
             <Reveal><SectionHeader title="Shop By Category" subtext="Premium devices across every category, all verified authentic." align="left" /></Reveal>
-            <RevealStagger className="grid md:grid-cols-2 gap-6 md:gap-8" stagger={0.08}>
+            <RevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 lg:gap-8" stagger={0.08}>
               {categories.map(c => <CategoryCard key={c.title} {...c} />)}
             </RevealStagger>
           </div>

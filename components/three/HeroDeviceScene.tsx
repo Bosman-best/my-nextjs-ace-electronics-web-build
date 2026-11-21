@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, Suspense } from "react";
+import React, { useEffect, useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -17,7 +17,7 @@ interface DeviceProps {
 function LaptopMesh({ position, rotation, scale, floatSpeed, floatIntensity, phaseOffset }: DeviceProps) {
   const meshRef = useRef<THREE.Group>(null);
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!meshRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const t = state.clock.getElapsedTime();
     meshRef.current.position.y = position[1] + Math.sin(t * floatSpeed + phaseOffset) * floatIntensity;
   });
@@ -39,7 +39,7 @@ function LaptopMesh({ position, rotation, scale, floatSpeed, floatIntensity, pha
 function PhoneMesh({ position, rotation, scale, floatSpeed, floatIntensity, phaseOffset }: DeviceProps) {
   const meshRef = useRef<THREE.Group>(null);
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!meshRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const t = state.clock.getElapsedTime();
     meshRef.current.position.y = position[1] + Math.sin(t * floatSpeed + phaseOffset) * floatIntensity;
   });
@@ -57,7 +57,7 @@ function PhoneMesh({ position, rotation, scale, floatSpeed, floatIntensity, phas
 function TabletMesh({ position, rotation, scale, floatSpeed, floatIntensity, phaseOffset }: DeviceProps) {
   const meshRef = useRef<THREE.Group>(null);
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!meshRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const t = state.clock.getElapsedTime();
     meshRef.current.position.y = position[1] + Math.sin(t * floatSpeed + phaseOffset) * floatIntensity;
   });
@@ -75,7 +75,7 @@ function TabletMesh({ position, rotation, scale, floatSpeed, floatIntensity, pha
 function WatchMesh({ position, rotation, scale, floatSpeed, floatIntensity, phaseOffset }: DeviceProps) {
   const meshRef = useRef<THREE.Group>(null);
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!meshRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const t = state.clock.getElapsedTime();
     meshRef.current.position.y = position[1] + Math.sin(t * floatSpeed + phaseOffset) * floatIntensity;
   });
@@ -93,7 +93,7 @@ function WatchMesh({ position, rotation, scale, floatSpeed, floatIntensity, phas
 function EarbudsMesh({ position, rotation, scale, floatSpeed, floatIntensity, phaseOffset }: DeviceProps) {
   const meshRef = useRef<THREE.Group>(null);
   useFrame((state) => {
-    if (!meshRef.current) return;
+    if (!meshRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const t = state.clock.getElapsedTime();
     meshRef.current.position.y = position[1] + Math.sin(t * floatSpeed + phaseOffset) * floatIntensity;
   });
@@ -107,10 +107,10 @@ function EarbudsMesh({ position, rotation, scale, floatSpeed, floatIntensity, ph
   );
 }
 
-function EcosystemGroup() {
+function EcosystemGroup({ reducedMotion }: { reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((state) => {
-    if (!groupRef.current) return;
+    if (!groupRef.current || reducedMotion) return;
     groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.08;
   });
 
@@ -126,27 +126,66 @@ function EcosystemGroup() {
 }
 
 export default function HeroDeviceScene() {
-  return (
-    <div className="w-full h-full min-h-[500px] lg:min-h-[650px] relative bg-[#F5F5F7]">
-      <Suspense fallback={
-        <div className="absolute inset-0 flex items-center justify-center font-sans text-sm text-[#6E6E73] tracking-wide animate-pulse">
-          Loading Premium Device Ecosystem...
-        </div>
-      }>
-        <Canvas camera={{ position: [0, 2.5, 5.5], fov: 45 }} gl={{ antialias: true, alpha: false }} shadows>
-          <ambientLight intensity={0.7} color="#FFFFFF" />
-          <directionalLight position={[5, 10, 3]} intensity={1.5} castShadow />
-          <pointLight position={[-10, 5, -5]} intensity={1.0} color="#FFFFFF" />
-          <spotLight position={[0, 8, 2]} angle={0.6} penumbra={0.8} intensity={2.5} color="#3B82F6" castShadow />
-          
-          <EcosystemGroup />
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [webglAvailable, setWebglAvailable] = useState(true);
 
-          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]} receiveShadow>
-            <planeGeometry args={[30, 30]} />
-            <shadowMaterial opacity={0.04} />
-          </mesh>
-        </Canvas>
-      </Suspense>
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotion = () => setReducedMotion(media.matches);
+    updateMotion();
+    media.addEventListener?.("change", updateMotion);
+
+    try {
+      const canvas = document.createElement("canvas");
+      setWebglAvailable(Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl")));
+    } catch {
+      setWebglAvailable(false);
+    }
+
+    return () => media.removeEventListener?.("change", updateMotion);
+  }, []);
+
+  return (
+    <div className="w-full h-full min-h-0 min-w-0 max-w-full relative overflow-hidden rounded-2xl bg-[linear-gradient(145deg,#FFFFFF_0%,#E8F4FD_100%)]">
+      {!webglAvailable ? (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center text-[rgb(var(--ace-text-secondary))]">
+            <div className="text-6xl mb-3" aria-hidden="true">
+              💻📱
+            </div>
+            <p className="text-sm">Premium devices, ready to explore</p>
+          </div>
+        </div>
+      ) : (
+        <Suspense
+          fallback={
+            <div className="absolute inset-0 flex items-center justify-center font-sans text-sm text-[rgb(var(--ace-text-secondary))] tracking-wide">
+              Loading Premium Device Ecosystem...
+            </div>
+          }
+        >
+          <Canvas
+            className="!block"
+            dpr={[1, 1.75]}
+            camera={{ position: [0, 2.5, 5.5], fov: 45 }}
+            gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+            onCreated={({ gl }) => gl.setClearColor("#EAF4FB", 1)}
+            shadows
+          >
+            <ambientLight intensity={0.7} color="#FFFFFF" />
+            <directionalLight position={[5, 10, 3]} intensity={1.5} castShadow />
+            <pointLight position={[-10, 5, -5]} intensity={1.0} color="#FFFFFF" />
+            <spotLight position={[0, 8, 2]} angle={0.6} penumbra={0.8} intensity={2.5} color="#3B82F6" castShadow />
+
+            <EcosystemGroup reducedMotion={reducedMotion} />
+
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]} receiveShadow>
+              <planeGeometry args={[30, 30]} />
+              <shadowMaterial opacity={0.04} />
+            </mesh>
+          </Canvas>
+        </Suspense>
+      )}
     </div>
   );
 }
