@@ -1,18 +1,9 @@
-import { Star } from '@/components/ui/IconSet'
-export default function TestimonialCard({ quote, name, device }: { quote: string, name: string, device: string }) {
+export default function TestimonialCard({ title, description }: { title: string, description: string }) {
   return (
-    <article className="ace-reference-card flex h-full min-h-[220px] flex-col p-6 sm:p-8 transition-transform duration-300 hover:-translate-y-1">
-      <div className="flex gap-1 text-[#F5AE24]" aria-label="5 out of 5 stars">
-        {[...Array(5)].map((_,i)=><Star key={i} size={16} fill="currentColor" />)}
-      </div>
-      <p className="mt-5 flex-1 text-[14px] sm:text-[15px] leading-[1.8] text-[#34445F]">“{quote}”</p>
-      <div className="mt-6 flex items-center gap-3 border-t border-[#EDF0F5] pt-5">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EAF1FC] font-heading text-sm font-semibold text-[#1769D2]">{name.split(' ').map(part => part[0]).join('').replace('.', '').slice(0,2)}</div>
-        <div>
-          <p className="text-[13px] font-semibold text-[#172B4D]">{name}</p>
-          <p className="mt-0.5 text-[12px] text-[#8190A5]">{device}</p>
-        </div>
-      </div>
+    <article className="ace-reference-card flex h-full min-h-[190px] flex-col p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-1">
+      <div className="mb-5 h-1 w-10 rounded-full bg-[#1769D2]" />
+      <h3 className="font-heading text-[17px] font-semibold tracking-[-0.02em] text-[#172B4D] sm:text-[19px]">{title}</h3>
+      <p className="mt-3 flex-1 text-[13px] leading-[1.8] text-[#718096] sm:text-[14px]">{description}</p>
     </article>
   )
 }
