@@ -4,22 +4,22 @@ import { WHATSAPP_LINK, WHATSAPP_GROUP_LINK, WHATSAPP_DISPLAY } from '@/lib/util
 
 export default function Footer() {
   return (
-    <footer className="bg-[#EEF4FC] mt-32">
-      <div className="max-w-ace mx-auto px-6 xs:px-8 md:px-10 lg:px-16 py-20">
+    <footer className="mt-20 border-t border-[#E3EAF4] bg-[#F3F6FB]">
+      <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12 py-14 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
           <div>
             <LogoACE size="footer" />
-            <p className="text-[#6E6E73] mt-4 text-[14px] leading-relaxed max-w-xs">Your Trusted Tech Plug</p>
+            <p className="text-[#6E6E73] mt-4 text-[14px] leading-relaxed max-w-xs">Laptops, smartphones and helpful advice — all in one place.</p>
             <div className="mt-8 space-y-2 text-[12px] text-[#1D1D1F] leading-6">
               <p>WhatsApp: {WHATSAPP_DISPLAY}</p>
               <p>Hours: Mon-Sat 9AM–8PM GMT</p>
             </div>
           </div>
           <div>
-            <h4 className="text-[#1D1D1F] font-heading font-semibold text-[12px] uppercase tracking-[0.18em] mb-6">Shop</h4>
+            <h4 className="text-[#1D1D1F] font-heading font-semibold text-[11px] uppercase tracking-[0.16em] mb-5">Shop</h4>
             <ul className="space-y-3">
-              <li><Link href="/laptops" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Laptops</Link></li>
-              <li><Link href="/smartphones" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Smartphones</Link></li>
+              <li><Link href="/laptops" className="text-[#1D1D1F] text-[13px] leading-6 text-[#64748B] hover:text-[#0066CC] transition-colors">Laptops</Link></li>
+              <li><Link href="/smartphones" className="text-[#1D1D1F] text-[13px] leading-6 text-[#64748B] hover:text-[#0066CC] transition-colors">Smartphones</Link></li>
               <li><Link href="/accessories" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Accessories</Link></li>
               <li><Link href="/gaming" className="text-[#1D1D1F] text-[12px] leading-6 hover:text-[#0066CC] transition-colors">Gaming Devices</Link></li>
             </ul>
