@@ -38,10 +38,10 @@ const categories = [
   { title: 'Gaming Devices', count: 'Explore gaming devices', href: '/gaming' },
 ]
 
-const testimonials = [
-  { quote: 'Fast delivery, authentic iPhone. ACE is my plug now.', name: 'Kwame A.', device: 'iPhone 15 Pro' },
-  { quote: 'Helped me pick the right laptop for Uni. Great WhatsApp support.', name: 'Ama O.', device: 'HP Pavilion 14' },
-  { quote: 'Transparent pricing. No stress.', name: 'Daniel K.', device: 'Samsung Galaxy S24' },
+const shoppingBenefits = [
+  { title: 'Compare the details', description: 'Review the specifications that matter before deciding which device is right for you.' },
+  { title: 'Ask before you buy', description: 'Get direct answers about current prices, condition, warranty and availability.' },
+  { title: 'A real conversation', description: 'Talk with the ACE team on WhatsApp instead of navigating a complicated checkout.' },
 ]
 
 export default function Home() {
@@ -94,9 +94,9 @@ export default function Home() {
 
         <section className="ace-section-space bg-white">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Plugged in customers" subtext="A few words from customers who have connected with ACE." /></Reveal>
+            <Reveal><SectionHeader title="A simpler way to shop" subtext="Useful product information and direct support, from first look to final decision." /></Reveal>
             <RevealStagger className="grid md:grid-cols-3 gap-5 md:gap-7" stagger={0.08}>
-              {testimonials.map(t => <TestimonialCard key={t.name} {...t} />)}
+              {shoppingBenefits.map(t => <TestimonialCard key={t.title} {...t} />)}
             </RevealStagger>
             <Reveal><p className="text-center text-[#718096] text-sm mt-8">
               Have a question? <a href="https://wa.me/233547981348" className="text-[#0066CC] font-semibold hover:underline">Chat with ACE on WhatsApp</a>
