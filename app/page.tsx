@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import StorefrontHeader from '@/components/redesign/StorefrontHeader'
 import StorefrontHome from '@/components/redesign/StorefrontHome'
 import StorefrontFooter from '@/components/redesign/StorefrontFooter'
-import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
 
 export const metadata: Metadata = {
   title: 'ACE Electronics Ghana | Find the Tech That Moves You',
@@ -14,6 +13,5 @@ export default function HomePage() {
     <StorefrontHeader />
     <StorefrontHome />
     <StorefrontFooter />
-    <FloatingWhatsAppWidget />
   </>
 }
