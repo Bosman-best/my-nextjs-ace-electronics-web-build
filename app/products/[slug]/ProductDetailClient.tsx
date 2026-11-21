@@ -49,15 +49,15 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   }
 
   return (
-    <section className="ace-page py-10 md:py-16">
+    <section className="ace-page min-h-screen py-8 md:py-12">
       <PageContainer>
-        <Link href={backHref} className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-[#6E6E73] transition-colors hover:text-[#0066CC]">
+        <Link href={backHref} className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-[#718096] transition-colors hover:text-[#0066CC]">
           <ArrowLeft size={16} /> Back to {backLabel}
         </Link>
 
-        <div className="grid gap-10 lg:grid-cols-[58%_42%] lg:items-start">
+        <div className="grid gap-7 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-10">
           <div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#F5F5F7]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[26px] border border-[#E6ECF4] bg-white shadow-[0_12px_38px_rgba(23,43,77,0.055)]">
               {gallery[activeIndex] ? (
                 <Image
                   src={gallery[activeIndex]}
@@ -100,13 +100,13 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             )}
           </div>
 
-          <div className="lg:sticky lg:top-24">
+          <div className="rounded-[26px] border border-[#E6ECF4] bg-white p-6 shadow-[0_12px_38px_rgba(23,43,77,0.045)] sm:p-8 lg:sticky lg:top-24">
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6E6E73]">{product.brand} · {product.category}</p>
-            <h1 className="mt-2 font-heading text-[36px] font-bold leading-[1.08] tracking-tight text-[#142759] md:text-[48px]">
+            <h1 className="mt-2 font-heading text-[36px] font-bold leading-[1.08] tracking-tight text-[#172B4D] md:text-[44px]">
               {product.name}
             </h1>
 
-            <div className="mt-6 border-y border-[#D2D2D7] py-5">
+            <div className="mt-6 border-y border-[#E8EDF4] py-5">
               {dp.show ? (
                 <div className="flex flex-wrap items-baseline gap-3">
                   {dp.wasPrice && <span className="text-[18px] text-[#6E6E73] line-through">{dp.wasPrice}</span>}
@@ -124,7 +124,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 : `A ${product.category.toLowerCase()} smartphone from ${product.brand}, available for purchase through ACE Electronics in Ghana.`}
             </p>
 
-            <dl className="mt-7 grid grid-cols-2 divide-x divide-[#D2D2D7] border-y border-[#D2D2D7]">
+            <dl className="mt-7 grid grid-cols-2 divide-x divide-[#E8EDF4] border-y border-[#E8EDF4]">
               <div className="py-4 pr-4">
                 <dt className="text-xs text-[#6E6E73]">Availability</dt>
                 <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">Confirm with ACE</dd>
@@ -133,7 +133,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <dt className="text-xs text-[#6E6E73]">Condition</dt>
                 <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">{product.name.toLowerCase().includes('renewed') ? 'Renewed Premium' : 'Confirm with ACE'}</dd>
               </div>
-              <div className="col-span-2 border-t border-[#D2D2D7] py-4">
+              <div className="col-span-2 border-t border-[#E8EDF4] py-4">
                 <dt className="text-xs text-[#6E6E73]">Warranty</dt>
                 <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">Confirm warranty with ACE</dd>
               </div>
@@ -146,7 +146,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 href={WHATSAPP_LINK(`Hi ACE, I'm interested in the ${product.name}. Please confirm availability, warranty, price and delivery.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 rounded-[16px] bg-[#25D366] px-4 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-[#1ebe55] active:bg-[#1da843]"
+                className="flex-1 rounded-full bg-[#0066CC] px-5 py-3.5 text-center text-sm font-semibold text-white shadow-[0_8px_20px_rgba(0,102,204,0.16)] transition-all hover:bg-[#0055AD] active:bg-[#004B99]"
               >
                 <MessageCircle size={16} className="mr-2 inline-block" /> Enquire via WhatsApp
               </a>
@@ -155,7 +155,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         </div>
 
         {groups.length > 0 && (
-          <div className="mt-14 border-t border-[#D2D2D7] pt-10 md:mt-20">
+          <div className="mt-12 rounded-[26px] border border-[#E6ECF4] bg-white p-6 pt-8 shadow-[0_10px_30px_rgba(23,43,77,0.035)] md:mt-16 md:p-10">
             <h2 className="font-heading text-[28px] font-semibold text-[#1D1D1F] md:text-[36px]">Technical specifications</h2>
             <div className="mt-8 grid gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
               {groups.map((group) => (
