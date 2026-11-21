@@ -29,6 +29,11 @@ export default function SmartphonesClient() {
 
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('Newest')
+  const [visibleCount, setVisibleCount] = useState(12)
+
+  useEffect(() => {
+    setVisibleCount(12)
+  }, [filter, brand, search, sort])
 
   // Keep state in sync when URL changes externally
   useEffect(() => {
@@ -91,7 +96,7 @@ export default function SmartphonesClient() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Smartphones for Sale in Ghana",
-    "itemListElement": items.filter(p => p.price <= 5000).map((p, i) => ({
+    "itemListElement": items.filter(p => Number.isFinite(p.salePrice ?? p.price) && (p.salePrice ?? p.price) > 0).map((p, i) => ({
       "@type": "ListItem",
       "position": i+1,
       "item": {
@@ -102,7 +107,7 @@ export default function SmartphonesClient() {
         "offers": {
           "@type": "Offer",
           "priceCurrency": "GHS",
-          "price": p.price,
+          "price": p.salePrice ?? p.price,
           "availability": "https://schema.org/InStock",
           "seller": { "@type": "Organization", "name": "ACE Electronics" }
         }
@@ -139,10 +144,10 @@ export default function SmartphonesClient() {
             </div>
           )}
           <ProductGrid>
-            {items.map(p => <ProductCard key={p.id} product={p} />)}
+            {items.slice(0, visibleCount).map(p => <ProductCard key={p.id} product={p} />)}
           </ProductGrid>
           {items.length === 0 && <p className="text-[rgb(var(--ace-text-secondary)/1)]">No devices found — <a href="https://wa.me/233547981348" className="text-[rgb(var(--ace-link)/1)] hover:underline">ask ACE on WhatsApp</a>.</p>}
-          <p className="text-[rgb(var(--ace-text-secondary)/1)] text-sm mt-8">{items.length} of {SMARTPHONES.length} devices shown</p>
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-between"><p className="text-sm text-[#718096]">{Math.min(visibleCount, items.length)} of {items.length} matching smartphones shown</p>{visibleCount < items.length && <button type="button" onClick={() => setVisibleCount((count) => Math.min(count + 12, items.length))} className="rounded-full border border-[#D8E2EF] bg-white px-6 py-3 text-sm font-semibold text-[#1769D2] transition-colors hover:border-[#1769D2] hover:bg-[#F3F7FF]">Load more phones</button>}</div>
         </PageContainer>
       </main>
       <Footer />
