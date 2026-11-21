@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { MessageCircle } from 'lucide-react'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const quickLinks = [['Home','/'],['Laptops','/laptops'],['Smartphones','/smartphones'],['Accessories','/accessories'],['Gaming','/gaming']] as const
