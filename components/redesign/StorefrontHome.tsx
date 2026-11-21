@@ -4,8 +4,8 @@ import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const categories = [
-  { title: 'Laptops', href: '/laptops', image: '/products/laptops/hp-elitebook-830-g7-touch.jpg', alt: 'HP EliteBook laptop' },
-  { title: 'Smartphones', href: '/smartphones', image: '/products/smartphones/google-pixel-10.jpg', alt: 'Google Pixel smartphone' },
+  { title: 'Laptops', href: '/laptops', image: 'https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/AKA9374_5.jpg', alt: 'Laptop in a blue-lit workspace' },
+  { title: 'Smartphones', href: '/smartphones', image: 'https://storyblok.cdn.vmo2digital.co.uk/f/253875/832x427/375812c15e/google-pixel-10-pro-card-basic-832x427-1.jpg', alt: 'Google Pixel smartphone on a blue background' },
   { title: 'Accessories', href: '/accessories', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85', alt: 'Over-ear headphones' },
   { title: 'Gaming', href: '/gaming', image: 'https://images.unsplash.com/photo-1713511129992-a9320f883070?auto=format&fit=crop&w=900&q=85', alt: 'Gaming controller' },
 ]
@@ -46,7 +46,7 @@ export default function StorefrontHome() {
       <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
         {categories.map((c) => <Link href={c.href} key={c.title} className="group flex min-w-0 flex-col items-center rounded-[22px] border border-[#E7EDF5] bg-white px-3 py-4 shadow-[0_8px_24px_rgba(26,57,96,.035)] transition hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(26,57,96,.08)] sm:rounded-[26px] sm:px-5 sm:py-5">
           <div className="relative flex aspect-[1.35/1] w-full items-center justify-center">
-            {c.image.startsWith('/') ? <Image src={c.image} alt={c.alt} fill sizes="(max-width:768px) 50vw,25vw" className={`h-full w-full transition duration-500 group-hover:scale-105 ${c.title === "Laptops" || c.title === "Smartphones" ? "object-cover p-0" : "object-contain p-2 sm:p-4"}`} /> : <img src={c.image} alt={c.alt} loading="lazy" className="h-full w-full object-contain p-2 transition duration-500 group-hover:scale-105 sm:p-4" />}
+            {c.image.startsWith('/') ? <Image src={c.image} alt={c.alt} fill sizes="(max-width:768px) 50vw,25vw" className="object-contain p-2 transition duration-500 group-hover:scale-105 sm:p-4" /> : <img src={c.image} alt={c.alt} loading="lazy" className="h-full w-full object-contain p-2 transition duration-500 group-hover:scale-105 sm:p-4" />}
           </div>
           <h3 className="mt-3 text-center font-heading text-sm font-bold text-[#17243A] sm:text-base">{c.title}</h3>
         </Link>)}
