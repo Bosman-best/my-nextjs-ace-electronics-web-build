@@ -27,7 +27,7 @@ export default function LaptopsClient() {
   const brandParam = searchParams.get('brand')
   const [brand, setBrand] = useState<string | null>(brandParam ? brandParam.toLowerCase() : null)
 
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState(searchParams.get('q') ?? '')
   const [sort, setSort] = useState('Newest')
   const [visibleCount, setVisibleCount] = useState(12)
 
@@ -37,6 +37,7 @@ export default function LaptopsClient() {
 
   // Keep state in sync when URL changes externally (back/forward navigation or link click)
   useEffect(() => {
+    setSearch(searchParams.get('q') ?? '')
     const cat = searchParams.get('category')
     if (cat && LAPTOP_FILTERS.includes(cat as any)) {
       setFilter(cat as ProductCategory)
