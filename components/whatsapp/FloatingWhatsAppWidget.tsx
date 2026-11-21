@@ -7,7 +7,7 @@ export default function FloatingWhatsAppWidget() {
   return (
     <>
       <button onClick={() => setOpen(true)} aria-label="Chat with ACE on WhatsApp"
-        className="fixed z-[60] bottom-5 right-5 md:bottom-6 md:right-6 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center transition-transform hover:scale-105 group ace-wa-scale">
+        className="fixed z-[40] bottom-5 right-5 md:bottom-6 md:right-6 w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center transition-transform hover:scale-105 group ace-wa-scale">
         <WhatsAppIcon size={28} />
         <span className="hidden md:group-hover:block absolute right-full mr-3 whitespace-nowrap bg-white border border-[rgba(0,0,0,0.06)] rounded-xl px-3 py-2 text-sm font-semibold text-[rgb(var(--ace-text-primary)/1)]">Chat with ACE</span>
       </button>
