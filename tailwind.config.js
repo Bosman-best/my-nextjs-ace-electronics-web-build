@@ -34,8 +34,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        heading: ['Poppins', '"Trebuchet MS"', 'sans-serif'],
-        body: ['Inter', 'Roboto', 'sans-serif'],
+        heading: ['var(--font-heading-display)', 'Space Grotesk', '"Trebuchet MS"', 'sans-serif'],
+        body: ['var(--font-body-display)', 'Inter', 'sans-serif'],
       },
       borderRadius: {
         xl: '18px',
@@ -48,22 +48,22 @@ module.exports = {
         'ace-card': '0 2px 12px rgba(0,0,0,0.08)',
       },
       fontSize: {
-        hero: ['80px', { lineHeight: '1.05', letterSpacing: '-0.003em' }],
-        'hero-sm': ['48px', { lineHeight: '1.1', letterSpacing: '-0.003em' }],
-        'section-heading': ['56px', { lineHeight: '1.05' }],
-        'section-heading-sm': ['36px', { lineHeight: '1.1' }],
+        hero: ['64px', { lineHeight: '1.02', letterSpacing: '-0.04em' }],
+        'hero-sm': ['40px', { lineHeight: '1.05', letterSpacing: '-0.035em' }],
+        'section-heading': ['40px', { lineHeight: '1.08', letterSpacing: '-0.035em' }],
+        'section-heading-sm': ['30px', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
         'heading-3': ['28px', { lineHeight: '1.1' }],
-        body: ['17px', { lineHeight: '1.6' }],
+        body: ['16px', { lineHeight: '1.55' }],
         caption: ['12px', { lineHeight: '1.6', letterSpacing: '0.08em' }],
       },
       spacing: {
-        section: '140px',
-        'section-sm': '80px',
-        hero: '80px',
+        section: '72px',
+        'section-sm': '48px',
+        hero: '56px',
       },
       maxWidth: { ace: '1280px' },
       screens: { xs: '480px' },
-      backgroundImage: { 'ace-gradient': 'linear-gradient(180deg, rgb(var(--ace-surface-secondary)) 0%, rgb(var(--ace-background)) 100%)' }
+      backgroundImage: { 'ace-gradient': 'linear-gradient(180deg, #EAF1FF 0%, #F5F8FF 100%)' }
     },
   },
   plugins: [],
