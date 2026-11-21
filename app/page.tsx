@@ -25,17 +25,17 @@ const Reveal = dynamic(() => import('@/components/motion/Reveal'), { ssr: false 
 const RevealStagger = dynamic(() => import('@/components/motion/RevealStagger'), { ssr: false })
 
 const trustItems = [
-  { icon: ShieldCheck, title: 'Verified Products', description: 'Explore device details and ask our team for help choosing the right option.' },
-  { icon: BadgeCheck, title: 'Quality Assurance', description: 'Get clear answers about condition, specifications and warranty before you buy.' },
-  { icon: MessageCircle, title: 'Direct WhatsApp Support', description: 'Speak with the ACE team about products, prices and availability.' },
-  { icon: Tag, title: 'Competitive Pricing', description: 'Ask about current prices and available options before making your decision.' },
+  { icon: ShieldCheck, title: 'Product guidance', description: 'Explore device details and get help choosing an option that suits your needs.' },
+  { icon: BadgeCheck, title: 'Clear information', description: 'Ask about condition, specifications and warranty before making a decision.' },
+  { icon: MessageCircle, title: 'Direct WhatsApp support', description: 'Speak with the ACE team about products, prices and availability.' },
+  { icon: Tag, title: 'Straightforward pricing', description: 'Check current prices and available options directly with our team.' },
 ]
 
 const categories = [
   { title: 'Laptops', count: 'Explore available models', href: '/laptops', image: '/hero/hp-elitebook-830-g7.jpg' },
   { title: 'Smartphones', count: 'Explore available models', href: '/smartphones', image: '/hero/google-pixel-9.jpg' },
-  { title: 'Accessories', count: 'Ask on WhatsApp', href: '/accessories' },
-  { title: 'Gaming Devices', count: 'Ask on WhatsApp', href: '/gaming' },
+  { title: 'Accessories', count: 'Explore accessories', href: '/accessories' },
+  { title: 'Gaming Devices', count: 'Explore gaming devices', href: '/gaming' },
 ]
 
 const testimonials = [
@@ -50,27 +50,24 @@ export default function Home() {
       <NavBar />
       <main>
         <HeroHome />
-        <section className="py-16 md:py-28 bg-ace-gradient">
+
+        <section className="ace-section-space bg-white">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <RevealStagger className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" stagger={0.08}>
-              {trustItems.map(t => <TrustFeatureCard key={t.title} {...t} />)}
-            </RevealStagger>
-          </div>
-        </section>
-        <section className="py-16 md:py-28">
-          <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Shop By Category" subtext="Explore the categories and find a device that fits your needs." align="left" /></Reveal>
-            <RevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7 lg:gap-8" stagger={0.08}>
+            <Reveal>
+              <SectionHeader title="Shop by category" subtext="Find the kind of tech you are looking for." align="left" />
+            </Reveal>
+            <RevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8 md:gap-x-8" stagger={0.08}>
               {categories.map(c => <CategoryCard key={c.title} {...c} />)}
             </RevealStagger>
           </div>
         </section>
-        <section className="py-16 md:py-28 bg-ace-gradient">
+
+        <section className="ace-section-space bg-[#F5F7FB]">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
             <Reveal>
-              <div className="flex items-end justify-between mb-12">
-                <SectionHeader title="Featured Devices" align="left" className="!mb-0" />
-                <Link href="/laptops" className="text-ace-electric font-medium hover:underline hidden md:block">View All →</Link>
+              <div className="flex items-end justify-between mb-9 md:mb-12">
+                <SectionHeader title="Featured devices" subtext="A closer look at selected devices from our catalogue." align="left" className="!mb-0" />
+                <Link href="/laptops" className="text-[#0066CC] font-semibold text-sm hover:underline hidden md:block">Explore catalogue →</Link>
               </div>
             </Reveal>
             <RevealStagger>
@@ -78,17 +75,31 @@ export default function Home() {
                 {FEATURED_PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}
               </ProductGrid>
             </RevealStagger>
+            <div className="mt-8 text-center md:hidden">
+              <Link href="/laptops" className="text-[#0066CC] font-semibold text-sm">Explore catalogue →</Link>
+            </div>
           </div>
         </section>
+
         <Reveal><WhyChooseACE /></Reveal>
-        <section className="py-16 md:py-28">
+
+        <section className="py-16 md:py-20 bg-[#F5F7FB]">
           <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
-            <Reveal><SectionHeader title="Plugged In Customers" subtext="A few words from customers who have connected with ACE." /></Reveal>
-            <RevealStagger className="grid md:grid-cols-3 gap-6 md:gap-8" stagger={0.08}>
+            <Reveal><SectionHeader title="The ACE experience" subtext="Helpful service at every step, from browsing to asking the right questions." /></Reveal>
+            <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5" stagger={0.08}>
+              {trustItems.map(t => <TrustFeatureCard key={t.title} {...t} />)}
+            </RevealStagger>
+          </div>
+        </section>
+
+        <section className="ace-section-space bg-white">
+          <div className="max-w-ace mx-auto px-5 xs:px-6 md:px-8 lg:px-12">
+            <Reveal><SectionHeader title="Plugged in customers" subtext="A few words from customers who have connected with ACE." /></Reveal>
+            <RevealStagger className="grid md:grid-cols-3 gap-5 md:gap-7" stagger={0.08}>
               {testimonials.map(t => <TestimonialCard key={t.name} {...t} />)}
             </RevealStagger>
-            <Reveal><p className="text-center text-ace-silver text-sm mt-8">
-              Connect with ACE Electronics — <a href="https://wa.me/233547981348" className="text-ace-electric hover:underline">Chat now</a>
+            <Reveal><p className="text-center text-[#718096] text-sm mt-8">
+              Have a question? <a href="https://wa.me/233547981348" className="text-[#0066CC] font-semibold hover:underline">Chat with ACE on WhatsApp</a>
             </p></Reveal>
           </div>
         </section>
