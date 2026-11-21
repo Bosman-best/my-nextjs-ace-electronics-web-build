@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, MessageCircle, Sparkles, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const categories = [
   { title: 'Laptops', href: '/laptops', image: '/products/laptops/hp-elitebook-840-g7.jpg', alt: 'HP EliteBook laptop' },
   { title: 'Smartphones', href: '/smartphones', image: '/products/smartphones/google-pixel-10-pro.jpg', alt: 'Google Pixel smartphone' },
   { title: 'Accessories', href: '/accessories', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85', alt: 'Over-ear headphones' },
-  { title: 'Gaming', href: '/gaming', image: 'https://images.unsplash.com/photo-160614-searched-controller?auto=format&fit=crop&w=900&q=85', alt: 'Gaming controller' },
+  { title: 'Gaming', href: '/gaming', image: 'https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=900&q=85', alt: 'Gaming controller' },
 ]
 const products = [
   { name: 'HP EliteBook 830 G7', type: 'Business laptop', image: '/products/laptops/hp-elitebook-830-g7.jpg', href: '/laptops' },
