@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Search, MessageCircle, ChevronDown } from 'lucide-react'
+import { Menu, X, Search, MessageCircle } from 'lucide-react'
 
 const links = [
   { label: 'Laptops', href: '/laptops' },
