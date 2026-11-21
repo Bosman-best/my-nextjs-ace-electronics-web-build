@@ -116,10 +116,9 @@ export default function SmartphonesClient() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       )}
       <NavBar />
-      <main className="ace-page py-16 md:py-20">
+      <main className="ace-page min-h-screen py-10 md:py-14">
         <PageContainer>
-          <h1 className="font-heading text-[36px] md:text-[48px] font-bold text-[#142759] mb-3">Smartphones for Sale in Ghana</h1>
-          <p className="text-[#6E6E73] text-lg mb-10">Flagship, Mid-range & Budget — all verified authentic.</p>
+          <div className="mb-8 md:mb-10"><p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#1769D2]">ACE Electronics · Smartphone collection</p><h1 className="font-heading text-[34px] font-bold tracking-[-0.04em] text-[#172B4D] sm:text-[42px] md:text-[48px]">Find the phone that fits.</h1><p className="mt-3 max-w-[650px] text-[15px] leading-7 text-[#718096] md:text-[16px]">Explore flagship, mid-range and budget smartphones. Compare key details and ask our team about current prices and availability.</p></div>
           <FilterBar
             filters={[...PHONE_FILTERS]}
             activeFilter={filter}
