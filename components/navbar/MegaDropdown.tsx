@@ -18,7 +18,7 @@ function MegaDropdownInner({ data, onClose, onMouseEnter, onMouseLeave }: MegaDr
   )
 
   return (
-    <div className="fixed inset-x-0 top-[44px] z-[50] pointer-events-auto" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div className="fixed inset-x-0 top-[72px] z-[50] pointer-events-auto" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div className="mx-auto max-w-ace px-5 xs:px-6 md:px-8 lg:px-12">
         <div className="pointer-events-auto overflow-hidden rounded-[12px] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-8 py-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr_1.2fr]">
