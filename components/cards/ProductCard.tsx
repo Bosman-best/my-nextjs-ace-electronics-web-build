@@ -19,6 +19,7 @@ export default function ProductCard({ product, name, specs }: Props) {
   const [imgError, setImgError] = useState(false)
   const pName = product?.name ?? name ?? ''
   const gallery = product?.images?.length ? product.images : (product?.image ? [product.image] : [])
+  const activeSrc = gallery[activeIndex]
   const dp = product ? getDisplayPrice(product) : { show: false, price: '', wasPrice: undefined }
   const detailHref = product ? `/products/${product.id}` : '#'
 
