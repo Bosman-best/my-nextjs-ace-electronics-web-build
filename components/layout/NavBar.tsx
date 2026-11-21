@@ -6,7 +6,7 @@ import LogoACE from './LogoACE'
 import MobileMenu from './MobileMenu'
 import NavBarSearch from '@/components/ui/NavBarSearch'
 import MegaDropdown from '@/components/navbar/MegaDropdown'
-import { Menu, ShoppingCart, UserRound, Heart } from '@/components/ui/IconSet'
+import { Menu } from '@/components/ui/IconSet'
 import { cn, WHATSAPP_LINK } from '@/lib/utils'
 import { MEGA_MENU, type MegaMenuType } from '@/lib/megaMenu'
 
@@ -104,7 +104,7 @@ export default function NavBar() {
 
   return (
     <>
-      <header className="sticky top-0 z-[100] h-[64px] bg-white/95 ace-nav-shadow backdrop-blur-[20px]">
+      <header className="sticky top-0 z-[100] h-[72px] bg-white/95 ace-nav-shadow backdrop-blur-[20px]">
         <div className="relative max-w-ace mx-auto h-full px-5 xs:px-6 md:px-8 lg:px-12">
           <div className="absolute inset-y-0 left-0 flex items-center">
             <LogoACE />
@@ -198,23 +198,11 @@ export default function NavBar() {
               Contact
             </Link>
           </nav>
-          <div className="absolute inset-y-0 right-0 flex items-center gap-4">
+          <div className="absolute inset-y-0 right-0 flex items-center gap-3">
             <NavBarSearch />
-            <a
-              href={WHATSAPP_LINK("Hi ACE, I'm interested in a device.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp ACE"
-              className="hidden xl:inline-flex h-9 w-9 items-center justify-center rounded-full text-[#25D366] hover:bg-[#EFFAF3]"
-            >
-              <Heart size={18} />
+            <a href={WHATSAPP_LINK("Hi ACE, I'm interested in a device.")} target="_blank" rel="noopener noreferrer" className="hidden xl:inline-flex items-center justify-center rounded-full bg-[#0066CC] px-5 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#0055AD]">
+              Chat with ACE
             </a>
-            <Link href="/laptops" aria-label="Shopping cart" className="hidden xl:inline-flex h-9 w-9 items-center justify-center rounded-full text-[#142759] hover:bg-[#EEF4FF]">
-              <ShoppingCart size={18} />
-            </Link>
-            <Link href="/contact" aria-label="Account" className="hidden xl:inline-flex h-9 w-9 items-center justify-center rounded-full text-[#142759] hover:bg-[#EEF4FF]">
-              <UserRound size={18} />
-            </Link>
             <button
               className="lg:hidden p-2 text-[#1D1D1F] hover:text-[#0066CC]"
               onClick={() => setOpen(true)}
@@ -229,7 +217,7 @@ export default function NavBar() {
       {openDropdown !== null && activeMenuData && (
         <>
           <div
-            className="fixed inset-0 top-[64px] z-[40] bg-[#142759]/20 backdrop-blur-sm"
+            className="fixed inset-0 top-[72px] z-[40] bg-[#142759]/20 backdrop-blur-sm"
             onClick={() => setOpenDropdown(null)}
           />
           <MegaDropdown
