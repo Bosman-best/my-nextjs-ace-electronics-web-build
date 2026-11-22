@@ -29,8 +29,8 @@
   --ace-glass-hover: 245 248 255;
   --ace-silver: 100 116 139;
   --ace-white: 255 255 255;
-  --font-heading: var(--font-heading-display), sans-serif;
-  --font-body: var(--font-body-display), sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
 }
 
 html, body {
@@ -119,3 +119,45 @@ button { font: inherit; }
   .ace-device-controller { left: 38%; bottom: 0; width: 29%; height: 22%; }
 }
 @media (prefers-reduced-motion: reduce) { .ace-device { animation: none !important; } }
+
+
+/* Apple-inspired system typography and refined device staging */
+html, body, button, input, textarea, select {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+.ace-device-stage { perspective: 1500px; transform-style: preserve-3d; }
+.ace-device { backface-visibility: hidden; }
+.ace-device img { object-fit: contain; }
+.ace-device-laptop {
+  left: 0%; top: 20%; width: 69%; height: 66%;
+  transform: rotateY(-18deg) rotateX(4deg) rotateZ(-3deg);
+}
+.ace-device-phone {
+  right: 7%; top: 7%; width: 19%; height: 63%;
+  transform: rotateY(10deg) rotateZ(5deg);
+}
+.ace-device-speaker {
+  right: 0%; bottom: 5%; width: 25%; height: 35%;
+  transform: rotateY(-8deg) rotateZ(-3deg);
+}
+.ace-device-headphones {
+  left: 0%; bottom: 4%; width: 28%; height: 30%;
+  transform: rotateY(12deg) rotateZ(-7deg);
+}
+.ace-device-controller {
+  left: 39%; bottom: 0%; width: 30%; height: 25%;
+  transform: rotateY(-8deg) rotateZ(3deg);
+}
+@media (max-width: 640px) {
+  .ace-device-stage { height: 390px; }
+  .ace-device-laptop { left: 0%; top: 30%; width: 72%; height: 48%; }
+  .ace-device-phone { right: 0%; top: 8%; width: 23%; height: 54%; }
+  .ace-device-speaker { right: 0%; bottom: 2%; width: 27%; height: 25%; }
+  .ace-device-headphones { left: 0%; bottom: 3%; width: 29%; height: 24%; }
+  .ace-device-controller { left: 38%; bottom: 0%; width: 28%; height: 22%; }
+}
