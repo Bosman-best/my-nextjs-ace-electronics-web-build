@@ -138,7 +138,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               ))}
             </ul>
           </div>
-        )}}
+        )}
       </PageContainer>
     </section>
   )
