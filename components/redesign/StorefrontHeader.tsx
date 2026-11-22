@@ -40,7 +40,7 @@ export default function StorefrontHeader() {
   }
 
   return (
-    <header className={(scrolled || activeMenu || mobileOpen) ? 'fixed inset-x-0 top-0 z-50 bg-white/78 backdrop-blur-2xl shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'fixed inset-x-0 top-0 z-50 bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'} onMouseLeave={() => setActiveMenu(null)}>
+    <header className={(scrolled || activeMenu || mobileOpen) ? 'fixed inset-x-0 top-0 isolate z-[1000] bg-white/78 lg:bg-white backdrop-blur-2xl lg:backdrop-blur-none shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'fixed inset-x-0 top-0 isolate z-[1000] bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'} onMouseLeave={() => setActiveMenu(null)}>
       <div className="mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
         <Link href="/" onClick={closeMenus} className="flex shrink-0 flex-col leading-[.9]" aria-label="ACE Electronics home">
           <span className="font-heading text-[25px] font-extrabold tracking-[-.08em] text-[#0066CC]">ACE</span>
