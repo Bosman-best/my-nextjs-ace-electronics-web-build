@@ -41,7 +41,8 @@ export default function StorefrontHeader() {
 
   return (
     <header className={(scrolled || activeMenu || mobileOpen) ? 'fixed inset-x-0 top-0 isolate z-[1000] bg-white/78 lg:bg-white backdrop-blur-2xl lg:backdrop-blur-none shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'fixed inset-x-0 top-0 isolate z-[1000] bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'} onMouseLeave={() => setActiveMenu(null)}>
-      <div className="mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
+      {(activeMenu || mobileOpen) && <div aria-hidden="true" onClick={closeMenus} className="fixed inset-x-0 top-[64px] bottom-0 z-0 bg-[#0B1B3A]/[.10] backdrop-blur-md lg:top-[64px]" />}
+      <div className="relative z-10 mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
         <Link href="/" onClick={closeMenus} className="flex shrink-0 flex-col leading-[.9]" aria-label="ACE Electronics home">
           <span className="font-heading text-[25px] font-extrabold tracking-[-.08em] text-[#0066CC]">ACE</span>
           <span className="mt-1 text-[9px] font-bold tracking-[.08em] text-[#53647B]">Electronics</span>
@@ -68,7 +69,7 @@ export default function StorefrontHeader() {
         </div>
       </div>
       {activeMenu && (
-        <div className="absolute left-0 top-[64px] hidden max-h-[calc(100dvh-64px)] w-screen overflow-y-auto bg-white shadow-[0_24px_55px_rgba(15,35,65,.12)] lg:block">
+        <div className="absolute left-0 top-[64px] z-10 hidden max-h-[calc(100dvh-64px)] w-screen overflow-y-auto bg-white shadow-[0_24px_55px_rgba(15,35,65,.12)] lg:block">
           {menus.filter(menu => menu.label === activeMenu).map(menu => (
             <div key={menu.href} className="mx-auto grid max-w-[1440px] grid-cols-[1.05fr_1fr_1fr] gap-16 px-12 py-12 xl:px-20">
               <div className="max-w-[330px]">
@@ -90,7 +91,7 @@ export default function StorefrontHeader() {
         </div>
       )}
       {mobileOpen && (
-        <div className="absolute right-3 top-[60px] max-h-[min(72dvh,560px)] w-[calc(100vw-24px)] overflow-y-auto rounded-[20px] bg-white px-5 pb-5 pt-3 shadow-[0_18px_55px_rgba(15,35,65,.18)] lg:hidden">
+        <div className="absolute right-3 top-[60px] z-10 max-h-[min(72dvh,560px)] w-[calc(100vw-24px)] overflow-y-auto rounded-[20px] bg-white px-5 pb-5 pt-3 shadow-[0_18px_55px_rgba(15,35,65,.18)] lg:hidden">
           <nav className="flex flex-col" aria-label="Mobile navigation">
             <Link href="/" onClick={closeMenus} className="py-3 text-[15px] font-medium text-[#1D1D1F]">Home</Link>
             {menus.map(menu => (
