@@ -57,7 +57,7 @@ export default function StorefrontHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <form action="/laptops" className="flex h-10 w-[205px] items-center gap-2 rounded-full bg-black/[.045] px-3 focus-within:bg-black/[.07]">
+          <form action="/search" className="flex h-10 w-[205px] items-center gap-2 rounded-full bg-black/[.045] px-3 focus-within:bg-black/[.07]">
             <Search size={16} className="shrink-0 text-slate-400" />
             <input name="q" aria-label="Search products" placeholder="Search products..." className="ace-search-input w-full min-w-0 bg-transparent text-xs text-[#17243A] outline-none placeholder:text-slate-400" />
           </form>
@@ -109,7 +109,7 @@ export default function StorefrontHeader() {
               </div>
             ))}
             <Link href="/about" onClick={closeMenus} className="py-3 text-[15px] font-medium text-[#1D1D1F]">About ACE</Link>
-            <form action="/laptops" className="mt-2 flex h-10 items-center gap-2 rounded-full bg-[#F5F5F7] px-4"><Search size={15} className="text-slate-400"/><input name="q" aria-label="Search products" placeholder="Search products..." className="ace-search-input w-full bg-transparent text-[13px] outline-none"/></form>
+            <form action="/search" className="mt-2 flex h-10 items-center gap-2 rounded-full bg-[#F5F5F7] px-4"><Search size={15} className="text-slate-400"/><input name="q" aria-label="Search products" placeholder="Search products..." className="ace-search-input w-full bg-transparent text-[13px] outline-none"/></form>
           </nav>
         </div>
       )}

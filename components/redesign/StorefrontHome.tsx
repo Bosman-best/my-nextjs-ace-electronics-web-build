@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, Sparkles, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Sparkles, CheckCircle2, ShieldCheck, MessageCircle, Headset } from 'lucide-react'
+import { LAPTOPS, SMARTPHONES } from '@/lib/products'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const categories = [
@@ -10,10 +11,10 @@ const categories = [
   { title:'Gaming', note:'Gear up and play', href:'/gaming', image:'https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1000&q=85', alt:'Gaming setup with monitor and peripherals', kind:'remote' },
 ]
 const products = [
-  { name: 'HP EliteBook 830 G7', type: 'Business laptop', image: '/products/laptops/hp-elitebook-830-g7.jpg', href: '/laptops' },
-  { name: 'HP EliteBook 840 G7', type: 'Business laptop', image: '/products/laptops/hp-elitebook-840-g7.jpg', href: '/laptops' },
-  { name: 'Google Pixel 10 Pro', type: 'Google smartphone', image: '/products/smartphones/google-pixel-10-pro.jpg', href: '/smartphones' },
-  { name: 'Samsung Galaxy S24 Ultra', type: 'Samsung smartphone', image: '/products/smartphones/samsung-galaxy-s24-ultra.jpg', href: '/smartphones' },
+  { product: LAPTOPS[0], type: 'Business laptop' },
+  { product: LAPTOPS[1], type: 'Laptop' },
+  { product: SMARTPHONES[0], type: 'Apple smartphone' },
+  { product: SMARTPHONES[1], type: 'Samsung smartphone' },
 ]
 
 
@@ -40,11 +41,22 @@ export default function StorefrontHome() {
       <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="mb-3 text-[11px] font-bold uppercase tracking-[.2em] text-[#0066CC]">Find your category</p><h2 className="font-heading text-3xl font-bold tracking-[-.05em] text-[#14233B] md:text-[42px]">What are you looking for?</h2><p className="mt-3 max-w-xl text-sm leading-7 text-slate-500">Explore the collection by the devices and accessories you use every day.</p></div><Link href="/laptops" className="inline-flex items-center gap-2 text-sm font-bold text-[#0066CC] hover:gap-3">Browse all devices <ArrowUpRight size={17}/></Link></div>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">{categories.map((c,i)=><Link href={c.href} key={c.title} className="group min-w-0"><div className="relative aspect-[.92/1] overflow-hidden rounded-[22px] bg-[#E9EFF7] sm:rounded-[28px]">{c.kind==='photo'?<Image src={c.image} alt={c.alt} fill sizes="(max-width:768px) 50vw,25vw" className="object-contain p-4 transition duration-700 group-hover:scale-105 sm:p-7"/>:<img src={c.image} alt={c.alt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/>}<div className="absolute inset-0 bg-gradient-to-t from-[#10233D]/55 via-transparent to-transparent"/><span className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white sm:bottom-5 sm:left-5"><span className="font-heading !text-white text-sm font-bold drop-shadow-[0_1px_4px_rgba(0,0,0,.65)] sm:text-lg">{c.title}</span><span className="grid h-8 w-8 place-items-center rounded-full bg-white/20 backdrop-blur"><ArrowUpRight size={16}/></span></span></div><p className="mt-3 px-1 text-[11px] text-slate-500 sm:text-sm">{c.note}</p></Link>)}</div>
     </section>
-    <section className="bg-white py-16 lg:py-20"><div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><p className="mb-3 text-[11px] font-bold uppercase tracking-[.2em] text-[#0066CC]">A closer look</p><h2 className="font-heading text-3xl font-bold tracking-[-.05em] text-[#14233B] md:text-[42px]">Featured devices</h2><p className="mt-3 text-sm leading-7 text-slate-500">Explore selected devices from the ACE catalogue.</p></div><Link href="/laptops" className="inline-flex items-center gap-2 text-sm font-bold text-[#0066CC]">Explore catalogue <ArrowRight size={16} /></Link></div><div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">{products.map(p => <Link href={p.href} key={p.name} className="group min-w-0"><div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[22px] border border-[#EDF0F4] bg-white p-4 sm:rounded-[26px] sm:p-6">{<Image src={p.image} alt={p.name} fill sizes="(max-width:768px) 50vw,25vw" className="object-contain p-3 transition duration-500 group-hover:scale-[1.035]" />}</div><div className="px-1 pt-4"><p className="text-[9px] font-bold uppercase tracking-[.16em] text-slate-400 sm:text-[10px]">{p.type}</p><h3 className="mt-1 font-heading text-sm font-semibold text-[#17243A] sm:text-base">{p.name}</h3><p className="mt-2 text-xs font-semibold text-[#0066CC]">Ask for current price <ArrowRight size={12} className="ml-1 inline" /></p></div></Link>)}</div></div></section>
+    <section className="bg-white py-16 lg:py-20"><div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><p className="mb-3 text-[11px] font-bold uppercase tracking-[.2em] text-[#0066CC]">A closer look</p><h2 className="font-heading text-3xl font-bold tracking-[-.05em] text-[#14233B] md:text-[42px]">Featured devices</h2><p className="mt-3 text-sm leading-7 text-slate-500">Explore selected devices from the ACE catalogue.</p></div><Link href="/laptops" className="inline-flex items-center gap-2 text-sm font-bold text-[#0066CC]">Explore catalogue <ArrowRight size={16} /></Link></div><div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">{products.map(({ product, type }) => <Link href={`/products/${product.id}`} key={product.id} className="group min-w-0"><div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[22px] bg-white p-4 sm:rounded-[26px] sm:p-6"><Image src={product.image || product.images[0]} alt={product.name} fill sizes="(max-width:768px) 50vw,25vw" className="object-contain p-3 transition duration-500 group-hover:scale-[1.035]" /></div><div className="px-1 pt-4"><p className="text-[9px] font-bold uppercase tracking-[.16em] text-slate-400 sm:text-[10px]">{type}</p><h3 className="mt-1 font-heading text-sm font-semibold text-[#17243A] sm:text-base">{product.name}</h3><p className="mt-2 text-xs font-semibold text-[#0066CC]">View specifications <ArrowRight size={12} className="ml-1 inline" /></p></div></Link>)}</div></div></section>
 
-    <section className="mx-auto grid max-w-[1240px] items-center gap-6 px-5 py-14 sm:px-8 lg:grid-cols-[.85fr_1.15fr] lg:gap-12 lg:px-12 lg:py-16">
-      <div className="mx-auto w-full max-w-[390px]"><Image src="/trust-shield.svg" alt="Blue shield illustration with a white checkmark and gold stars" width={520} height={520} className="h-auto w-full object-contain" /></div>
-      <div className="max-w-[620px]"><h2 className="font-heading text-3xl font-bold tracking-[-.05em] text-[#14233B] md:text-[42px]">Why Ghana Trusts ACE</h2><p className="mt-4 max-w-lg text-base leading-7 text-[#53647B]">Quality products. Reliable service. Helpful, straightforward support.</p><Link href="/about" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#0066CC]">Learn More <ArrowRight size={16} /></Link></div>
+    <section className="bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+      <div className="mx-auto max-w-[1240px]">
+        <div className="max-w-[680px]">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[.2em] text-[#0066CC]">The ACE experience</p>
+          <h2 className="font-heading text-3xl font-bold tracking-[-.05em] text-[#14233B] md:text-[42px]">A more straightforward way to shop for tech.</h2>
+          <p className="mt-4 text-base leading-7 text-[#53647B]">Good devices are one part of the experience. Getting clear guidance and the right support matters too.</p>
+        </div>
+        <div className="mt-9 grid gap-4 md:grid-cols-3">
+          <div className="rounded-[22px] border border-[#E8EEF6] bg-[#F8FAFD] p-6"><ShieldCheck className="mb-5 text-[#0066CC]" size={25}/><h3 className="font-heading text-lg font-bold text-[#17243A]">Carefully sourced</h3><p className="mt-2 text-sm leading-6 text-[#64748B]">We work with verified suppliers to bring you authentic devices.</p></div>
+          <div className="rounded-[22px] border border-[#E8EEF6] bg-[#F8FAFD] p-6"><MessageCircle className="mb-5 text-[#0066CC]" size={25}/><h3 className="font-heading text-lg font-bold text-[#17243A]">Help choosing</h3><p className="mt-2 text-sm leading-6 text-[#64748B]">Get straightforward advice to find a device that fits your needs.</p></div>
+          <div className="rounded-[22px] border border-[#E8EEF6] bg-[#F8FAFD] p-6"><Headset className="mb-5 text-[#0066CC]" size={25}/><h3 className="font-heading text-lg font-bold text-[#17243A]">Direct support</h3><p className="mt-2 text-sm leading-6 text-[#64748B]">Have a question? Speak with ACE directly on WhatsApp.</p></div>
+        </div>
+        <div className="mt-6 flex flex-col gap-3 border-t border-[#E8EEF6] pt-5 text-sm text-[#64748B] sm:flex-row sm:items-center sm:justify-between"><p>Warranty is product-specific. Ask ACE to confirm whether a particular device includes one.</p><Link href="/about" className="inline-flex shrink-0 items-center gap-2 font-bold text-[#0066CC]">More about ACE <ArrowRight size={16}/></Link></div>
+      </div>
     </section>
   </main>
 }

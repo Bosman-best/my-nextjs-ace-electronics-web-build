@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Check, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react'
@@ -8,38 +8,11 @@ import PageContainer from '@/components/layout/PageContainer'
 import { getDisplayPrice, type Product } from '@/lib/products'
 import { WHATSAPP_LINK } from '@/lib/utils'
 
-function specGroup(label: string, keywords: string[], specs: string[]) {
-  const values = specs.filter((spec) => keywords.some((keyword) => spec.toLowerCase().includes(keyword)))
-  return values.length ? { label, values } : null
-}
-
-function getSpecGroups(product: Product) {
-  if (product.type === 'smartphone') {
-    return [
-      specGroup('Storage', ['storage', 'gb', 'tb'], product.specs),
-      specGroup('Processor', ['chip', 'processor', 'snapdragon', 'dimensity', 'tensor', 'mediatek'], product.specs),
-      specGroup('Memory', ['ram'], product.specs),
-      specGroup('Display', ['display', 'amoled', 'screen', 'retina'], product.specs),
-      specGroup('Camera', ['camera', 'mp', 'optic', 'imx', 'camera system'], product.specs),
-      specGroup('Battery & Charging', ['battery', 'charge', 'charging', 'mah'], product.specs),
-      specGroup('Other Features', ['ip67', 'ram', 'stereo', 'sensor', 'pen', 'security', 's pen', 'titan', 'android', 'face id', 'design', 'lenses'], product.specs),
-    ].filter(Boolean) as { label: string; values: string[] }[]
-  }
-
-  return [
-    specGroup('Memory', ['ram', 'memory'], product.specs),
-    specGroup('Storage', ['ssd', 'storage', 'hdd'], product.specs),
-    specGroup('Processor', ['intel', 'core i', 'm-chip', 'amd', 'ryzen'], product.specs),
-    specGroup('Graphics', ['graphics', 'iris', 'nvidia', 'radeon'], product.specs),
-    specGroup('Other Features', ['display', 'screen', 'camera', 'wifi', 'connectivity', 'design'], product.specs),
-  ].filter(Boolean) as { label: string; values: string[] }[]
-}
-
 export default function ProductDetailClient({ product }: { product: Product }) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
   const gallery = product.images?.length ? product.images : (product.image ? [product.image] : [])
   const dp = getDisplayPrice(product)
-  const groups = getSpecGroups(product)
   const backHref = product.type === 'laptop' ? '/laptops' : '/smartphones'
   const backLabel = product.type === 'laptop' ? 'Laptops' : 'Smartphones'
 
@@ -49,15 +22,15 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   }
 
   return (
-    <section className="ace-page min-h-screen py-8 md:py-12">
+    <section className="ace-page min-h-screen pt-[104px] pb-12 md:pt-[120px] md:pb-16">
       <PageContainer>
-        <Link href={backHref} className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-[#718096] transition-colors hover:text-[#0066CC]">
+        <Link href={backHref} className="relative z-10 mb-8 inline-flex items-center gap-2 py-2 text-sm font-medium text-[#718096] transition-colors hover:text-[#0066CC]">
           <ArrowLeft size={16} /> Back to {backLabel}
         </Link>
 
         <div className="grid gap-7 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-10">
           <div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[26px] border border-[#E6ECF4] bg-white shadow-[0_12px_38px_rgba(23,43,77,0.055)]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[26px] bg-transparent touch-pan-y" onTouchStart={(event) => { touchStartX.current = event.touches[0]?.clientX ?? null }} onTouchEnd={(event) => { if (touchStartX.current === null) return; const delta = event.changedTouches[0].clientX - touchStartX.current; if (Math.abs(delta) > 45) move(delta < 0 ? 1 : -1); touchStartX.current = null }}>
               {gallery[activeIndex] ? (
                 <Image
                   src={gallery[activeIndex]}
@@ -65,7 +38,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 58vw"
-                  className="object-contain p-6 md:p-10"
+                  className="object-contain p-0"
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center text-sm text-[#6E6E73]">Photo coming soon</div>
@@ -91,9 +64,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                     type="button"
                     onClick={() => setActiveIndex(index)}
                     aria-label={`View product photo ${index + 1}`}
-                    className={`relative aspect-square overflow-hidden rounded-[14px] bg-[#E9ECEF] transition-all ${index === activeIndex ? 'ring-2 ring-[#0066CC] ring-offset-4 ring-offset-[#F5F5F7]' : 'hover:bg-[#DFE4E8]'}`}
+                    className={`relative aspect-square overflow-hidden rounded-[14px] bg-transparent transition-opacity ${index === activeIndex ? 'opacity-100' : 'opacity-55 hover:opacity-85'}`}
                   >
-                    <Image src={image} alt="" fill sizes="120px" className="object-contain p-2" />
+                    <Image src={image} alt="" fill sizes="120px" className="object-contain p-0" />
                   </button>
                 ))}
               </div>
@@ -154,25 +127,18 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           </div>
         </div>
 
-        {groups.length > 0 && (
-          <div className="mt-12 rounded-[26px] border border-[#E6ECF4] bg-white p-6 pt-8 shadow-[0_10px_30px_rgba(23,43,77,0.035)] md:mt-16 md:p-10">
+        {product.specs.length > 0 && (
+          <div className="mt-12 bg-transparent py-2 md:mt-16">
             <h2 className="font-heading text-[28px] font-semibold text-[#1D1D1F] md:text-[36px]">Technical specifications</h2>
-            <div className="mt-8 grid gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-              {groups.map((group) => (
-                <div key={group.label}>
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#6E6E73]">{group.label}</h3>
-                  <ul className="mt-3 space-y-2">
-                    {group.values.map((value) => (
-                      <li key={value} className="flex items-start gap-2 text-[15px] text-[#1D1D1F]">
-                        <Check size={16} className="mt-1 shrink-0 text-[#0066CC]" /> {value}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <ul className="mt-7 divide-y divide-[#E8EDF4]">
+              {product.specs.map((value, index) => (
+                <li key={index + "-" + value} className="flex items-start gap-3 py-4 text-[15px] leading-7 text-[#1D1D1F]">
+                  <Check size={16} className="mt-1.5 shrink-0 text-[#0066CC]" /> <span>{value}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        )}
+        )}}
       </PageContainer>
     </section>
   )
