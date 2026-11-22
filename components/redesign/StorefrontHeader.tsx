@@ -58,7 +58,7 @@ export default function StorefrontHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <form action="/laptops" className="flex h-10 w-[205px] items-center gap-2 rounded-full bg-black/[.045] px-3 focus-within:bg-black/[.07]">
             <Search size={16} className="shrink-0 text-slate-400" />
-            <input name="q" aria-label="Search products" placeholder="Search products..." className="w-full min-w-0 bg-transparent text-xs text-[#17243A] outline-none placeholder:text-slate-400" />
+            <input name="q" aria-label="Search products" placeholder="Search products..." className="ace-search-input w-full min-w-0 bg-transparent text-xs text-[#17243A] outline-none placeholder:text-slate-400" />
           </form>
           <a href="https://wa.me/233547981348?text=Hello%20ACE%20Electronics%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noreferrer" aria-label="Chat with ACE on WhatsApp" className="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-white transition hover:bg-[#1FB95A]"><WhatsAppIcon size={20} /></a>
         </div>
@@ -68,7 +68,7 @@ export default function StorefrontHeader() {
         </div>
       </div>
       {activeMenu && (
-        <div className="absolute left-0 top-[64px] hidden max-h-[calc(100dvh-64px)] w-screen overflow-y-auto bg-white/96 shadow-[0_24px_55px_rgba(15,35,65,.12)] backdrop-blur-2xl lg:block">
+        <div className="absolute left-0 top-[64px] hidden max-h-[calc(100dvh-64px)] w-screen overflow-y-auto bg-white shadow-[0_24px_55px_rgba(15,35,65,.12)] lg:block">
           {menus.filter(menu => menu.label === activeMenu).map(menu => (
             <div key={menu.href} className="mx-auto grid max-w-[1440px] grid-cols-[1.05fr_1fr_1fr] gap-16 px-12 py-12 xl:px-20">
               <div className="max-w-[330px]">
@@ -90,7 +90,7 @@ export default function StorefrontHeader() {
         </div>
       )}
       {mobileOpen && (
-        <div className="absolute right-3 top-[60px] max-h-[min(72dvh,560px)] w-[calc(100vw-24px)] overflow-y-auto rounded-[20px] bg-white/96 px-5 pb-5 pt-3 shadow-[0_18px_55px_rgba(15,35,65,.18)] backdrop-blur-2xl lg:hidden">
+        <div className="absolute right-3 top-[60px] max-h-[min(72dvh,560px)] w-[calc(100vw-24px)] overflow-y-auto rounded-[20px] bg-white px-5 pb-5 pt-3 shadow-[0_18px_55px_rgba(15,35,65,.18)] lg:hidden">
           <nav className="flex flex-col" aria-label="Mobile navigation">
             <Link href="/" onClick={closeMenus} className="py-3 text-[15px] font-medium text-[#1D1D1F]">Home</Link>
             {menus.map(menu => (
@@ -108,7 +108,7 @@ export default function StorefrontHeader() {
               </div>
             ))}
             <Link href="/about" onClick={closeMenus} className="py-3 text-[15px] font-medium text-[#1D1D1F]">About ACE</Link>
-            <form action="/laptops" className="mt-2 flex h-10 items-center gap-2 rounded-full bg-[#F5F5F7] px-4"><Search size={15} className="text-slate-400"/><input name="q" aria-label="Search products" placeholder="Search products..." className="w-full bg-transparent text-[13px] outline-none"/></form>
+            <form action="/laptops" className="mt-2 flex h-10 items-center gap-2 rounded-full bg-[#F5F5F7] px-4"><Search size={15} className="text-slate-400"/><input name="q" aria-label="Search products" placeholder="Search products..." className="ace-search-input w-full bg-transparent text-[13px] outline-none"/></form>
           </nav>
         </div>
       )}

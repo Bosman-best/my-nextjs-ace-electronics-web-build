@@ -161,3 +161,31 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   .ace-device-headphones { left: 0%; bottom: 3%; width: 29%; height: 24%; }
   .ace-device-controller { left: 38%; bottom: 0%; width: 28%; height: 22%; }
 }
+
+
+/* Final refinement: solid Apple-style menus, quiet search focus and faster hero loading */
+.ace-search-input,
+.ace-search-input:focus,
+.ace-search-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.ace-search-input {
+  caret-color: #1D1D1F;
+}
+.ace-device-phone {
+  right: 5%;
+  top: 4%;
+  width: 28%;
+  height: 72%;
+  transform: rotateY(9deg) rotateZ(4deg);
+}
+@media (max-width: 640px) {
+  .ace-device-phone {
+    right: 0%;
+    top: 5%;
+    width: 29%;
+    height: 62%;
+    transform: rotateY(7deg) rotateZ(3deg);
+  }
+}
