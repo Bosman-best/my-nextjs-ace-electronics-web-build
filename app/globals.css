@@ -85,7 +85,7 @@ button { font: inherit; }
   background: rgba(195,218,255,.34);
   transform: rotate(9deg);
 }
-.ace-nav-shadow { box-shadow: 0 1px 0 rgba(11,27,58,.06); }
+.ace-nav-shadow { box-shadow: none; }
 .ace-reference-card {
   background: #fff;
   border: 1px solid #DAE6F8;
