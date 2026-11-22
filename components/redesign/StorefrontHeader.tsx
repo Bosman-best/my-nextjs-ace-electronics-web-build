@@ -15,6 +15,7 @@ const menus = [
 
 export default function StorefrontHeader() {
   const [scrolled, setScrolled] = useState(false)
+  const [navVisible, setNavVisible] = useState(true)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileSection, setMobileSection] = useState<string | null>(null)
@@ -40,7 +41,9 @@ export default function StorefrontHeader() {
   }
 
   return (
-    <header className={(scrolled || activeMenu || mobileOpen) ? 'fixed inset-x-0 top-0 isolate z-[1000] bg-white/78 lg:bg-white backdrop-blur-2xl lg:backdrop-blur-none shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'fixed inset-x-0 top-0 isolate z-[1000] bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'} onMouseLeave={() => setActiveMenu(null)}>
+    <>
+    <div aria-hidden="true" className="fixed inset-x-0 top-0 z-[1001] hidden h-2 lg:block" onMouseEnter={() => setNavVisible(true)} />
+    <header className={`${(scrolled || activeMenu || mobileOpen) ? 'fixed inset-x-0 top-0 isolate z-[1000] bg-white/78 lg:bg-white backdrop-blur-2xl lg:backdrop-blur-none shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'fixed inset-x-0 top-0 isolate z-[1000] bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'} ${navVisible ? 'lg:translate-y-0' : 'lg:-translate-y-full'} lg:transition-transform lg:duration-300`} onMouseEnter={() => setNavVisible(true)} onMouseLeave={() => { setActiveMenu(null); setNavVisible(false) }}>
       {(activeMenu || mobileOpen) && <div aria-hidden="true" onClick={closeMenus} className="fixed inset-x-0 top-[64px] bottom-0 z-0 bg-[#0B1B3A]/[.10] backdrop-blur-md lg:top-[64px]" />}
       <div className="relative z-10 mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
         <Link href="/" onClick={closeMenus} className="flex shrink-0 flex-col leading-[.9]" aria-label="ACE Electronics home">
@@ -114,5 +117,6 @@ export default function StorefrontHeader() {
         </div>
       )}
     </header>
+    </>
   )
 }
