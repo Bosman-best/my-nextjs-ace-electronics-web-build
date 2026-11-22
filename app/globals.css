@@ -96,3 +96,26 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; }
 }
+
+/* ACE: intentionally borderless visual system */
+*, *::before, *::after { border-color: transparent !important; }
+.ace-nav-shadow { box-shadow: none !important; }
+.ace-reference-card { border: 0 !important; box-shadow: none !important; }
+.ace-device-stage { perspective: 1200px; transform-style: preserve-3d; }
+.ace-device { position: absolute; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; will-change: transform; animation: ace-device-float 6s ease-in-out infinite; }
+.ace-device img { display:block; width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply; filter: drop-shadow(0 24px 22px rgba(24,48,80,.18)); }
+.ace-device-laptop { left: 3%; top: 23%; width: 65%; height: 58%; transform: rotateY(-16deg) rotateX(5deg); animation-delay: -.8s; }
+.ace-device-phone { right: 5%; top: 10%; width: 20%; height: 60%; transform: rotateY(12deg) rotateZ(3deg); animation-delay: -2.2s; }
+.ace-device-speaker { right: 1%; bottom: 3%; width: 30%; height: 29%; transform: rotateY(-12deg) rotateZ(-4deg); animation-delay: -3.4s; }
+.ace-device-headphones { left: 0; bottom: 5%; width: 31%; height: 31%; transform: rotateY(15deg) rotateZ(-8deg); animation-delay: -1.5s; }
+.ace-device-controller { left: 41%; bottom: 0; width: 29%; height: 27%; transform: rotateY(-10deg) rotateZ(5deg); animation-delay: -4.1s; }
+@keyframes ace-device-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -13px; } }
+@media (max-width: 640px) {
+  .ace-device-stage { height: 390px; }
+  .ace-device-laptop { left: 3%; top: 28%; width: 70%; height: 48%; }
+  .ace-device-phone { right: 1%; top: 8%; width: 24%; height: 54%; }
+  .ace-device-speaker { right: 0; bottom: 2%; width: 31%; height: 25%; }
+  .ace-device-headphones { left: 0; bottom: 3%; width: 31%; height: 25%; }
+  .ace-device-controller { left: 38%; bottom: 0; width: 29%; height: 22%; }
+}
+@media (prefers-reduced-motion: reduce) { .ace-device { animation: none !important; } }
