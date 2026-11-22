@@ -17,7 +17,7 @@ export default function StorefrontHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white/65 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
       <div className="mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
         <Link href="/" className="flex shrink-0 flex-col leading-[.9]" aria-label="ACE Electronics home">
           <span className="font-heading text-[25px] font-extrabold tracking-[-.08em] text-[#0066CC]">ACE</span>
