@@ -31,11 +31,11 @@ export default function StorefrontHome() {
           <div className="mt-12 flex flex-wrap items-center gap-x-7 gap-y-3 text-xs font-semibold text-[#63758B]"><span className="inline-flex items-center gap-2"><CheckCircle2 size={15} className="text-[#1673C9]" /> Helpful product guidance</span><span className="inline-flex items-center gap-2"><CheckCircle2 size={15} className="text-[#1673C9]" /> Direct WhatsApp support</span></div>
         </div>
         <div className="ace-device-stage relative mx-auto mt-4 h-[430px] w-full max-w-[700px] sm:h-[520px] lg:mt-0 lg:h-[570px]" aria-label="MacBook, Galaxy S24 Ultra, tabletop speaker, headphones and gaming controller">
-          <div className="ace-device ace-device-laptop"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=90" alt="Apple MacBook" /></div>
-          <div className="ace-device ace-device-phone"><img src="https://images.samsung.com/is/image/samsung/assets/uk/2401/mktpd/163x346_Titanium-Black_Galaxy_S24_Ultra.jpg?%24LazyLoad_Home_JPG%24=" alt="Samsung Galaxy S24 Ultra" /></div>
-          <div className="ace-device ace-device-speaker"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=90" alt="Tabletop speaker" /></div>
-          <div className="ace-device ace-device-headphones"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=90" alt="Over-ear headphones" /></div>
-          <div className="ace-device ace-device-controller"><img src="https://images.unsplash.com/photo-1713511129992-a9320f883070?auto=format&fit=crop&w=900&q=90" alt="Gaming controller" /></div>
+          <div className="ace-device ace-device-laptop"><img src="https://www.webmobilefirst.com/img/mockups/mockup-apple-macbook-pro-16-2021-transparent.png" alt="Apple MacBook Pro isolated transparent cutout" /></div>
+          <div className="ace-device ace-device-phone"><img src="https://www.webmobilefirst.com/img/mockups/mockup-samsung-galaxy-s24-ultra-2024-transparent.png" alt="Samsung Galaxy S24 Ultra isolated transparent cutout" /></div>
+          <div className="ace-device ace-device-speaker"><img src="https://purepng.com/download/qQ1ILpGujlKGnmMr1IMMW8DAezRq39jKwexkhN9wVwyiWzi8sO7zaeiRD1g3OnqGGQtMncSFiTDixSr2Q4mm6n8VEvgKEL1BGWfV1yFQRClflFmK5bpANU1gj6kz3HlyxwnHdYLgDCMMlRjcrAvu1LhDTIe0XvoVi3rbhzhH2fwrqonknfpyDSsYYfPnbycBUi6EbQ8R/large" alt="Tabletop speaker" /></div>
+          <div className="ace-device ace-device-headphones"><img src="https://purepng.com/download/7196ocQW28IGjREFnhg7JGP4fVzmkiphnMgOyBWXkPiujkiJUgNsLFJntLXue6SQ9P5x3koKThtznmq5psi7akseo0o39fNWgLG2UwWcAtDGGtAUcCZP6t5z9OItCRhjxGCHZRdsuv48lSTlbnThcdwOp16xr9tAesKZRw2BZ79pjutOIRgjXUmLbVrSwf6nEicE16cB/large" alt="Over-ear headphones" /></div>
+          <div className="ace-device ace-device-controller"><img src="https://purepng.com/download/RNsEh2LMtPJ9SEuPSKjKYFN9kJRjA1dvDPW2vWdtVVRpuLhLdtUg15RS8iBOwQxRbTSqx3Pk2FcjYhUtpV2x6uICt9IbxW72BhGil4XxsEVykhNJsgoqQndvSduvhcqjL0eFCB6I0rxfv54ow9Lg5lbdJS1RGIoBJlx4MWQldbYqZtHezai2Hkhv3PMgJYwBtvKeE3Lf/large" alt="Gaming controller" /></div>
         </div>
       </div>
     </section>
