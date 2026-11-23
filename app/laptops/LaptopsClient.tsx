@@ -120,7 +120,7 @@ export default function LaptopsClient() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <NavBar />
-      <main className="ace-page min-h-screen py-10 md:py-14">
+      <main className="ace-page min-h-screen pt-28 pb-10 md:py-14">
         <PageContainer>
           <div className="mb-8 md:mb-10"><p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#1769D2]">ACE Electronics · Laptop collection</p><h1 className="font-heading text-[34px] font-bold tracking-[-0.04em] text-[#172B4D] sm:text-[42px] md:text-[48px]">Find your next laptop.</h1><p className="mt-3 max-w-[650px] text-[15px] leading-7 text-[#718096] md:text-[16px]">Compare business, gaming, student and everyday laptops. Need help choosing? Our team is a WhatsApp message away.</p></div>
           <FilterBar
