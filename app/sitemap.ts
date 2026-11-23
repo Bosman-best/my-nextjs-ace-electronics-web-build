@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next'
-import { products } from '@/lib/products'
+import { getCatalogProducts } from '@/lib/catalog'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const products = await getCatalogProducts()
   const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://ace-electronics.vercel.app'
   const routes = [
     '',
@@ -26,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : route.startsWith('/laptops') || route.startsWith('/smartphones') ? 0.8 : 0.5,
   })).concat(
     products.map(product => ({
-      url: `${base}/products/${product.id}`,
+      url: `${base}/products/${product.slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
