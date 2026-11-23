@@ -70,7 +70,7 @@ export default function SmartphonesClient({ products }: { products: CatalogProdu
   }
 
   const items = useMemo(() => {
-    let result = filter === 'All' ? products : SMARTPHONES.filter(p => p.category === filter)
+    let result = filter === 'All' ? products : products.filter(p => p.category === filter)
 
     if (brand) {
       result = result.filter(p => p.brand.toLowerCase() === brand)
