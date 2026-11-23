@@ -41,7 +41,8 @@ export default function StorefrontHeader() {
 
   return (
     <>
-    <header className={`${(scrolled || activeMenu || mobileOpen) ? 'fixed inset-x-0 top-0 isolate z-[1000] bg-white/78 lg:bg-white backdrop-blur-2xl lg:backdrop-blur-none shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'fixed inset-x-0 top-0 isolate z-[1000] bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'}`} onMouseLeave={() => setActiveMenu(null)}>
+    <div className="fixed inset-x-0 top-0 z-[1000]" onMouseLeave={() => setActiveMenu(null)}>
+    <header className={`${(scrolled || activeMenu || mobileOpen) ? 'relative isolate z-[1000] bg-white/78 lg:bg-white backdrop-blur-2xl lg:backdrop-blur-none shadow-[0_8px_30px_rgba(15,35,65,.07)] transition-[background-color,backdrop-filter,box-shadow] duration-300' : 'relative isolate z-[1000] bg-transparent transition-[background-color,backdrop-filter,box-shadow] duration-300'}`}>
       {(activeMenu || mobileOpen) && <div aria-hidden="true" onClick={closeMenus} className="fixed inset-x-0 top-[64px] bottom-0 z-0 bg-[#0B1B3A]/[.10] backdrop-blur-md lg:top-[64px]" />}
       <div className="relative z-10 mx-auto flex h-[64px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
         <Link href="/" onClick={closeMenus} className="flex shrink-0 flex-col leading-[.9]" aria-label="ACE Electronics home">
@@ -115,6 +116,7 @@ export default function StorefrontHeader() {
         </div>
       )}
     </header>
+    </div>
     </>
   )
 }
