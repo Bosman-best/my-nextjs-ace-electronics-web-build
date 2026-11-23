@@ -5,10 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Check, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react'
 import PageContainer from '@/components/layout/PageContainer'
-import { getDisplayPrice, type Product } from '@/lib/products'
+import { getDisplayPrice } from '@/lib/products'
+import type { CatalogProduct } from '@/lib/catalog'
 import { WHATSAPP_LINK } from '@/lib/utils'
 
-export default function ProductDetailClient({ product }: { product: Product }) {
+export default function ProductDetailClient({ product }: { product: CatalogProduct }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const touchStartX = useRef<number | null>(null)
   const gallery = product.images?.length ? product.images : (product.image ? [product.image] : [])
@@ -92,23 +93,23 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             </div>
 
             <p className="mt-6 text-[16px] leading-7 text-[#6E6E73]">
-              {product.type === 'laptop'
-                ? `A ${product.category.toLowerCase()} laptop from ${product.brand}, selected for everyday productivity and dependable performance.`
-                : `A ${product.category.toLowerCase()} smartphone from ${product.brand}, available for purchase through ACE Electronics in Ghana.`}
+              {product.description || (product.type === 'laptop'
+                ? `A ${product.category.toLowerCase()} laptop from ${product.brand}. Contact ACE to confirm current details.`
+                : `A ${product.category.toLowerCase()} smartphone from ${product.brand}. Contact ACE to confirm current details.`)}
             </p>
 
             <dl className="mt-7 grid grid-cols-2 divide-x divide-[#E8EDF4] border-y border-[#E8EDF4]">
               <div className="py-4 pr-4">
                 <dt className="text-xs text-[#6E6E73]">Availability</dt>
-                <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">Confirm with ACE</dd>
+                <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">{product.availability.replaceAll('_', ' ')}</dd>
               </div>
               <div className="py-4 pl-4">
                 <dt className="text-xs text-[#6E6E73]">Condition</dt>
-                <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">{product.name.toLowerCase().includes('renewed') ? 'Renewed Premium' : 'Confirm with ACE'}</dd>
+                <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">{product.condition || 'Confirm with ACE'}</dd>
               </div>
               <div className="col-span-2 border-t border-[#E8EDF4] py-4">
                 <dt className="text-xs text-[#6E6E73]">Warranty</dt>
-                <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">Confirm warranty with ACE</dd>
+                <dd className="mt-1 text-sm font-semibold text-[#1D1D1F]">{product.warranty || 'Confirm warranty with ACE'}</dd>
               </div>
             </dl>
 
