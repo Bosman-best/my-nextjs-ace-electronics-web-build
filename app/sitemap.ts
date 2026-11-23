@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://ace-electronics.com'
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://ace-electronics.vercel.app'
   const routes = [
     '',
     '/laptops',
