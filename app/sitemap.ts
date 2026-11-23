@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/warranty',
     '/faqs',
     '/privacy',
+    '/cookies',
+    '/returns',
     '/terms',
   ]
 
