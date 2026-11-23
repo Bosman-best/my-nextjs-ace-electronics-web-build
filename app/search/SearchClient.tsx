@@ -10,9 +10,9 @@ import PageContainer from '@/components/layout/PageContainer'
 import ProductGrid from '@/components/ui/ProductGrid'
 import ProductCard from '@/components/cards/ProductCard'
 import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
-import { products } from '@/lib/products'
+import type { CatalogProduct } from '@/lib/catalog'
 
-export default function SearchClient() {
+export default function SearchClient({ products }: { products: CatalogProduct[] }) {
   const searchParams = useSearchParams()
   const query = (searchParams.get('q') ?? '').trim()
 
