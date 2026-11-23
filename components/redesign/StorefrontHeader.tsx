@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { ChevronDown, Menu, X, Search, ArrowUpRight } from 'lucide-react'
+import { Menu, X, Search, ArrowUpRight } from 'lucide-react'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const menus = [
@@ -54,7 +54,7 @@ export default function StorefrontHeader() {
           {menus.map(menu => (
             <div key={menu.href} className="flex h-full items-center" onMouseEnter={() => setActiveMenu(menu.label)}>
               <Link href={menu.href} className={pathname.startsWith(menu.href) || activeMenu === menu.label ? 'flex h-full items-center text-[13px] font-medium text-[#0066CC]' : 'flex h-full items-center text-[13px] font-medium text-slate-700 hover:text-[#0066CC]'}>{menu.label}</Link>
-              <button type="button" aria-label={'Open ' + menu.label + ' menu'} aria-expanded={activeMenu === menu.label} onFocus={() => setActiveMenu(menu.label)} onClick={() => setActiveMenu(activeMenu === menu.label ? null : menu.label)} className="ml-1 grid h-8 w-5 place-items-center text-slate-500 hover:text-[#0066CC]"><ChevronDown size={13} className={activeMenu === menu.label ? 'rotate-180 transition-transform' : 'transition-transform'}/></button>
+              <button type="button" aria-label={'Open ' + menu.label + ' menu'} aria-expanded={activeMenu === menu.label} onFocus={() => setActiveMenu(menu.label)} onClick={() => setActiveMenu(activeMenu === menu.label ? null : menu.label)} className="ml-1 grid h-8 w-5 place-items-center text-slate-500 hover:text-[#0066CC]" />
             </div>
           ))}
         </nav>
@@ -100,7 +100,7 @@ export default function StorefrontHeader() {
               <div key={menu.href} className="py-1">
                 <div className="flex items-center justify-between">
                   <Link href={menu.href} onClick={closeMenus} className="py-2.5 text-[15px] font-medium text-[#1D1D1F]">{menu.label}</Link>
-                  <button type="button" aria-label={'Expand ' + menu.label} aria-expanded={mobileSection === menu.label} onClick={() => setMobileSection(mobileSection === menu.label ? null : menu.label)} className="grid h-9 w-9 place-items-center rounded-full text-slate-600"><ChevronDown size={16} className={mobileSection === menu.label ? 'rotate-180 transition-transform' : 'transition-transform'}/></button>
+                  <button type="button" aria-label={'Expand ' + menu.label} aria-expanded={mobileSection === menu.label} onClick={() => setMobileSection(mobileSection === menu.label ? null : menu.label)} className="grid h-9 w-9 place-items-center rounded-full text-slate-600" />
                 </div>
                 {mobileSection === menu.label && <div className="mb-3 ml-2 rounded-xl bg-[#F5F5F7] px-4 py-3">
                   <p className="mb-2 text-[10px] font-semibold uppercase tracking-[.14em] text-[#86868B]">Brands</p>
