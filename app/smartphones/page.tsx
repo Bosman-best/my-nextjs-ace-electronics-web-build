@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 import SmartphonesClient from './SmartphonesClient'
+import { getCatalogProducts } from '@/lib/catalog'
 
 export const metadata: Metadata = {
   title: 'Smartphones for Sale Ghana – Samsung, Google Pixel | ACE Electronics',
@@ -12,10 +13,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() {
+export default async function Page() {
+  const products = (await getCatalogProducts()).filter((product) => product.type === 'smartphone')
   return (
     <Suspense fallback={null}>
-      <SmartphonesClient />
+      <SmartphonesClient products={products} />
     </Suspense>
   )
 }
