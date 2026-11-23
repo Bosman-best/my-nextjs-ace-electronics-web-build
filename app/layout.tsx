@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: { default: 'ACE Electronics — Your Trusted Tech Plug in Ghana', template: '%s | ACE Electronics' },
   description: 'Explore laptops and smartphones at ACE Electronics Ghana. Compare key specifications, ask about current availability and get friendly support on WhatsApp.',
   keywords: ['laptops for sale Ghana', 'smartphones for sale Ghana', 'tech plug Ghana', 'buy laptops Accra', 'buy phones Accra'],
+  verification: {
+    google: '8aRwf3gjiGczUM-eND8oostbeNcfvsCRUz3EJa05gYQ',
+  },
   openGraph: { type: 'website', locale: 'en_GH', url: siteUrl, siteName: 'ACE Electronics', title: 'ACE Electronics — Your Trusted Tech Plug in Ghana', description: 'Explore laptops and smartphones at ACE Electronics Ghana. Product details, straightforward enquiries and WhatsApp support.', images: [{ url: '/og-ace.jpg', width: 1200, height: 630, alt: 'ACE Electronics – Your Trusted Tech Plug' }] },
   twitter: { card: 'summary_large_image', title: 'ACE Electronics — Your Trusted Tech Plug in Ghana', description: 'Explore laptops and smartphones at ACE Electronics Ghana.', images: ['/og-ace.jpg'] },
   robots: { index: true, follow: true },
