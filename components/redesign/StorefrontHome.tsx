@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight, Sparkles, CheckCircle2, ShieldCheck, MessageCircle, Headset } from 'lucide-react'
-import { LAPTOPS, SMARTPHONES } from '@/lib/products'
+import { getCatalogProducts, type CatalogProduct } from '@/lib/catalog'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const categories = [
@@ -10,15 +10,14 @@ const categories = [
   { title:'Audio & accessories', note:'The details that complete your setup', href:'/accessories', image:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85', alt:'Studio photograph of premium headphones', kind:'remote' },
   { title:'Gaming', note:'Gear up and play', href:'/gaming', image:'https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1000&q=85', alt:'Gaming setup with monitor and peripherals', kind:'remote' },
 ]
-const products = [
-  { product: LAPTOPS[0], type: 'Business laptop' },
-  { product: LAPTOPS[1], type: 'Laptop' },
-  { product: SMARTPHONES[0], type: 'Apple smartphone' },
-  { product: SMARTPHONES[1], type: 'Samsung smartphone' },
-]
-
-
-export default function StorefrontHome() {
+export default async function StorefrontHome() {
+  const catalogue = await getCatalogProducts()
+  const laptops = catalogue.filter((product) => product.type === 'laptop').slice(0, 2)
+  const phones = catalogue.filter((product) => product.type === 'smartphone').slice(0, 2)
+  const products: Array<{ product: CatalogProduct; type: string }> = [
+    ...laptops.map((product) => ({ product, type: 'Laptop' })),
+    ...phones.map((product) => ({ product, type: 'Smartphone' })),
+  ]
   return <main className="overflow-hidden bg-[#F5F5F7] text-[#17243A]">
     <section className="relative isolate overflow-hidden bg-[linear-gradient(115deg,#F4F8FF_0%,#E6F0FF_52%,#D9E9FF_100%)]">
       <div className="pointer-events-none absolute -right-32 top-[-18rem] h-[42rem] w-[42rem] rounded-full bg-white/70 blur-3xl" />
