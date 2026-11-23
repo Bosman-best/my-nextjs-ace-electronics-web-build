@@ -71,7 +71,7 @@ export default function LaptopsClient({ products }: { products: CatalogProduct[]
   }
 
   const items = useMemo(() => {
-    let result = filter === 'All' ? products : LAPTOPS.filter(l => l.category === filter)
+    let result = filter === 'All' ? products : products.filter(l => l.category === filter)
 
     if (brand) {
       result = result.filter(l => l.brand.toLowerCase() === brand)
