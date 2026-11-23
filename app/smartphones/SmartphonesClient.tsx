@@ -8,11 +8,12 @@ import FilterBar from '@/components/ui/FilterBar'
 import ProductGrid from '@/components/ui/ProductGrid'
 import ProductCard from '@/components/cards/ProductCard'
 import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
-import { SMARTPHONES, type ProductCategory } from '@/lib/products'
+import type { CatalogProduct } from '@/lib/catalog'
+import type { ProductCategory } from '@/lib/products'
 
 const PHONE_FILTERS = ['All','Flagship','Mid-range','Budget'] as const
 
-export default function SmartphonesClient() {
+export default function SmartphonesClient({ products }: { products: CatalogProduct[] }) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -69,7 +70,7 @@ export default function SmartphonesClient() {
   }
 
   const items = useMemo(() => {
-    let result = filter === 'All' ? SMARTPHONES : SMARTPHONES.filter(p => p.category === filter)
+    let result = filter === 'All' ? products : SMARTPHONES.filter(p => p.category === filter)
 
     if (brand) {
       result = result.filter(p => p.brand.toLowerCase() === brand)
