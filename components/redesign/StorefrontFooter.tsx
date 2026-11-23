@@ -2,7 +2,7 @@ import Link from 'next/link'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
 
 const quickLinks = [['Home','/'],['Laptops','/laptops'],['Smartphones','/smartphones'],['Accessories','/accessories'],['Gaming','/gaming']] as const
-const supportLinks = [['About ACE','/about'],['Contact','/contact'],['FAQs','/faqs'],['Warranty','/warranty']] as const
+const supportLinks = [['About ACE','/about'],['Contact','/contact'],['FAQs','/faqs'],['Warranty','/warranty'],['Returns & Refunds','/returns'],['Privacy Policy','/privacy'],['Cookie Notice','/cookies'],['Website Terms','/terms']] as const
 
 export default function StorefrontFooter() {
   return <footer className="border-t border-[#E3EAF3] bg-[#EEF4FC] text-[#17243A]">
