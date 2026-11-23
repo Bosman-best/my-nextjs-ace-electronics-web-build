@@ -4,14 +4,16 @@ import NavBar from '@/components/layout/NavBar'
 import Footer from '@/components/layout/Footer'
 import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
 import ProductDetailClient from './ProductDetailClient'
-import { products } from '@/lib/products'
+import { getCatalogProducts } from '@/lib/catalog'
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.id }))
+export async function generateStaticParams() {
+  const products = await getCatalogProducts()
+  return products.map((product) => ({ slug: product.slug }))
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const product = products.find((item) => item.id === params.slug)
+  const products = await getCatalogProducts()
+  const product = products.find((item) => item.slug === params.slug)
   if (!product) return { title: 'Product not found | ACE Electronics' }
 
   return {
@@ -20,8 +22,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function ProductDetailPage({ params }: { params: { slug: string } }) {
-  const product = products.find((item) => item.id === params.slug)
+export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
+  const products = await getCatalogProducts()
+  const product = products.find((item) => item.slug === params.slug)
   if (!product) notFound()
 
   return (
