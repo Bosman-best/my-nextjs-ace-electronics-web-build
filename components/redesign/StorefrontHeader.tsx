@@ -71,7 +71,7 @@ export default function StorefrontHeader() {
         </div>
       </div>
       {activeMenu && (
-        <div className="absolute left-0 top-[64px] z-10 hidden max-h-[calc(100dvh-64px)] w-screen overflow-y-auto bg-white shadow-[0_24px_55px_rgba(15,35,65,.12)] lg:block">
+        <div className="relative left-0 top-0 z-10 hidden max-h-[calc(100dvh-64px)] w-screen overflow-y-auto bg-white shadow-[0_24px_55px_rgba(15,35,65,.12)] lg:block">
           {menus.filter(menu => menu.label === activeMenu).map(menu => (
             <div key={menu.href} className="mx-auto grid max-w-[1440px] grid-cols-[1.05fr_1fr_1fr] gap-16 px-12 py-12 xl:px-20">
               <div className="max-w-[330px]">
