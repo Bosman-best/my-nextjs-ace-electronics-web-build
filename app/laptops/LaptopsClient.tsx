@@ -8,11 +8,12 @@ import FilterBar from '@/components/ui/FilterBar'
 import ProductGrid from '@/components/ui/ProductGrid'
 import ProductCard from '@/components/cards/ProductCard'
 import FloatingWhatsAppWidget from '@/components/whatsapp/FloatingWhatsAppWidget'
-import { LAPTOPS, type ProductCategory } from '@/lib/products'
+import type { CatalogProduct } from '@/lib/catalog'
+import type { ProductCategory } from '@/lib/products'
 
 const LAPTOP_FILTERS = ['All','Gaming','Business','Student','Ultrabook'] as const
 
-export default function LaptopsClient() {
+export default function LaptopsClient({ products }: { products: CatalogProduct[] }) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -70,7 +71,7 @@ export default function LaptopsClient() {
   }
 
   const items = useMemo(() => {
-    let result = filter === 'All' ? LAPTOPS : LAPTOPS.filter(l => l.category === filter)
+    let result = filter === 'All' ? products : LAPTOPS.filter(l => l.category === filter)
 
     if (brand) {
       result = result.filter(l => l.brand.toLowerCase() === brand)
